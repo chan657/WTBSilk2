@@ -1,0 +1,271 @@
+<?php
+$url = $this->here;
+$arr = explode("/", $url);
+$cur_page = $arr[1]; // live
+?>
+<nav id="sidebar">
+    <ul id="icon_nav_v" class="side_ico_nav">
+        <li class="nav-toggle"><button class="btn  btn-nav-toggle"><i class="fa toggle-left fa-angle-double-left" style="color:#eee;"></i> </button></li>
+        <li <?php if ($cur_page == 'users') { ?> class="active"<?php } ?>>
+            <?php
+            echo $this->Html->link('<i class="icon-home"></i>', array('controller' => 'users', 'action' => 'dashboard'), array('escape' => false, 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'Dashboard'));
+            ?>
+
+        </li>
+        <?php if ($this->Session->read('role_id') == '3' || $this->Session->read('role_id') == '14') { ?>
+            <li <?php if ($cur_page == 'my-builders') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Builders</span>', '/my-builders', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Builders', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-builder-contacts') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Network</span>', '/my-builder-contacts', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Network', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-builder-contacts') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Network</span>', '/my-builder-contacts', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Network', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-projects') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Projects</span>', '/my-projects', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Projects', 'escape' => false));
+                ?>           
+            </li>
+            <li <?php if ($cur_page == 'my-clients') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Clients</span>', '/my-clients', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Clients', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-cities') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Cities</span>', '/my-cities', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Cities', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-suburbs') { ?> class="active"<?php } ?>> 
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Suburbs</span>', '/my-suburbs', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Suburbs', 'escape' => false));
+                ?>            
+
+            </li>
+            <li <?php if ($cur_page == 'my-areas') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Areas</span>', '/my-areas', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Areas', 'escape' => false));
+                ?>           
+
+            </li>
+        <?php
+        } else if ($this->Session->read('role_id') == '15') {
+            ?>
+            <li <?php if ($cur_page == 'my-builders') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Builders</span>', '/my-builders', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Builders', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-builder-contacts') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Network</span>', '/my-builder-contacts', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Network', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-projects') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Projects</span>', '/my-projects', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Projects', 'escape' => false));
+                ?>           
+            </li>
+            <li <?php if ($cur_page == 'my-clients') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Clients</span>', '/my-clients', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Clients', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-payments') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Payments</span>', '/my-payments', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Payments', 'escape' => false));
+                ?>           
+            </li>
+
+
+        <?php } else if ($this->Session->read('role_id') == '7') {
+            ?>
+            <li <?php if ($cur_page == 'my-builders') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Builders</span>', '/my-builders', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Builders', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-builder-contacts') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Network</span>', '/my-builder-contacts', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Network', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-projects') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Projects</span>', '/my-projects', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Projects', 'escape' => false));
+                ?>           
+            </li>
+            <li <?php if ($cur_page == 'my-clients') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Clients</span>', '/my-clients', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Clients', 'escape' => false));
+                ?>          
+
+            </li>
+
+            <li <?php if ($cur_page == 'my-finance') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Finance</span>', '/my-finance', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Finance', 'escape' => false));
+                ?>           
+            </li>
+            <li <?php if ($cur_page == 'my-data') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Data</span>', '/my-data', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Data', 'escape' => false));
+                ?>           
+
+            </li>
+
+        <?php }
+        else if ($this->Session->read('role_id') == '6') { // general admin
+            ?>
+            <li <?php if ($cur_page == 'my-builders') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Builders</span>', '/my-builders', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Builders', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-builder-contacts') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Network</span>', '/my-builder-contacts', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Network', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-projects') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Projects</span>', '/my-projects', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Projects', 'escape' => false));
+                ?>           
+            </li>
+            <li <?php if ($cur_page == 'my-cities') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Cities</span>', '/my-cities', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Cities', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-data') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Data</span>', '/my-data', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Data', 'escape' => false));
+                ?>           
+
+            </li>
+            <li <?php if ($cur_page == 'my-suburbs') { ?> class="active"<?php } ?>> 
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Suburbs</span>', '/my-suburbs', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Suburbs', 'escape' => false));
+                ?>            
+            </li>
+
+            <li <?php if ($cur_page == 'my-areas') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Areas</span>', '/my-areas', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Areas', 'escape' => false));
+                ?>           
+            </li>
+
+        <?php }
+        else {
+            ?>
+            <li <?php if ($cur_page == 'my-builders') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Builders</span>', '/my-builders', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Builders', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-builder-contacts') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Network</span>', '/my-builder-contacts', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Network', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-projects') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Projects</span>', '/my-projects', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Projects', 'escape' => false));
+                ?>           
+            </li>
+            <li <?php if ($cur_page == 'my-clients') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Clients</span>', '/my-clients', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Clients', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-payments') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Payments</span>', '/my-payments', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'Payments', 'escape' => false));
+                ?>           
+            </li>
+            <li <?php if ($cur_page == 'my-finance') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Finance</span>', '/my-finance', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Finance', 'escape' => false));
+                ?>           
+            </li>
+            <li <?php if ($cur_page == 'my-cities') { ?> class="active"<?php } ?>>   
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Cities</span>', '/my-cities', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Cities', 'escape' => false));
+                ?>          
+
+            </li>
+            <li <?php if ($cur_page == 'my-channels') { ?> class="active"<?php } ?>>
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Channels</span>', '/my-channels', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Channels', 'escape' => false));
+                ?>             
+
+            </li>
+            <li <?php if ($cur_page == 'my-suburbs') { ?> class="active"<?php } ?>> 
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Suburbs</span>', '/my-suburbs', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Suburbs', 'escape' => false));
+                ?>            
+
+            </li>
+
+            <li <?php if ($cur_page == 'my-areas') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Areas</span>', '/my-areas', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Areas', 'escape' => false));
+                ?>           
+
+            </li>
+            <li <?php if ($cur_page == 'my-groups') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Groups</span>', '/my-groups', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Groups', 'escape' => false));
+                ?>           
+
+            </li>
+            <li <?php if ($cur_page == 'my-roles') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Roles</span>', '/my-roles', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Roles', 'escape' => false));
+                ?>           
+
+            </li>
+            <li <?php if ($cur_page == 'my-users') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Users</span>', '/my-users', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Users', 'escape' => false));
+                ?>           
+
+            </li>
+            <li <?php if ($cur_page == 'my-permissions') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Permissions</span>', '/my-permissions', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Permissions', 'escape' => false));
+                ?>           
+
+            </li>
+            <li <?php if ($cur_page == 'my-look-ups') { ?> class="active"<?php } ?>>  
+                <?php
+                echo $this->Html->link('<i class="icon-tasks"></i><span>My Look Ups</span>', '/my-look-ups', array('data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => 'My Look Ups', 'escape' => false));
+                ?>           
+
+            </li>
+        <?php } ?>
+    </ul>
+</nav>

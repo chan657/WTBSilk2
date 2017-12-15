@@ -1,0 +1,9 @@
+Province.id,Province.name,Province.continent_id,Province.continent_code,Province.continent_name,Province.country_id,Province.country_code,Province.country_name,Province.description,Province.active,Province.wtb_status,Province.status,Province.top_province,Province.is_update,Province.created_by,Province.modified,Province.created
+NULL,Central,4,EU,Europe,183,RU,Russia,Central,TRUE,1,1,FALSE,Y,169,0000-00-00 00:00:00,0000-00-00 00:00:00
+NULL,South,4,EU,Europe,183,RU,Russia,South,TRUE,1,1,FALSE,Y,169,0000-00-00 00:00:00,0000-00-00 00:00:00
+NULL,North West,4,EU,Europe,183,RU,Russia,North West,TRUE,1,1,FALSE,Y,169,0000-00-00 00:00:00,0000-00-00 00:00:00
+NULL,Far East,4,EU,Europe,183,RU,Russia,Far East,TRUE,1,1,FALSE,Y,169,0000-00-00 00:00:00,0000-00-00 00:00:00
+NULL,Siberia,4,EU,Europe,183,RU,Russia,Siberia,TRUE,1,1,FALSE,Y,169,0000-00-00 00:00:00,0000-00-00 00:00:00
+NULL,Ural,4,EU,Europe,183,RU,Russia,Ural,TRUE,1,1,FALSE,Y,169,0000-00-00 00:00:00,0000-00-00 00:00:00
+NULL,Volga,4,EU,Europe,183,RU,Russia,Volga,TRUE,1,1,FALSE,Y,169,0000-00-00 00:00:00,0000-00-00 00:00:00
+NULL,North Caucasus,4,EU,Europe,183,RU,Russia,North Caucasus,TRUE,1,1,FALSE,Y,169,0000-00-00 00:00:00,0000-00-00 00:00:00

@@ -1,0 +1,1 @@
+<?php echo $this->Form->input($model.'.suburb', array('label'=> false,'div'=>false,'options'=>$DataArray,'empty'=>'--Select--')); ?>

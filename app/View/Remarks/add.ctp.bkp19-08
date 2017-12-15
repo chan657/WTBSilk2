@@ -1,0 +1,238 @@
+<?php
+//echo $this->Html->css('main');
+echo $this->Html->css('popup');
+		/* End */
+?>
+<style>
+.pop-outer {
+	overflow:hidden;
+}
+.pop-up-hdng {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	color:#333;
+	border-bottom:1px dashed #e3e3e3;
+	line-height:20px;
+	margin-bottom:15px;
+	padding-bottom:5px;
+}
+.row {
+	margin:0;
+}
+.col-sm-12 {
+	width:100%;
+	position: relative;
+	min-height: 1px;
+	padding-right: 15px;
+}
+.col-sm-1 {
+	float:left;
+}
+.col-sm-6 {
+	width:50%;
+	position: relative;
+	min-height: 1px;
+	float:left;
+}
+.form-group {
+	overflow:hidden;
+	margin-bottom:4px;
+}
+.form-group label {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	float: left;
+	padding-right: 15px;
+	text-align: right;
+	color: #888;
+	width:28%;
+	line-height:30px;
+}
+.colon {
+	float: left;
+	margin: 5px;
+	padding: 1px;
+}
+.form-group .col-sm-10 {
+	width:60%;
+	float:left;
+	padding-left:15px;
+}
+.form-group .col-sm-10 input, .form-group .col-sm-10 select{
+	height: 30px;
+	padding: 5px 8px;
+	font-size: 13px;
+	line-height: 1.4;
+	background-color: #fff;
+	border: 1px solid #d9d9d9;
+	border-top-color: #c0c0c0;
+	border-radius: 1px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-webkit-transition: none;
+	transition: none;
+	width:100%;
+}
+.btn {
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+}
+.success {
+	color: #fff;
+	text-shadow: 0 1px rgba(0,0,0,0.1);
+	background-image: -webkit-gradient(linear, left 0, left 100%, from(#35aa47), to(#35aa47));
+	background-image: -webkit-linear-gradient(top, #35aa47, 0%, #35aa47, 100%);
+	background-image: -moz-linear-gradient(top, #35aa47 0, #35aa47 100%);
+	background-image: linear-gradient(to bottom, #35aa47 0, #35aa47 100%);
+	background-repeat: repeat-x;
+	border: 1px solid #359947;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff35aa47', endColorstr='#ff35aa47', GradientType=0);
+	filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
+}
+.success:hover {
+	text-shadow: 0 1px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	background-color: #2f973f;
+	background-color: #2f973f \9;
+	background-image: -webkit-gradient(linear, left 0, left 100%, from(#35aa47), to(#2f973f));
+	background-image: -webkit-linear-gradient(top, #35aa47, 0%, #2f973f, 100%);
+	background-image: -moz-linear-gradient(top, #35aa47 0, #2f973f 100%);
+	background-image: linear-gradient(to bottom, #35aa47 0, #2f973f 100%);
+	background-repeat: repeat-x;
+	border: 1px solid #2e863e;
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff35aa47', endColorstr='#ff2f973f', GradientType=0);
+filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
+}
+.reset {
+	color: #fff;
+	text-shadow: 0 1px rgba(0,0,0,0.1);
+	background-image: -webkit-gradient(linear, left 0, left 100%, from(#dd4b39), to(#d14836));
+	background-image: -webkit-linear-gradient(top, #dd4b39, 0%, #d14836, 100%);
+	background-image: -moz-linear-gradient(top, #dd4b39 0, #d14836 100%);
+	background-image: linear-gradient(to bottom, #dd4b39 0, #d14836 100%);
+	background-repeat: repeat-x;
+	border: 1px solid #c6322a;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdd4b39', endColorstr='#ffd14836', GradientType=0);
+	filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
+}
+.reset:hover {
+	text-shadow: 0 1px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	background-color: #c13e2c;
+	background-color: #c13e2c \9;
+	background-image: -webkit-gradient(linear, left 0, left 100%, from(#dd4b39), to(#c13e2c));
+	background-image: -webkit-linear-gradient(top, #dd4b39, 0%, #c13e2c, 100%);
+	background-image: -moz-linear-gradient(top, #dd4b39 0, #c13e2c 100%);
+	background-image: linear-gradient(to bottom, #dd4b39 0, #c13e2c 100%);
+	background-repeat: repeat-x;
+	border: 1px solid #b12d26;
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdd4b39', endColorstr='#ffc13e2c', GradientType=0);
+filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
+}
+</style>
+<!--<div align="left" valign="top" class="headerText"> Edit Unit</div>-->
+<?php echo $this->Session->flash(); ?>
+
+<!----------------------------start add project block------------------------------>
+<div class="pop-outer">
+     <div class="pop-up-hdng">Add Remark For | <?php echo $lead['Lead']['lead_fname'].' '.$lead['Lead']['lead_lname']; ?></div>
+
+
+    <?php
+    echo $this->Form->create('Remark', array('enctype' => 'multipart/form-data'));
+   // pr($lead);
+    ?>
+
+    <div class="col-sm-12">
+        <div class="col-sm-6">
+
+            <div class="form-group">
+                <label>Remark Date</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10">	<?php
+
+              echo $this->Form->input('remarks_date',  array('type' => 'text','id' => "activity_date", 'readonly' => 'readonly', 'div' =>false,'label' => false,'class' => 'inputbox'));
+           
+                    ?></div>
+            </div>
+
+
+            <div class="form-group">
+                <label>Remark</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10"><?php
+                    echo $this->Form->input('remarks', array('div' => false,
+                        'label' => false,'class' => 'inputbox'));
+                    ?>
+
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label>Associated Activity</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10"><?php
+		echo $this->Form->input('activity_id',   array('div' =>false,'label' => false,'options' => $activities,'empty'=>'Select','class' => 'inputbox', 'size' => '1','maxlength'=>'100'));
+                   
+                    ?>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+	    <div class="form-group">
+               <label>Remark Time</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10"><?php
+                   echo $this->Form->input('remarks_time',  array('div' =>false,'id' => 'remarks_time','type' => 'text','label' =>false,'class' => 'inputbox', 'size' => '20','maxlength'=>'100')); 
+                    ?></div>
+            </div>
+            <div class="form-group">
+               <label>Remark Level</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10">	<?php
+                    echo $this->Form->input('remarks_level', array('div' => false,
+                        'label' => false,
+                        'class' => 'inputbox'));
+                    ?></div>
+            </div>
+            <div class="form-group">
+                <label>Remark By</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10"><?php
+                    echo $this->Form->input('remarks_by', array('div' => false,
+                        'label' => false,
+                        'class' => 'inputbox'));
+                    ?></div>
+            </div>
+           </div>
+	</div>           
+        <div class="row">
+        	<div class="col-sm-1"><?php echo $this->Form->submit('Add', array('class' => 'success btn','div' => false, 'id' => 'udate_unit')); ?></div>
+
+                <div class="col-sm-1"><?php
+                echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'reset btn'));
+                //  echo $this->Html->link($this->Html->image("btn-reset.gif"), array(), array('escape' => false, 'onclick'=>'document.UserAddForm.reset();return false;', 'div' => false));
+                ?></div>
+                 </div>
+            
+        
+
+    <?php echo $this->Form->end();
+    ?>
+</div>			
+<!----------------------------end add project block------------------------------>

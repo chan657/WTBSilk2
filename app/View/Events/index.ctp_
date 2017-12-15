@@ -1,0 +1,512 @@
+<?php $this->Html->addCrumb('My Events','javascript:void(0);', array('class' => 'breadcrumblast'));?>
+<style>
+.inline1 {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+</style>
+<div class="row"> 
+ <div class="col-sm-12">
+        <div class="panel panel-default">
+           <div id="calendar"></div>
+        </div>
+    </div>
+ </div>
+ 
+ <div id="inline1" class="inline1">
+<?php 
+echo $this->Form->create('Event', array('action' => 'add','method' => 'post','id' => 'parsley_reg','novalidate' => true,
+													'inputDefaults' => array(
+																	'label' => false,
+																	'div' => false,
+																	'class' => 'form-control',
+																)
+						));
+	  echo $this->Form->hidden('event_date',array('id' => 'event_date','type' => 'text'));	
+?>
+    	<div class="col-sm-6">
+        <div class="form-group imp">
+               <label>Form</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10">
+				<div class="input-group bootstrap-timepicker">
+                                                   <?php
+                   echo $this->Form->input('start_time',  array('type' => 'text','id'=>'start_time')); 
+                    ?>
+                                                    <span class="input-group-addon"><i class="icon-time"></i></span>
+                                                </div>
+				
+				</div>
+            </div>
+        	<!--<div class="form-group">
+            	<label>Form</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10">
+                	<?php echo $this->Form->input('start_time', array('id' => 'start_time', 'options' => $times, 'value' => '10:00:00', 'class' => 'inputformpop inputformsmall', 'label' => false, 'legend' => false, 'div' => false)); ?>
+                </div>
+            </div>-->
+        </div>
+        <div class="col-sm-6">
+        	<div class="form-group">
+            	<label>To</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10">
+                <div class="input-group bootstrap-timepicker">
+                                                   <?php
+                   echo $this->Form->input('end_time',  array('type' => 'text','id'=>'end_time')); 
+                    ?>
+                                                    <span class="input-group-addon"><i class="icon-time"></i></span>
+                                                </div>
+                
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 flr">
+        	<div class="form-group">
+            	<label>Activity Level</label>
+                <span class="colon">:</span>
+                <div class="col-sm-4">
+                	<?php
+echo $this->Form->input('activity_level', array('id' => 'activity_level', 'options' => $activity_levels,  'empty' => '--Select--'));
+?>
+                </div>
+                <div class="col-sm-4">
+                	<?php
+echo $this->Form->input('project_id', array('id' => 'project_id', 'options' => $projects, 'div' => array('class' => 'project_id', 'style' => 'display:none;'), 'empty' => '--Select--'));
+echo $this->Form->input('builder_id', array('id' => 'builder_id', 'options' => $builders, 'div' => array('class' => 'builder_id', 'style' => 'display:none;'), 'empty' => '--Select--'));
+
+echo $this->Form->input('lead_id', array('id' => 'lead_id', 'options' => $clients, 'div' => array('class' => 'lead_id_div', 'style' => 'display:none;'), 'empty' => '--Select--'));
+
+echo $this->Form->input('city_id', array('id' => 'city_id', 'options' => $cities, 'div' => array('class' => 'city_id_div', 'style' => 'display:none;'), 'empty' => '--Select--'));
+
+echo $this->Form->input('suburb_id', array('id' => 'suburb_id', 'options' => $suburbs,'div' => array('class' => 'suburbs_id_div', 'style' => 'display:none;'), 'empty' => '--Select--'));
+
+echo $this->Form->input('area_id', array('id' => 'area_id', 'options' => $suburbs, 'div' => array('class' => 'area_id_div', 'style' => 'display:none;'), 'empty' => '--Select--'));
+
+echo $this->Form->input('event_level_desc', array('div' => array('class' => 'company_div', 'style' => 'display:none;')));
+
+?>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 flr">
+        	<div class="form-group">
+            	<label>Activity Type</label>
+                <span class="colon">:</span>
+                <div class="col-sm-4">
+                	<?php echo $this->Form->input('activity_type', array('id' => 'activity_type', 'options' => $activity_types,  'empty' => '--Select--'));
+					?>
+                </div>
+                <div class="col-sm-4">
+                	<?php 
+echo $this->Form->input('call', array('options' => $user_name, 'div' => array('class' => 'call_div', 'style' => 'display:none;'), 'empty' => '--Select--'));
+
+echo $this->Form->input('channel_id', array('options' => $channel,'div' => array('class' => 'channel_div', 'style' => 'display:none;'), 'empty' => '--Select--'));
+
+echo $this->Form->input('from_city_id', array('options' => $all_cities,'div' => array('class' => 'from_city_div', 'style' => 'display:none;'), 'empty' => '--Select--'));
+
+echo $this->Form->input('to_city_id', array('options' => $all_cities, 'div' => array('class' => 'to_city_div', 'style' => 'display:none;'), 'empty' => '--Select--'));
+
+echo $this->Form->input('event_type_desc', array('div' => array('class' => 'other_div', 'style' => 'display:none;')));
+
+ ?>
+                </div>
+            </div>
+        </div>
+    <div class="row">
+    	<div class="col-sm-1"><?php echo $this->Form->submit('Add', array('class' => 'updateBox success btn')) ?></div>
+    </div>
+        
+        
+                    <?php echo $this->Form->end() ?>
+    </div>
+ 
+
+ 
+    
+    <script type="text/javascript">
+   $(document).ready(function() {
+   
+   
+
+    var _baseUrl=$('#hidden_site_baseurl').val();
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    var calendar = $('#calendar').fullCalendar({
+	
+    editable: false,
+    
+    header: {
+        left: 'prev,next',
+        center: 'title',
+       // right: 'agendaWeek,month,agendaDay'
+    },
+    defaultView: 'month',
+
+
+    // Getting allbooking and allholidays
+    eventSources: [
+    {url:_baseUrl+"/all_functions/getAllEventRecords"}
+    ],
+
+    firstDay:0,
+
+    // Convert the allDay from string to boolean
+    eventRender: function(event, element, view)
+    {
+        element.find('.fc-event-time').show();
+        if (event.allDay === 'true') {
+        event.allDay = true;
+		
+        } else {
+        event.allDay = false;
+    }
+    
+
+    },
+    editable: false,
+    disableDragging:true,
+    eventDrop: function(event,delta,minuteDelta,allDay,revertFunc) {
+
+    start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
+    end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
+
+    var today=$.fullCalendar.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
+    // If want to drag booking event before currentdate
+    if(today> start)
+    {
+         revertFunc();
+         return false;
+    }
+    // Confirm message when draging
+   if (!confirm("Are you sure about this change?")) {
+             revertFunc();
+             return false;
+    }
+
+
+    $.ajax({
+    url: _baseUrl+"calendar/updateBooking",
+    data:{bookingDate:start, bookingId:event.id},
+    //data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+    type: "POST",
+    success: function(json) {
+    $(".message").html('Data has been updated successfuly.');
+    $(".message").show();
+    $(".message").fadeOut(2500);
+    calendar.fullCalendar('refetchEvents');
+    }
+    });
+    },
+
+    disableResizing:true,
+    dayClick: function(date, allDay, jsEvent, view) {
+        var getDate = $.fullCalendar.formatDate(date, "yyyy-MM-dd");
+        $('#event_date').val(getDate);
+          $.magnificPopup.open({
+			  items: {
+				  src: '#inline1',
+				  type: 'inline',
+				  midClick: true
+			  }
+			});
+
+                return false;
+            
+    },
+    eventClick: function(calEvent, jsEvent, view ){
+
+    var getId = calEvent.id;
+    $.post(_baseUrl+"/all_functions/countDetailRecord", {recordId: getId},function(data){
+    if(data > 0)
+    {
+        var _getUrl=_baseUrl+"/events/edit/"+getId;
+
+		
+		
+		$.magnificPopup.open({
+		  items: {
+			src: _getUrl
+		  },
+		  type: 'iframe',
+		 
+		  
+		});
+		magnificPopup.close();
+		
+		
+/*
+        $.magnificPopup.open({
+        'type': 'ajax',
+        'src': _getUrl,
+        'onClosed': function() {
+        //parent.location.reload(true);
+        $('#calendar').fullCalendar('refetchEvents');
+        }
+        });
+		*/
+         }
+    });
+
+    },
+    eventMouseover: function(event, domEvent) {
+
+    var layer =event.tooltip;
+    $(this).append(layer);
+    $("#delbut"+event.id).hide();
+    $("#delbut"+event.id).fadeIn(300);
+    $("#delbut"+event.id).click(function() {
+
+    if (confirm("Are you want to delete event?"))
+    {
+        $.post(_baseUrl+"calendar/deleteEvent", {eventId: event.id},function(data){
+            $(".message").html('Data has been deleted successfuly.');
+            $(".message").show();
+            $(".message").fadeOut(2500);
+            calendar.fullCalendar('refetchEvents');
+        });
+    }
+    else
+    {
+        return false;
+    }
+    return false;
+    
+
+    });
+    $("#edbut"+event.id).hide();
+    $("#edbut"+event.id).fadeIn(300);
+    $("#edbut"+event.id).click(function() {
+
+    var getId = event.id; 
+    var _getUrl=_baseUrl+"calendar/getForm/edit/"+getId;
+
+    $.fancybox({
+    'transitionIn': 'none',
+    'transitionOut': 'none',
+    'type': 'ajax',
+    'href': _getUrl,
+    'onClosed': function() {
+    //parent.location.reload(true);
+    $('#calendar').fullCalendar('refetchEvents');
+    }
+    });
+    return false;
+    });
+    },
+
+    eventMouseout: function(calEvent, domEvent) {
+
+    $("#events-layer").remove();
+    }
+
+    });
+	
+	
+	
+	
+	
+	
+	
+	
+	        $('#activity_level').change(function() {
+            var activity_id = $(this).val();
+			
+			if (activity_id == 1) {
+                $('.lead_id_div').css('display', 'block');
+                $('.builder_id').css('display', 'none');
+				 $('.project_id').css('display', 'none');
+				 $('.city_id_div').css('display', 'none');
+				 $('.suburbs_id_div').css('display', 'none');
+				 $('.area_id_div').css('display', 'none');
+				 $('.company_div').css('display', 'none');
+            }
+			
+           else if (activity_id == 2) {
+                $('.project_id').css('display', 'none');
+				 $('.lead_id_div').css('display', 'none');
+                $('.builder_id').css('display', 'block');
+				$('.city_id_div').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+            else if (activity_id == 3) {
+
+                $('.project_id').css('display', 'block');
+				$('.lead_id_div').css('display', 'none');
+                $('.builder_id').css('display', 'none');
+				$('.city_id_div').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+			else if (activity_id == 4) {
+
+                $('.project_id').css('display', 'none');
+				$('.city_id_div').css('display', 'block');
+                $('.builder_id').css('display', 'none');
+				$('.lead_id_div').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+			else if (activity_id == 5) {
+
+                $('.project_id').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'block');
+				$('.lead_id_div').css('display', 'none');
+                $('.builder_id').css('display', 'none');
+				$('.lead_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+			else if (activity_id == 6) {
+
+                $('.project_id').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'block');
+				$('.lead_id_div').css('display', 'none');
+                $('.builder_id').css('display', 'none');
+				$('.lead_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+			else if (activity_id == 7) {
+
+                $('.project_id').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'block');
+				$('.lead_id_div').css('display', 'none');
+                $('.builder_id').css('display', 'none');
+				$('.lead_id_div').css('display', 'none');
+            }
+            else
+            {
+				$('.lead_id_div').css('display', 'none');
+				$('.city_id_div').css('display', 'none');
+                $('.project_id').css('display', 'none');
+                $('.builder_id').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+        });
+		
+		$('#activity_type').change(function(){
+			 var activity_type = $(this).val();
+			// alert(activity_type);
+			 if(activity_type == 1){
+			 	 $('.call_div').css('display','block');
+				 $('.channel_div').css('display','none');
+				 $('.from_city_div').css('display','none');
+				 $('.to_city_div').css('display','none');
+				 $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 2){
+			 	 $('.call_div').css('display','block');
+				 $('.channel_div').css('display','none');
+				 $('.from_city_div').css('display','none');
+				 $('.to_city_div').css('display','none');
+				 $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 3){
+			 	 $('.call_div').css('display','block');
+				 $('.channel_div').css('display','none');
+				 $('.to_city_div').css('display','none');
+				 $('.from_city_div').css('display','none');
+				 $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 4){
+			 	 $('.channel_div').css('display','block');
+				  $('.call_div').css('display','none');
+				  $('.from_city_div').css('display','none');
+				  $('.to_city_div').css('display','none');
+				  $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 5){
+			 	 $('.channel_div').css('display','block');
+				  $('.call_div').css('display','none');
+				  $('.from_city_div').css('display','none');
+				  $('.to_city_div').css('display','none');
+				  $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 6){
+			 	 $('.channel_div').css('display','block');
+				  $('.call_div').css('display','none');
+				  $('.from_city_div').css('display','none');
+				  $('.to_city_div').css('display','none');
+				  $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 7){
+			 	 $('.channel_div').css('display','block');
+				  $('.call_div').css('display','none');
+				  $('.from_city_div').css('display','none');
+				  $('.to_city_div').css('display','none');
+				  $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 8){
+			 	 $('.channel_div').css('display','block');
+				  $('.call_div').css('display','none');
+				  $('.from_city_div').css('display','none');
+				  $('.to_city_div').css('display','none');
+				  $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 9){
+			 	 $('.from_city_div').css('display','block');
+				 $('.to_city_div').css('display','block');
+			 	 $('.channel_div').css('display','none');
+				 $('.call_div').css('display','none');
+				 $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 10){
+			 	 $('.other_div').css('display','block');
+				  $('.from_city_div').css('display','none');
+				 $('.to_city_div').css('display','none');
+			 	 $('.channel_div').css('display','none');
+				 $('.call_div').css('display','none');
+			 }
+			 else{
+			 	 $('.call_div').css('display','none');
+				 $('.channel_div').css('display','none');
+				 $('.from_city_div').css('display','none');
+				 $('.to_city_div').css('display','none');
+				 $('.other_div').css('display','none');
+			 }
+		});
+
+    });
+	
+	 function validation() {
+        var start_time = $('#start_time').val();
+        var end_time = $('#end_date').val();
+        var s_time = start_time.split(':');
+        var s1 = parseInt(s_time[0]);
+        var s2 = parseInt(s_time[1]);
+        var e_time = end_time.split(':');
+        var e1 = parseInt(e_time[0]);
+        var e2 = parseInt(e_time[1]);
+        var start_tottime = (s1 * 60) + s2;
+        var end_tottime = (e1 * 60) + e2;
+
+        if (e1 < s1) {
+            alert('Incorrect time!!!');
+            return false;
+        }
+        else {
+            var cal = end_tottime - start_tottime;
+            var colspan = parseInt(cal / 15) + 1;
+            $('#colspan').val(colspan);
+
+        }
+    }
+
+</script>

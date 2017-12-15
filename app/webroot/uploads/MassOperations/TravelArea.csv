@@ -1,0 +1,24 @@
+id,area_name,suburb_id,suburb_name,city_id,city_name,country_id,country_name,continent_id,continent_name,area_description,area_active,top_area,area_status,wtb_status,is_update,province_id,province_name,approved_by,approved_date,created_by,created
+NULL,Abi,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Abi,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Arau,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Arau,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Beseri,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Beseri,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Chuping,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Chuping,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Jejawi,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Jejawi,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Kaki Bukit,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Kaki Bukit,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Kayang,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Kayang,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Kechor,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Kechor,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Kuala Perlis,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Kuala Perlis,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Kurong Anai,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Kurong Anai,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Kurong Batang,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Kurong Batang,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Ngulang,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Ngulang,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Oran,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Oran,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Padang Pauh,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Padang Pauh,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Paya,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Paya,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Pedang Siding,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Pedang Siding,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Sanglang,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Sanglang,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Sena,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Sena,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Seriab,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Seriab,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Sungai Adam,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Sungai Adam,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Titi Tinggi,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Titi Tinggi,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Utan Aji,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Utan Aji,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Wang Bintong,1015,Perlis,12095,Perlis,132,Malaysia,2,Asia,Wang Bintong,TRUE,FALSE,1,1,Y,96,Perlis-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00

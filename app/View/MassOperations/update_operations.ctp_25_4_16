@@ -1,0 +1,152 @@
+<?php
+$this->Html->addCrumb('Update Operations', 'javascript:void(0);', array('class' => 'breadcrumblast'));
+echo $this->Form->create('InsertTable', array('method' => 'post',
+    'id' => 'parsley_reg',
+    'enctype' => 'multipart/form-data',
+    'name' => 'fom',
+    'onSubmit' => 'return valiDate()',
+    'novalidate' => true,
+    'inputDefaults' => array(
+        'label' => false,
+        'div' => false,
+        'class' => 'form-control',
+    ),
+));
+
+echo $this->Form->hidden('continent_name');
+echo $this->Form->hidden('continent_code');
+echo $this->Form->hidden('province_name');
+?>
+<div class="col-sm-12" id="mycl-det">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Update Operations</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req"  style="margin-left: 14px;">Select Table</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-8">
+                                <?php
+                                echo $this->Form->input('table', array('options' => array('TravelCity' => 'City', 'TravelHotelLookup' => 'Hotel', 'TravelSuburb' => 'Suburb', 'TravelArea' => 'Area'), 'empty' => '--Select--', 'data-required' => 'true'));
+                                ?>
+                            </div>
+                        </div>
+                        <div class="form-group"  style="<?php echo $common; ?>">
+                            <label for="reg_input_name"  style="margin-left: 14px;">Select City</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-8">
+                                <?php
+                                echo $this->Form->input('update_city_id', array('options' => $TravelCities, 'empty' => '--Select--'));
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req"  style="margin-left: 14px;">Select Country</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-8">
+                                <?php
+                                echo $this->Form->input('country_id', array('options' => $TravelCountries, 'empty' => '--Select--', 'data-required' => 'true'));
+                                ?>
+                            </div>
+                        </div>                          
+                    </div>
+                </div>
+                <div class="clear" style="clear: both;"></div>
+                <div class="col-sm-12"  style="<?php echo $update; ?>">
+                    <h4>Update fields</h4>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg_input_name"  style="margin-left: 14px;">Select Continent</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-8">
+                                <?php
+                                echo $this->Form->input('continent_id', array('options' => $TravelLookupContinents, 'empty' => '--Select--'));
+                                ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name"  style="margin-left: 14px;">Active</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-8">
+                                <?php
+                                echo $this->Form->input('active', array('options' => array('TRUE' => 'TRUE','FALSE' => 'FALSE'), 'empty' => '--Select--'));
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg_input_name" style="margin-left: 14px;">Select Province</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-8">
+                                <?php
+                                echo $this->Form->input('province_id', array('options' => $Provinces, 'empty' => '--Select--'));
+                                ?>
+                            </div>
+                        </div>                          
+                    </div>
+                </div>
+                <div class="clear" style="clear: both;"></div>
+                <div class="form-group" style="<?php echo $list_city; ?>">
+                    <div class="col-sm-12">
+                        <div class="checkbox three-column">
+                            <div class="list-checkbox checkboxBlank">
+                                <?php
+                                echo $this->Form->input('city_id', array(
+                                    'label' => false,
+                                    'div' => array('class' => 'list-checkbox checkboxBlank'),
+                                    'type' => 'select',
+                                    'multiple' => 'checkbox',
+                                    'options' => $TravelCities,
+                                    'selected' => $selected,
+                                    'hiddenField' => false
+                                ));
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-1" style="<?php echo $proceed; ?>">
+                            <?php
+                            echo $this->Form->submit('Proceed', array('class' => 'btn btn-success sticky_success', 'name' => 'proceed'));
+                            ?>
+                        </div>
+                        <div class="col-sm-1" style="<?php echo $update; ?>">
+                            <?php
+                            echo $this->Form->submit('Update', array('class' => 'btn btn-success sticky_success', 'name' => 'update'));
+                            ?>
+                        </div>
+                        <div class="col-sm-2" style="<?php echo $generate; ?>">
+                            <?php
+                            echo $this->Form->submit('SQL Generate', array('class' => 'btn btn-success sticky_success','style' =>'width:100%', 'name' => 'generate', 'value' => 'Generate'));
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+echo $this->Form->end();
+?>
+<script>
+    $('#InsertTableContinentId').change(function() {
+            var str = $('#InsertTableContinentId option:selected').text();
+            var res = str.split("-");          
+            $('#InsertTableContinentCode').val(res[0]);
+            $('#InsertTableContinentName').val(res[1]);
+        });
+
+    $('#InsertTableProvinceId').change(function() {
+        $('#InsertTableProvinceName').val($('#InsertTableProvinceId option:selected').text());
+    });
+</script>

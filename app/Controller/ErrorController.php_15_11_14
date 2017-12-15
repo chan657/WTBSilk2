@@ -1,0 +1,15 @@
+<?php
+	class ErrorController extends AppController {
+		var $uses = 'Error';
+		
+		public $helpers = array('Html', 'Form', 'Session');
+		public $components = array('Session');
+	
+		public function admin_index() {
+		
+			echo "You have no rights to access this page";
+			exit;
+		
+		}
+	}
+?>

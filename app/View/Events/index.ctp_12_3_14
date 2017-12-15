@@ -1,0 +1,463 @@
+<?php //echo $this->Html->script('prototype'); ?>
+<?php 
+echo $this->Html->css('jquery.fancybox');
+echo $this->Html->script('jquery-1.10.2.min');
+echo $this->Html->script('jquery.fancybox');
+echo $this->Html->css('jquery-ui');
+echo $this->Html->script('jquery-ui');
+ ?>
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+   $('.fancybox').fancybox();
+   $( "#start_datepart" ).datepicker({ minDate: 0, dateFormat: 'dd-M-yy' });
+   $('#activity_level').change(function(){
+      var activity_id = $(this).val();
+      if(activity_id == 2){
+          $('.project_id').css('display','block');
+          $('.builder_id').css('display','none');
+      }
+      else if(activity_id == 3){
+        
+           $('.project_id').css('display','none');
+           $('.builder_id').css('display','block');
+      }
+      else
+          {
+         $('.project_id').css('display','none');
+         $('.builder_id').css('display','none'); 
+          }
+   });
+});
+</script>
+
+
+<script type="text/javascript">	
+function trim(st)
+{
+     var result;
+	for(i=0;i<st.length;i++)
+	{
+		if(st.charAt(i)==" ")
+		{
+			result=st.substring(i+1,st.length);
+		}
+		else
+		{
+			break;
+		}
+	}
+	
+	if(i==0)
+	{
+		return st;
+	}
+	else
+	{
+		return result;
+	}
+}
+
+
+function doSubmit() {
+
+	/*if(trim(document.getELementById('start_datepart').value) == "")
+	{
+		alert('Please select event date.')
+		return false;
+	}*/
+
+	
+}
+
+function isValidDate(date)
+{
+    var matches = /^(\d{2})[-\/](\d{2})[-\/](\d{4})$/.exec(date);
+    if (matches == null) return false;
+    var d = matches[2];
+    var m = matches[1] - 1;
+    var y = matches[3];
+    var composedDate = new Date(y, m, d);
+    return composedDate.getDate() == d &&
+            composedDate.getMonth() == m &&
+            composedDate.getFullYear() == y;
+}
+</script>
+
+
+<style type="text/css">
+
+/* located in demo.css and creates a little calendar icon
+ * instead of a text link for "Choose date"
+ */
+a.dp-choose-date {
+	float: left;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 5px 3px 0;
+	display: block;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url(../img/calendar.png) no-repeat; 
+}
+a.dp-choose-date.dp-disabled {
+	background-position: 0 -20px;
+	cursor: default;
+}
+/* makes the input field shorter once the date picker code
+ * has run (to allow space for the calendar icon
+ */
+input.dp-applied {
+	width: 140px;
+	float: left;
+}
+
+
+
+
+table.sample {
+	border-width: 0px;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: #d5d3d3;
+	border-collapse: collapse;
+	background-color: white;
+	-webkit-box-shadow: 0px 1px 2px rgba(200, 200, 200, 0.66);
+	-moz-box-shadow:    0px 1px 2px rgba(200, 200, 200, 0.66);
+	box-shadow:         0px 1px 2px rgba(200, 200, 200, 0.66);
+	font:Arial, Helvetica, sans-serif;
+	color:#323232;
+	font-weight:normal;
+	font-size:11px; 	
+}
+table.sample th {
+	border-width: 1px;
+	padding: 10px;
+	border-style: inset;
+	border-color: #d5d3d3;
+	background-color: FFFFFF;
+	-moz-border-radius:0 ;
+	background-image: linear-gradient(bottom, rgb(242,242,242) 50%, rgb(252,252,252) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(242,242,242) 50%, rgb(252,252,252) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(242,242,242) 50%, rgb(252,252,252) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(242,242,242) 50%, rgb(252,252,252) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(242,242,242) 50%, rgb(252,252,252) 100%);
+}
+
+table.sample tr:hover {
+	background-color:#eee;
+}
+
+table.sample td {
+	border-width: 1px;
+	padding: 4px;
+	border-style: inset;
+	border-color: #d5d3d3;
+	background-color: white;
+	-moz-border-radius:0;
+}
+
+.tableheadertxt{
+	width:30%;
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#c5d52b;
+	padding-left:15px;
+	padding-top:15px;
+	text-align:left;
+}
+
+
+.tablesearchblock{
+	width:20%;
+	float:right;
+	padding-right:15px;
+	padding-top:6px;
+	text-align:right;	
+}
+
+.timetext{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#333;
+	font-weight:bold;
+}
+
+.appoblock{
+	background-color:#900;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#FFF;
+	padding:4px;
+	border-bottom:1px solid #FFF;	
+}
+
+/* popup style start*/
+
+a,a:active,a:visited {
+	color: #09c;
+}
+
+a:hover {
+	color: #0cf;
+}
+
+h1 {
+	font-size: 3em;
+	color: #FFCC00;
+}
+
+
+.footer {
+	background-color: #000;
+	padding: 0.5em;
+}
+
+.leightbox {
+	color: #333;
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	width: 500px;
+	height: 470px;
+	padding: 1em;
+	border: 1em solid #B8B8B8;
+	background-color: white;
+	text-align: left;
+	z-index:1001;
+	overflow: auto;	
+}
+
+#overlay{
+	display:none;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:1000;
+	background-color:#333;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);
+}
+
+.lightbox[id]{ /* IE6 and below Can't See This */    position:fixed;    }#overlay[id]{ /* IE6 and below Can't See This */    position:fixed;    }
+
+.inputformpop{
+	width:230px;
+	height:24px;
+	border:1px solid #CCC;
+	border-radius:4px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	-o-border-radius:4px;
+	-khtml-border-radius:4px;
+	background-position:left;
+	margin:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#000;
+	font-size:11px;
+}
+.inputformsmall{
+	width:100px;
+	
+}
+
+
+.inputtxtpop{
+	width:300px;
+	height:150px;
+	border:1px solid #CCC;
+	border-radius:4px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	-o-border-radius:4px;
+	-khtml-border-radius:4px;
+	background-position:left;
+	margin:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#000;
+	font-size:11px;
+}
+
+
+/* popup style start*/
+
+</style>
+
+<?php echo $this->Session->flash();?> 
+
+<table width="38%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+  	<td>
+
+		<div style="width:98%; margin:auto;">
+		<a href="#inline1" class="fancybox"> <?php echo $this->Html->image('btn-add-event.png', array("alt" => "Add event", "title" => "Add Event", "width" => "77", "height" => "31", "hspace" => "5")) ?></a> 
+		
+		<div style="text-align:center"><a href=""><?php echo $this->html->link('<< Previous 7 Days', '/events/index/prev') ?> | <?php echo $this->html->link('Next 7 Days', '/events/index/next') ?></a></div>
+		<div class="tableheadbg">
+			<div class="tableheadertxt"> My Calendar</div>
+			<div class="tablesearchblock"> 
+			  <a href="#inline1" class="fancybox"> <?php echo $this->Html->image('btn-add-event.png', array("alt" => "Add event", "title" => "Add Event", "width" => "77", "height" => "31", "hspace" => "5")) ?></a>
+			</div>
+		</div>
+		<div class="blank"></div>
+			 
+			 
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="sample">
+		  <tr>
+			<th width="6%" align="left" valign="middle">&nbsp;</th>
+                        
+                        
+                        	<?php
+		$i = 0;
+		if(isset($times)):
+		while (list($key, $value) = each($times)) :
+		$i = 0;
+			?>
+				
+				<?php
+				foreach($dates_labels as $dates_label) :
+				?>
+					<th width="13%" align="left" valign="middle">
+					<?php
+					$cur_datetime = $dates[$i]." ".$key;
+					if(isset($events)):
+						foreach($events as $event):
+						$event_datetime = $event['Event']['start_date'];
+							//echo $cur_datetime. "==" .$event_datetime."<br>";
+							if($cur_datetime == $event_datetime):
+							?>
+							<div class="appoblock">
+							<?php echo 'sd'.$event['Event']['description'] ?>
+							</div>
+							<?php
+							endif;
+						endforeach;
+					endif;
+					$i++;
+					?>
+					</th>
+				<?php
+				endforeach;
+				?>
+				
+				<?php
+		
+		endwhile;
+		endif;
+		?>
+                        
+                
+		
+			</tr>
+		<?php
+		$i = 0;
+		if(isset($times)):
+		while (list($key, $value) = each($times)) :
+		$i = 0;
+			?><tr>
+				<td align="left" valign="middle" class="timetext"><?php echo $value ?></td>
+				
+				<?php
+				foreach($dates_labels as $dates_label) :
+				?>
+					<td align="left" valign="top">
+					<?php
+					$cur_datetime = $dates[$i]." ".$key;
+					if(isset($events)):
+						foreach($events as $event):
+						$event_datetime = $event['Event']['start_date'];
+							//echo $cur_datetime. "==" .$event_datetime."<br>";
+							if($cur_datetime == $event_datetime):
+							?>
+							<div class="appoblock">
+							<?php echo $event['Event']['description'] ?>
+							</div>
+							<?php
+							endif;
+						endforeach;
+					endif;
+					$i++;
+					?>
+					</td>
+				<?php
+				endforeach;
+				?>
+				</tr>
+				<?php
+		
+		endwhile;
+		endif;
+		?>
+			
+		  
+		</table>
+		</div>
+		
+		<!-- popup div start -->
+		
+		<div id="inline1" class="inline1" style="display: none;">
+		<?php echo $this->Form->create('Event', array('action' => 'add')) ?>
+		<table width="100%" border="0" cellspacing="0" cellpadding="2">
+		  <tr>
+			<td align="left" valign="middle"><h1>Add Event</h1></td>
+			<td align="right" valign="middle">&nbsp;</td>
+		  </tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="4">
+		  <tr>
+			<td width="20%" align="right" valign="middle">Date</td>
+			<td width="1%" align="center" valign="middle">:</td>
+			<td width="79%" align="left" valign="middle">
+			<?php 
+			echo $this->Form->input('start_datepart',array('dateFormat' => 'DMY','id' => 'start_datepart', 'class' => 'inputformpop','label' => false, 'readonly' => 'readonly', 'legend' => false, 'div' => false, 'required' => 'required'));
+			?>
+			</td>
+		  </tr>
+		  <tr>
+			<td align="right" valign="middle">Form</td>
+			<td align="center" valign="middle">:</td>
+			<td align="left" valign="middle"> <?php echo $this->Form->input('start_time', array('id' => 'start_time', 'options' => $times, 'value' => '10:00:00', 'class' => 'inputformpop inputformsmall', 'label' => false, 'legend' => false, 'div' => false, 'required' => 'required'));?>
+                        To: <?php echo $this->Form->input('end_time', array('id' => 'end_date', 'options' => $times, 'value' => '10:00:00', 'class' => 'inputformpop inputformsmall', 'label' => false, 'legend' => false, 'div' => false, 'required' => 'required'));
+                        ?></td>
+		  </tr>
+		  <tr>
+			<td align="right" valign="middle">Activity Level</td>
+			<td align="center" valign="middle">:</td>
+			<td align="left" valign="middle"><?php echo $this->Form->input('activity_level', array('id' => 'activity_level', 'options' => $activity_levels, 'class' => 'inputformpop inputformsmall', 'label' => false, 'legend' => false, 'div' => array('style' => 'float:left'), 'empty' => 'Select', 'required' => 'required'));
+                        echo $this->Form->input('project_id', array('id' => 'project_id', 'options' => $projects, 'class' => 'inputformpop inputformsmall', 'label' => false, 'legend' => false, 'div' => array('class' => 'project_id','style' => 'display:none;'), 'empty' => 'Select'));
+                        echo $this->Form->input('builder_id', array('id' => 'builder_id', 'options' => $builders, 'class' => 'inputformpop inputformsmall', 'label' => false, 'legend' => false, 'div' => array('class' => 'builder_id','style' => 'display:none;'), 'empty' => 'Select'));
+                                ?>
+</td>
+		  </tr>
+		  <tr>
+			<td align="right" valign="middle">Activity Type</td>
+			<td align="center" valign="middle">:</td>
+			<td align="left" valign="middle">
+			<?php echo $this->Form->input('activity_type', array('id' => 'activity_type', 'options' => $activity_types, 'class' => 'inputformpop', 'label' => false, 'legend' => false, 'div' => false, 'empty' => 'Select', 'required' => 'required')) ?>
+			</td>
+		  </tr>
+		  <tr>
+			<td align="right" valign="top">Details</td>
+			<td align="center" valign="top">:</td>
+			<td align="left" valign="middle"><?php echo $this->Form->input('description', array('id' => 'description', 'cols' => '45', 'rows' => '5', 'label' => false, 'legend' => false, 'div' => false, 'empty' => 'Select')) ?></td>
+		  </tr>
+		  <tr>
+			<td align="right" valign="middle">&nbsp;</td>
+			<td align="center" valign="middle">&nbsp;</td>
+			<td align="left" valign="middle">
+			
+			
+			<?php echo $this->Form->submit('Add', array('class' => 'updateBox')) ?></td>
+		  </tr>
+		</table>
+		<?php echo $this->Form->end() ?>
+		</div>
+	</td>
+</tr>
+</table>

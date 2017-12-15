@@ -1,0 +1,289 @@
+<?php
+$this->Html->addCrumb('Add Person', 'javascript:void(0);', array('class' => 'breadcrumblast'));
+echo $this->Form->create('DigTaskPerson', array('enctype' => 'multipart/form-data', 'method' => 'post',
+    'id' => 'parsley_reg',
+    'novalidate' => true,
+    'inputDefaults' => array(
+        'label' => false,
+        'div' => false,
+        'class' => 'form-control',
+    )
+));
+
+
+?>
+
+<div class="col-sm-12" id="mycl-det">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Add Person Information</h4>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <legend><span>Add Person</span></legend>
+            </fieldset>
+            <div class="row">
+             
+            
+
+                                    <div class="col-sm-12">
+   <div class="col-sm-6">
+                                        <div class="form-group">
+                                    <label>Task Name</label>
+                                    <span class="colon">:</span>
+                                    <div class="col-sm-10">
+                                        <?php
+                                        echo $this->Form->input('DigMediaTask.task_name',array('readonly' => true));
+                                        ?></div>
+                                </div>
+       </div>
+                                        <div class="col-sm-6">
+                                        <div class="form-group">
+                                    <label>No. Of Person</label>
+                                    <span class="colon">:</span>
+                                    <div class="col-sm-10">
+                                        <?php
+                                        echo $this->Form->input('no_of_person',array('value' => $no_of_person));
+                                        ?></div>
+                                </div>
+       </div>
+                                                <div class="form-group">
+                                                    <h4>Persons</h4>
+                                                      <div class="checkbox three-column">
+                                                               
+                                                                    <?php
+                                                                    echo $this->Form->input('person_id', array(
+                                                                        'label' => false,
+                                                                        'div' => array('class' => 'list-checkbox'),
+                                                                        
+                                                                        'type' => 'select',
+                                                                        'multiple' => 'checkbox',
+                                                                        'options' => $DigPersons,
+                                                                        'selected' => $selected,
+                                                                        'hiddenField' => false
+                                                                      ));
+                                                                    ?>
+                                                     </div>          
+
+                                                           
+                                                        
+                                                   
+                                                </div>
+                                               
+                                        <div class="row">
+                        <div class="col-sm-1">
+                            <?php
+                            echo $this->Form->submit('Refresh', array('name' => 'Refresh','class' => 'btn btn-success sticky_success'));
+                            ?>
+                        </div>
+                       
+                    </div>
+
+                                    </div>
+
+
+                             
+
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <?php
+                            echo $this->Form->submit('Save', array('name' => 'Save','class' => 'btn btn-success sticky_success'));
+                            ?>
+                        </div>
+                        <div class="col-sm-1">
+                            <?php echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'btn btn-danger sticky_important')); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+echo $this->Form->end();
+/*
+  $this->Js->get('#DigMediaTaskTaskProductId')->event('change', $this->Js->request(array(
+  'controller' => 'all_functions',
+  'action' => 'get_dig_product_description_by_proId/DigMediaTask/task_product_id'
+  ), array(
+  'update' => '#DigMediaTaskTaskDescription',
+  'async' => true,
+  'before' => 'loading("DigMediaTaskTaskDescription")',
+  'complete' => 'loaded("DigMediaTaskTaskDescription")',
+  'method' => 'post',
+  'dataExpression' => true,
+  'data' => $this->Js->serializeForm(array(
+  'isForm' => true,
+  'inline' => true
+  ))
+  ))
+  );
+
+  $this->Js->get('#DigMediaTaskTaskProductId')->event('change', $this->Js->request(array(
+  'controller' => 'all_functions',
+  'action' => 'get_dig_topic_html_by_topic_id/DigMediaTask/task_topic_id'
+  ), array(
+  'update' => '#AjaxDeliveryFormat',
+  'async' => true,
+  'method' => 'post',
+  'dataExpression' => true,
+  'data' => $this->Js->serializeForm(array(
+  'isForm' => true,
+  'inline' => true
+  ))
+  ))
+  );
+ * 
+ */
+
+$this->Js->get('#DigMediaTaskTaskTopicId')->event('change', $this->Js->request(array(
+            'controller' => 'all_functions',
+            'action' => 'get_dig_topic_html_by_topic_id/DigMediaTask/task_topic_id'
+                ), array(
+            'update' => '#AjaxDeliveryFormat',
+            'async' => true,
+            'method' => 'post',
+            'dataExpression' => true,
+            'data' => $this->Js->serializeForm(array(
+                'isForm' => true,
+                'inline' => true
+            ))
+        ))
+);
+
+$this->Js->get('#DigMediaTaskTaskStructureId')->event('change', $this->Js->request(array(
+            'controller' => 'all_functions',
+            'action' => 'get_level_pattern_html_by_structure_id/DigMediaTask/task_structure_id'
+                ), array(
+            'update' => '#AjaxStructure',
+            'async' => true,
+            'method' => 'post',
+            'dataExpression' => true,
+            'data' => $this->Js->serializeForm(array(
+                'isForm' => true,
+                'inline' => true
+            ))
+        ))
+);
+?>  
+
+<script>
+    $('#DigMediaTaskTaskDurationUnit').change(function() {
+
+        var unit = $(this).val();
+        // var duration = $('#DigMediaTaskTaskDuration').val();
+        var duration = parseInt($("#DigMediaTaskTaskDuration").val(), 10);
+        //  alert(days);
+        var start_date = $('#DigMediaTaskTaskStartDate').val();
+        var time = $('#start_time').val();
+
+        var hrs = Number(time.match(/^(\d+)/)[1]);
+        var mnts = Number(time.match(/:(\d+)/)[1]);
+        var format = time.match(/\s(.*)$/)[1];
+        if (format == "PM" && hrs < 12)
+            hrs = hrs + 12;
+        if (format == "AM" && hrs == 12)
+            hrs = hrs - 12;
+        var hours = hrs.toString();
+        var minutes = mnts.toString();
+        if (hrs < 10)
+            hours = "0" + hours;
+        if (mnts < 10)
+            minutes = "0" + minutes;
+        var start_time = hours + ":" + minutes + ":00";
+        //  alert(start_date);
+        var DigMediaTaskStartDate = start_date + ' ' + start_time;
+        var date = new Date(start_date + 'T' + start_time);
+
+        if (unit == 'Days')
+            date.setDate(date.getDate() + duration);
+        else if (unit == 'Hours') {
+            duration = duration * 60;
+            date.setMinutes(date.getMinutes() + duration);
+        }
+        else if (unit == 'Weeks') {
+            duration = duration * 7;
+            date.setDate(date.getDate() + duration);
+        }
+        else if (unit == 'Months') {
+            date.setMonth(date.getMonth() + duration);
+            // date.setWeeks('weeks', duration);
+        }
+        // dateFormat(date, "mm/dd/yy, h:MM:ss TT");
+        // var a = dateFormat(date, "mm/dd/yy, h:MM:ss TT"); 
+        // alert(date);
+        $('#DelivaryDate').text(date);
+        $('#DigMediaTaskStartDate').val(DigMediaTaskStartDate);
+        //  alert(date)      
+    });
+
+    $('#DigMediaTaskTaskReviewDurationUnit').change(function() {
+
+        var unit = $(this).val();
+        // var duration = $('#DigMediaTaskTaskDuration').val();
+        var duration = parseInt($("#DigMediaTaskTaskReviewDuration").val(), 10);
+        //  alert(days);
+        var start_date = $('#DigMediaTaskTaskStartDate').val();
+        var time = $('#start_time').val();
+
+        var hrs = Number(time.match(/^(\d+)/)[1]);
+        var mnts = Number(time.match(/:(\d+)/)[1]);
+        var format = time.match(/\s(.*)$/)[1];
+        if (format == "PM" && hrs < 12)
+            hrs = hrs + 12;
+        if (format == "AM" && hrs == 12)
+            hrs = hrs - 12;
+        var hours = hrs.toString();
+        var minutes = mnts.toString();
+        if (hrs < 10)
+            hours = "0" + hours;
+        if (mnts < 10)
+            minutes = "0" + minutes;
+        var start_time = hours + ":" + minutes + ":00";
+        // alert(start_time);
+        var date = new Date(start_date + 'T' + start_time);
+
+        if (unit == 'Days')
+            date.setDate(date.getDate() + duration);
+        else if (unit == 'Hours') {
+            duration = duration * 60;
+            date.setMinutes(date.getMinutes() + duration);
+        }
+        else if (unit == 'Weeks') {
+            duration = duration * 7;
+            date.setDate(date.getDate() + duration);
+        }
+        else if (unit == 'Months') {
+            date.setMonth(date.getMonth() + duration);
+            // date.setWeeks('weeks', duration);
+        }
+
+        $('#ReviewDuration').text(date);
+        //  alert(date)      
+    });
+
+    
+     $('#DigMediaTaskTaskProductId').change(function(){    
+      $('#DigMediaTaskProduct').val($('#DigMediaTaskTaskProductId option:selected').text());
+    });
+    
+    $('#DigMediaTaskTaskChannel').change(function(){    
+      $('#DigMediaTaskChannelName').val($('#DigMediaTaskTaskChannel option:selected').text());
+    });
+    
+    $('#DigMediaTaskTaskTopicId').change(function(){    
+      $('#DigMediaTaskTopicName').val($('#DigMediaTaskTaskTopicId option:selected').text());
+    });
+    
+    $('#DigMediaTaskTaskAllocatedTo').change(function(){    
+      var val = $('#DigMediaTaskTaskAllocatedTo option:selected').text();
+      var res = val.split(" ");
+      $('#DigMediaTaskUserFname').val(res[0]);
+      
+    });
+    
+</script>
+
+
+

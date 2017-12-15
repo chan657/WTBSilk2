@@ -1,0 +1,308 @@
+<?php
+$this->Html->addCrumb('View Duplicate Hotel Supplier Mapping', 'javascript:void(0);', array('class' => 'breadcrumblast'));
+echo $this->Form->create('DuplicateMappinge', array('method' => 'post',
+    'id' => 'parsley_reg',
+    'novalidate' => true,
+    'inputDefaults' => array(
+        'label' => false,
+        'div' => false,
+        'class' => 'form-control',
+    ),
+    array('controller' => 'mappinges', 'action' => 'edit_duplicate_supplier_hotel')
+));
+App::import('Model','User');
+$attr = new User();
+//pr($this->data);
+echo $this->Form->hidden('base_url', array('id' => 'hidden_site_baseurl', 'value' => $this->request->base . ((!is_null($this->params['language'])) ? '/' . $this->params['language'] : '')));
+
+?>
+<div class="col-sm-12" id="mycl-det">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">View Duplicate Hotel Supplier Mapping</h4>
+        </div>
+        <div class="panel-body">
+           
+            <div class="row">               
+                 <div class="col-sm-12" id="hotel">
+                    <div class="col-sm-6">
+                      
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Supplier</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('supplier_code', array('id' => 'hotel_supplier_code','options' => $TravelSuppliers, 'empty' => '--Select--','disabled' => true));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Province</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10"><?php
+                                echo $this->Form->input('hotel_province_id', array('id' => 'hotel_province_id','options' => $Provinces));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">WTB Hotel</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_wtb_code', array('id' => 'hotel_code','options' => $TravelHotelLookups, 'empty' => '--Select--','disabled' => true));
+                                ?></div>
+                        </div>
+                                            
+
+                    </div>
+                    <div class="col-sm-6">
+                      
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">WTB Country</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('country_wtb_code', array('id' => 'hotel_country_code','options' => $TravelCountries, 'empty' => '--Select--','disabled' => true));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">WTB City</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('city_wtb_code', array('id' => 'hotel_city_code','options' => $TravelCities, 'empty' => '--Select--','disabled' => true));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Supplier Hotel Code</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_supplier_code',array('readonly' => true,'disabled' => true));
+                                ?></div>
+                        </div>  
+                        
+                        
+                    </div>
+                     <div class="clear" style="clear: both;"></div>
+                    <div style="background-color: rgb(211, 233, 237);overflow:hidden;">
+                        <div class="col-sm-6" style="margin-top:10px">
+                            <div class="form-group">
+                            <label for="reg_input_name">Hotel Id</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php echo $TravelHotelLookupsAll['TravelHotelLookup']['id'] ?></div>
+                        </div>
+                            <div class="form-group">
+                            <label for="reg_input_name">Suburb</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_suburb_id', array('options' => $TravelSuburbs));
+                                ?></div>
+                        </div>
+                            <div class="form-group">
+                            <label for="reg_input_name">Chain</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_chain_id', array('options' => $TravelChains));
+                                ?></div>
+                        </div>
+                        </div>
+                        <div class="col-sm-6"  style="margin-top:10px">
+                             <div class="form-group">
+                            <label for="reg_input_name">Area</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_area_id', array('options' => $TravelAreas));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name">Brand</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_brand_id', array('options' => $TravelBrands));
+                                ?></div>
+                        </div> 
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" style="margin-left:15px;">Hotel Address</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10" id="MappingHotelAddress" style="margin-top:7px">
+                               <?php echo $TravelHotelLookupsAll['TravelHotelLookup']['address'];?>
+                               </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" style="margin-left:15px;">Website Url</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10" id="MappingWebsiteUrl" style="margin-top:7px">
+                                <?php echo $this->Html->link($TravelHotelLookupsAll['TravelHotelLookup']['url_hotel'], $TravelHotelLookupsAll['TravelHotelLookup']['url_hotel'], array('target' => '_blank')); ?>
+                               </div>
+                        </div>
+                        </div>
+                </div>          
+                 
+                
+        
+                <div class="clear" style="clear: both; margin-bottom: 10px;"></div>
+                <div class="col-sm-12">
+                <table border="0" cellpadding="0" cellspacing="0" id="resp_table" class="table toggle-square myclitb" data-filter="#table_search" data-page-size="3000">
+                <thead>
+                    <tr class="footable-group-row">
+                        <th data-group="group1" colspan="5" class="nodis">Mapping Information</th>                       
+                        <th data-group="group2" colspan="2">Mapping City Code</th>
+                        <th data-group="group3" colspan="2">Mapping Hotel Code</th>
+                        <th data-group="group4" colspan="2">Mapping Logistics </th>                       
+                        <th data-group="group5" class="nodis">Action</th>
+                    </tr>
+                    <tr>
+                        <th data-toggle="true" data-group="group1" width="20%">Mapping Name</th> 
+                        <th data-toggle="true" data-group="group1" width="5%">Hotel Id</th>
+                        <th data-hide="phone" data-group="group1" width="8%">Mapping Status</th>
+                        <th data-hide="phone" data-group="group1" width="5%" data-sort-ignore="true">Mapping Active?</th>
+                        <th data-hide="phone" data-group="group1" width="5%"  data-sort-ignore="true">Mapping Excluded?</th>    
+                        
+                        <th data-hide="phone" data-group="group2" width="5%" data-sort-ignore="true">WTB</th>
+                        <th data-hide="phone" data-group="group2" width="8%" data-sort-ignore="true">Supplier</th>
+                        
+                        <th data-hide="phone" data-group="group3" width="5%" data-sort-ignore="true">WTB</th>
+                        <th data-hide="phone" data-group="group3" width="8%" data-sort-ignore="true">Supplier</th>
+                        
+                        <th data-hide="phone" data-group="group4" width="12%" data-sort-ignore="true">Created By</th>
+                        <th data-hide="phone" data-group="group4" width="12%" data-sort-ignore="true">Approved By</th>
+                        
+                        <th data-group="group5" data-hide="phone" data-sort-ignore="true" width="3%">Action</th>        
+                    </tr>
+                </thead>
+                <tbody>
+<?php
+
+
+	//pr($Mappinges);
+$id = '';
+$status = '';
+$mapping_name = '';
+$city_wtb = '';
+$city_supplier = '';
+$approve = '';
+$excluded = '';
+$created_by = '';
+$approve_by = '';
+$hotel_wtb = '';
+$hotel_supplier = '';
+
+if (isset($Mappinges) && count($Mappinges) > 0):
+    foreach ($Mappinges as $Mappinge):
+    
+
+         $id = $Mappinge['TravelHotelRoomSupplier']['id'];
+         $status = $Mappinge['TravelHotelRoomSupplier']['hotel_supplier_status'];
+         $approve = $Mappinge['TravelHotelRoomSupplier']['hotel_supplier_approve'];
+         $mapping_name = $Mappinge['TravelHotelRoomSupplier']['hotel_mapping_name'];
+         $hotel_wtb = $Mappinge['TravelHotelRoomSupplier']['hotel_code'];
+         $hotel_id = $Mappinge['TravelHotelRoomSupplier']['hotel_id'];
+         $hotel_supplier = $Mappinge['TravelHotelRoomSupplier']['supplier_item_code1'];
+         $city_wtb = $Mappinge['TravelHotelRoomSupplier']['hotel_city_code'];
+         $city_supplier = $Mappinge['TravelHotelRoomSupplier']['supplier_item_code3'];
+         $created_by = $attr->Username($Mappinge['TravelHotelRoomSupplier']['created_by']).' '.$Mappinge['TravelHotelRoomSupplier']['created'];
+        if($Mappinge['TravelHotelRoomSupplier']['approved_by']) 
+            $approve_by = $attr->Username($Mappinge['TravelHotelRoomSupplier']['approved_by']).' '.$Mappinge['TravelHotelRoomSupplier']['approved_date'];
+     
+        
+       
+        // table of travel_action_item_types
+        
+        if($status == '1')
+            $status_txt = 'Submitted For Approval';
+        elseif($status == '2')
+            $status_txt = 'Approved';
+        elseif($status == '3')
+           $status_txt = 'Returned';
+        elseif($status == '4')
+           $status_txt = 'Change Submitted';
+        elseif($status == '5')
+           $status_txt = 'Rejection';
+        elseif($status == '6')
+           $status_txt = 'Request For Allocation';
+        else
+            $status_txt = 'Allocation';
+        
+        if($approve == '1')
+            $approved_txt = 'TRUE';
+        else 
+            $approved_txt = 'FALSE';
+        
+        if($excluded == '1')
+            $excluded_txt = 'TRUE';
+        else 
+            $excluded_txt = 'FALSE';
+        
+        if($id == $this->data['DuplicateMappinge']['duplicate_id'])
+            $tr_style = 'style="background-color:#5DD0ED"';
+        else
+            $tr_style = 'style="background-color:#FFFFFF"';
+        ?>
+                            <tr <?php echo $tr_style;?>>
+                                <td class="tablebody"><?php echo $mapping_name; ?></td>
+                                <td class="tablebody"><?php echo $hotel_id; ?></td>
+                                <td class="tablebody"><?php echo $status_txt; ?></td>
+                                <td class="tablebody"><?php echo $approved_txt; ?></td>
+                                <td class="tablebody"><?php echo $excluded_txt; ?></td>
+                                
+                                
+                                <td class="sub-tablebody"><?php echo $city_wtb; ?></td>
+                                <td class="sub-tablebody"><?php echo $city_supplier; ?></td>
+                                
+                                <td class="sub-tablebody"><?php echo $hotel_wtb; ?></td>
+                                <td class="sub-tablebody"><?php echo $hotel_supplier; ?></td>
+                                
+                                <td class="sub-tablebody"><?php echo $created_by; ?></td>
+                                <td class="sub-tablebody"><?php echo $approve_by; ?></td> 
+                                
+                             
+                                <td width="10%" valign="middle" align="center">
+                                    <?php 
+                                        $options=array($id=>'');
+                                        $attributes=array('legend'=>false, 'hiddenField' => false,'label' => false,'div' => false);
+                                        echo $this->Form->radio('duplicate_id',$options,$attributes);
+                                        ?>
+                                 
+
+                                </td>
+
+                            </tr>
+        <?php endforeach; ?>
+
+                        <?php
+                        //echo $this->element('paginate');
+                    else:
+                        echo '<tr><td colspan="11" class="norecords">No Records Found</td></tr>';
+
+                    endif;
+                    ?>
+                </tbody>
+            </table>               
+                </div>
+                <div class="clear" style="clear: both;"></div>
+                <div class="col-sm-12">
+                    <div class="row">  
+                        
+                        <div class="col-sm-2">
+                            <?php
+                            echo $this->Form->submit('Update Mapping', array('class' => 'btn btn-success sticky_success','name' => 'add','style' => 'width:78%'));
+                            ?>
+                        </div>
+                    </div>
+
+                </div>
+            
+
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+echo $this->Form->end();
+
+?>   

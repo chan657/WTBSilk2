@@ -1,0 +1,297 @@
+
+<?php 
+
+$this->Html->addCrumb('Add User','javascript:void(0);', array('class' => 'breadcrumblast'));
+
+echo $this->Form->create('User', array('method' => 'post','id' => 'parsley_reg','novalidate' => true,
+													'inputDefaults' => array(
+																	'label' => false,
+																	'div' => false,
+																	'class' => 'form-control',
+																)
+						));
+	 echo $this->Form->hidden('role_id',array('value' => '6'));		
+						
+						?>
+                        
+
+<div class="row">
+
+
+                            <div class="col-sm-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">Add Information</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <legend><span>Add User</span></legend>
+                                        </fieldset>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                            <div class="form-group">
+													<label for="reg_input_name" class="req">First Name</label>
+													<?php
+														 echo $this->Form->input('fname');
+														
+															?>
+												</div>
+                                                <div class="form-group">
+													<label for="reg_input_name">Last Name</label>
+													<?php
+														echo $this->Form->input('lname');
+														
+															?>
+												</div>
+                                                <div class="form-group">
+													<label for="reg_input_name">Gender</label>
+													<?php
+														echo $this->Form->input('sex',  array('options' => array('M'=>'Male', 'F'=>'Female'),'empty'=>'Select'));
+														
+															?>
+												</div>
+                                                
+                                                <div class="form-group">
+													<label for="reg_input_name">Primary Mobile</label>
+													<?php
+													echo $this->Form->input('primary_country_code', array('div' => array('class' => 'col-sm-6'),'options' => $codes, 'default' => '76','empty' => '--Select--'));
+				   echo $this->Form->input('primary_mobile_number',  array('div' =>array('class' => 'col-sm-6'),'class' => 'form-control rgt'));
+														
+															?>
+												</div>
+                                                <div class="form-group">
+													<label for="reg_input_name">Personal Email</label>
+													<?php
+														echo $this->Form->input('personal_email_id',array('type' => 'email'));
+														
+															?>
+												</div>
+                                                <div class="form-group">
+													<label for="reg_input_name">PAN Card</label>
+													<?php
+														 echo $this->Form->input('pan_card_number');
+														
+															?>
+												</div>
+                                            </div>
+                                            <div class="col-sm-6">
+												<div class="form-group">
+													<label for="reg_input_name">Middle Name</label>
+													<?php
+														echo $this->Form->input('mname');
+														
+															?>
+												</div>
+                                                <div class="form-group">
+													<label for="reg_input_name">City</label>
+													<?php
+														 echo $this->Form->input('city_id',  array('options' => $cities,'empty'=>'Select'));
+														
+															?>
+												</div>
+                                                <div class="form-group">
+													<label for="reg_input_name">Company Email</label>
+													<?php
+														  echo $this->Form->input('company_email_id',array('type' => 'email'));
+														
+															?>
+												</div>
+                                                
+                                                <div class="form-group">
+													<label for="reg_input_name">Secondary Mobile</label>
+													<?php
+														echo $this->Form->input('secondary_country_code', array('div'=>array('class' => 'col-sm-6'),'options' => $codes,'default' => '76','empty' => '--Select--'));
+				    echo $this->Form->input('secondary_mobile_number',  array('div' =>array('class' => 'col-sm-6'),'class' => 'form-control rgt'));
+														
+															?>
+												</div>
+                                                <div class="form-group">
+													<label for="reg_input_name">Blackberry Pin</label>
+													<?php
+														 echo $this->Form->input('blackberry_pin');
+														
+															?>
+												</div>
+                                                <div class="form-group">
+													<label for="reg_input_name">Passport</label>
+													<?php
+														echo $this->Form->input('passport_number');
+														
+															?>
+												</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                          
+             </div>
+
+
+									
+									
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="panel-group" id="accordion1">
+													<div class="panel panel-default">
+														<div class="panel-heading">
+															<h4 class="panel-title">
+																<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#acc1_collapseTwo">
+																	Channel & Roles set
+																</a>
+															</h4>
+														</div>
+														<div id="acc1_collapseTwo" class="panel-collapse collapse">
+															<div class="panel-body">
+                                                             <label class="col-sm-2 control-label"></label>
+                                                            
+																<div class="col-sm-5">
+                                                               		 <div class="form-group">Channel Manager
+                                                       
+                                                       
+                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-5">
+                                                               		 <div class="form-group">Role Manager
+                                                       
+                                                       
+                                                    </div>
+                                                                </div>
+                                                                
+                                                                     
+                                                               <?php 
+															   
+																if(count($groups)){
+																foreach($groups as $group){
+																	
+																?> 
+                                                                <label class="col-sm-2 control-label"><?php echo $group['GroupsUser']['name'];?></label>
+                                                                 <div class="col-sm-5">
+                                                                         <div class="form-group">
+                                                                  
+                                                                   				    <?php
+																						if($group['GroupsUser']['name'] == 'Execution')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $exu_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Overseeing')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $overseeing_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Consulting')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $consulting_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'System Data')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $system_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Phone Officer')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $phone_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Business Development')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $business_develop_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Marketing')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $marketing_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Finance')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $finance_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Legal')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $legal_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Distributor')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $distributor_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'System Admin')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $system_admin_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'System Administrator')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $system_administor_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Business Admin')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $bisuness_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'General Admin')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $general_admin_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Administration')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $administration_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'General Execution')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $general_execution_channel, 'empty' => 'Select'));
+																						}
+																						elseif($group['GroupsUser']['name'] == 'Associate')
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $associate_channel, 'empty' => 'Select'));
+																						}
+																						else
+																						{
+																						echo $this->Form->input($group['GroupsUser']['channel_field'],  array('options' => $channels, 'empty' => 'Select'));
+																						}
+																						?>
+                                                                </div>
+                                                                </div>
+                                                                 <div class="col-sm-5">
+                                                                         <div class="form-group">
+                                                                  
+                                                                   <select id="<?php echo $group['GroupsUser']['role_field']?>" name="data[User][<?php echo $group['GroupsUser']['role_field']?>]" class="form-control user_role_bootbox_custom">
+						    <option value="">Select</option>
+					<?php
+					foreach ($roles as $role){
+							   
+						if($group['GroupsUser']['id'] == $role['Role']['group_id']){?>
+						     <option value="<?php echo $role['Role']['id'];?>" <?php if(in_array($role['Role']['id'],$role_id)){?> selected <?php }?> ><?php echo $role['Role']['role_name'];?></option>
+					       <?php }
+					}?>
+					 </select>
+                                                                </div>
+                                                                </div>	
+                                                                 
+                                                                
+                                                                <?php }
+																}
+																
+																?>
+                                                                
+                                                                
+															</div>
+														</div>
+													</div>
+													
+													
+												</div>
+											</div>
+											
+										</div>
+									
+							
+        <div class="row">
+											<div class="col-sm-1">
+												<?php 
+												echo $this->Form->submit('Add', array('class' => 'btn btn-success sticky_success','id' => 'lead_add'));
+												
+												?>
+											</div>
+											<div class="col-sm-1">
+												<?php echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'btn btn-warning sticky_warning'));?>
+											</div>
+											
+											
+										</div>
+                                        
+ <?php echo $this->Form->end();?>   

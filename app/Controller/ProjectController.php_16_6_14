@@ -1,0 +1,397 @@
+<?php
+class ProjectController extends AppController {
+
+    public $components = array('Session', 'Image');
+    public $uses = array('Project', 'Builder', 'Area', 'Suburb','LookupValueStatus', 'City', 'Unit', 'Amenitie','Phase','Category','Marketing','Quality','Type','BuilderContact','LookupValueLeadsCountry','LookupProjectBankFinance','LookupProjectContactManagedBy','LookupProjectContactPreparedBy','LookupProjectContactProjectRole','BuilderAgreement');
+    public $uploadDir;
+   
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->uploadDir = ROOT . DS . APP_DIR . DS . WEBROOT_DIR . '/uploads/projects';
+    }
+
+    public function index() {
+        
+        $user_city_id = $this->Auth->user('city_id');
+        $dummy_status = $this->Auth->user('dummy_status');
+        
+        $condition_dummy_status = array('dummy_status' => $dummy_status);
+
+        $search_condition = array();
+        $search = '';
+        $city_id = array();
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+            
+            $city_id =  $this->data['Project']['city_id'];
+            // $components = array('Paginator');
+            if (!empty($this->data['Project']['global_search'])) {
+                $search = $this->data['Project']['global_search'];         
+                array_push($search_condition, array('OR' => array('Project.project_name' . ' LIKE' => mysql_escape_string(trim(strip_tags($search))) . "%", 'Builder.builder_name' . ' LIKE' => mysql_escape_string(trim(strip_tags($search))) . "%")));
+            }
+            if (!empty($this->data['Project']['project_id'])) {
+                $search = $this->data['Project']['project_id'];
+                array_push($search_condition, array('Project.id' => $search ));
+            }
+            if (!empty($this->data['Project']['builder_id'])) {
+                $search = $this->data['Project']['builder_id'];
+                array_push($search_condition, array('Project.builder_id' => $search));
+            }
+            if (!empty($this->data['Project']['phase_id'])) {
+                $search = $this->data['Project']['phase_id'];
+                array_push($search_condition, array('Project.phase_id' =>$search));
+            }
+            if (!empty($this->data['Project']['city_id'])) {
+                $search = $this->data['Project']['city_id'];
+                array_push($search_condition, array('Project.city_id'  =>$search));
+            }
+            if (!empty($this->data['Project']['suburb_id'])) {
+                $search = $this->data['Project']['suburb_id'];
+                array_push($search_condition, array('Project.suburb_id' =>$search));
+            }
+            if (!empty($this->data['Project']['area_id'])) {
+                $search = $this->data['Project']['area_id'];
+                array_push($search_condition, array('Project.area_id' =>$search));
+            }
+            if (!empty($this->data['Project']['category_id'])) {
+                $search = $this->data['Project']['category_id'];
+                array_push($search_condition, array('Project.category_id'  =>$search));
+            }
+            if (!empty($this->data['Project']['quality_id'])) {
+                $search = $this->data['Project']['quality_id'];
+                array_push($search_condition, array('Project.quality_id'  => $search ));
+            }
+            if (!empty($this->data['Project']['proj_residential'])) {
+                $search = $this->data['Project']['proj_residential'];
+                array_push($search_condition, array('Project.proj_residential' =>$search));
+            }
+            if (!empty($this->data['Project']['proj_highendresidential'])) {
+                $search = $this->data['Project']['proj_highendresidential'];
+                array_push($search_condition, array('Project.phase_id' =>$search));
+            }
+            if (!empty($this->data['Project']['proj_commercial'])) {
+                $search = $this->data['Project']['proj_commercial'];
+                array_push($search_condition, array('Project.proj_commercial' => $search));
+            }
+             // pr($search_condition);
+           
+            
+        }
+        
+         if($user_city_id > 1){
+             array_push($search_condition, array('Project.city_id' => $user_city_id));
+         }
+         if($dummy_status)
+             array_push($search_condition, array('Project.dummy_status' => $dummy_status));
+         //$this->set('projects', $this->Project->find('all', array('order' => 'Project.project_name ASC')));
+         $this->paginate['order'] = array('Project.project_name' => 'asc');
+
+        $projects = $this->paginate("Project", $search_condition);
+        $this->set(compact('projects'));
+        // $log = $this->Project->getDataSource()->getLog(false, false);       
+        // debug($log);
+
+        $project_list = $this->Project->find('list', array('fields' => array('id', 'project_name'),'conditions' => $condition_dummy_status,'order' => 'project_name asc'));
+        $this->set('project_list', $project_list);
+
+        $builders = $this->Builder->find('list', array('fields' => array('id', 'builder_name'),'conditions' => $condition_dummy_status,'order' => 'builder_name asc'));
+        $this->set(compact('builders'));
+        
+        $phase = $this->Phase->find('list',array('fields' => array('id','name')));
+        $this->set(compact('phase'));
+        
+        $cities = $this->City->find('list',array('fields' => array('id','city_name'),'conditions' => $condition_dummy_status,'order' => 'city_name asc'));
+        $this->set(compact('cities'));
+        
+        $suburbs = $this->Suburb->find('list',array('fields' => array('id','suburb_name'),'conditions' => $condition_dummy_status,'order'=>'suburb_name asc'));
+        $this->set(compact('suburbs'));
+        
+        $areas = $this->Area->find('list',array('fields' => array('id','area_name'), 'conditions' => $condition_dummy_status, 'order' => 'area_name asc'));
+        $this->set(compact('areas'));
+        
+        $qualities = $this->Quality->find('list',array('fields' => array('id','name')));
+        $this->set(compact('qualities'));
+        
+        $categories = $this->Category->find('list',array('fields' => array('id','name')));
+        $this->set(compact('categories'));
+		
+		
+   
+    }
+
+    public function add() {
+
+        if ($this->request->is('post')) {
+
+            //pr($this->data);
+            //echo $this->data['Project']['suburb_id'];
+            //exit;
+
+            $image = '';
+            $brochure = '';
+
+            if (is_uploaded_file($this->data['Project']['proj_brochure']['tmp_name'])) {
+
+                $brochure = time() . str_replace(" ", "-", $this->request->data['Project']['proj_brochure']['name']);
+
+                if (move_uploaded_file($this->request->data['Project']['proj_brochure']['tmp_name'], $this->uploadDir . '/' . $brochure)) {
+                    // $this->request->data['Project']['proj_brochure'] = $brochure;
+                }
+            }
+            unset($this->request->data['Project']['proj_brochure']);
+            $this->request->data['Project']['proj_brochure'] = $brochure;
+
+
+            //  pr($this->request->data);
+            if (is_uploaded_file($this->request->data['Project']['proj_image']['tmp_name'])) {
+                // echo 'asd';
+                $image = $this->Image->upload(null, $this->request->data['Project']['proj_image'], $this->uploadDir);
+            }
+            unset($this->request->data['Project']['proj_image']);
+            $this->request->data['Project']['proj_image'] = $image;
+
+
+            $this->Project->create();
+
+
+            if ($this->Project->save($this->request->data)) {
+                $this->Session->setFlash('Project has been saved.', 'success');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash('Unable to add Project.', 'failure');
+            }
+        }
+        $city = $this->City->find('list', array('fields' => 'City.id, City.city_name', 'order' => 'City.city_name ASC'));
+        $this->set('city', $city);
+        
+        $phase = $this->Phase->find('list',array('fields' => array('id','name')));
+        $this->set(compact('phase'));
+        
+        $categories = $this->Category->find('list',array('fields' => array('id','name')));
+        $this->set(compact('categories'));
+        
+        $qualities = $this->Quality->find('list',array('fields' => array('id','name')));
+        $this->set(compact('qualities'));
+        
+        $qualities = $this->Quality->find('list',array('fields' => array('id','name')));
+        $this->set(compact('qualities'));
+        
+        $marketings = $this->Marketing->find('list',array('fields' => array('id','name')));
+        $this->set(compact('marketings'));
+        
+        $types = $this->Type->find('list',array('fields' => array('id','name')));
+        $this->set(compact('types'));
+
+        $suburb = $this->Suburb->find('list', array('fields' => 'Suburb.id, Suburb.suburb_name', 'order' => 'Suburb.suburb_name ASC'));
+        $this->set('suburbs', $suburb);
+
+        $areas = $this->Area->find('list', array('fields' => 'Area.id, Area.area_name', 'order' => 'Area.area_name ASC'));
+        $this->set('areas', $areas);
+
+        $builders = $this->Builder->find('list', array('fields' => 'Builder.id, Builder.builder_name', 'order' => 'Builder.builder_name ASC'));
+        $this->set('builders', $builders);
+    }
+
+    function edit($id = null,$mode = null) {
+        
+        $id = base64_decode($id);
+		$this->set(compact('mode'));
+
+        if (!$id) {
+            throw new NotFoundException(__('Invalid Project'));
+        }
+
+        $project = $this->Project->findById($id);
+
+        if (!$project) {
+            throw new NotFoundException(__('Invalid Project'));
+        }
+        $units = $this->Unit->find('all', array(
+                                            'conditions' => array('Unit.project_id ='.$id)
+                                            ,'order' => 'Unit.unit_type ASC'));
+        $this->set(compact('units'));
+        
+        $amenities = $this->Amenitie->find('all', array('fields' => array('Group.group_name','Group.id','Amenitie.id','GROUP_CONCAT(LookupValueAmenitie.amenity_name separator " , ") AS amenity_name'),
+                                                    'joins' => array(
+                                                                     array(
+                                                                        'table' => 'lookup_value_amenities',
+                                                                        'alias' => 'LookupValueAmenitie',
+                                                                        'conditions' => array(
+                                                                            'Amenitie.amenity_id = LookupValueAmenitie.id')
+                                                                     ),
+                                                                     array(
+                                                                         'table' => 'groups',
+                                                                        'alias' => 'Group',
+                                                                        'conditions' => array(
+                                                                            'LookupValueAmenitie.group_id = Group.id'
+                                                                           )
+                                                                        )
+                                                                     ),
+            'conditions' => 'Amenitie.project_id =' . $id,
+            'order' => 'Amenitie.amenity_id ASC',
+            'group' => array('LookupValueAmenitie.group_id')
+            ));
+       
+        $this->set(compact('amenities'));
+            /*
+        $amenities = $this->Amenitie->find('all', array(
+            'fields' => array('Amenitie.group_id,Amenitie.id,Amenitie.project_id,Amenitie.status,GROUP_CONCAT(Amenitie.amenity_name separator " , ") AS amenity_name', 'Group.group_name'),
+            'joins' => array(
+                array(
+                    'table' => 'groups',
+                    'alias' => 'Group',
+                    'type' => 'INNER',
+                    'conditions' => 'Amenitie.group_id = Group.id'
+                )
+            ),
+            'conditions' => 'Amenitie.status = 1 AND Amenitie.project_id = '.$id,
+            'order' => 'Amenitie.group_id',
+            'group' => array('Amenitie.group_id')));
+        $this->set(compact('amenities'));
+        */
+    
+           
+        if ($this->request->data) {
+            
+            $this->Project->id = $id;
+            $proj_exp_date = explode('/',$this->data['Project']['proj_completionyear']);
+            $date = $proj_exp_date[0];
+            $month = $proj_exp_date[1];
+            $year = $proj_exp_date[2];
+            $this->request->data['Project']['proj_completionyear'] = $year.'-'.$month.'-'.$date;
+            $this->request->data['Project']['proj_rebrandedbrochure'] = NULL;
+            $this->request->data['Project']['proj_floorplans'] = NULL;
+            $this->request->data['Project']['proj_locationmaps'] = NULL; 
+            
+            //pr($this->request->data);
+           // die;
+
+            if ($this->Project->save($this->request->data)) {
+                $this->Session->setFlash('Project has been updated.', 'success');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash('Unable to update Project.', 'failure');
+            }
+        }
+
+        $suburbs = $this->Project->Suburb->find('all', array('order' => 'Suburb.suburb_name ASC'));
+        $arrSuburb = array();
+        if (count($suburbs) > 0) {
+            foreach ($suburbs as $suburb) {
+                $arrSuburb[$suburb['Suburb']['id']] = $suburb['Suburb']['suburb_name'];
+            }
+        }
+        $this->set('suburbs', $arrSuburb);
+
+        $city = $this->City->find('list', array('fields' => 'City.id, City.city_name', 'order' => 'City.city_name ASC'));
+        $this->set('city', $city);
+        
+        $status =  $this->LookupValueStatus->find('list',array('fields' => array('id','value')));
+        $this->set(compact('status'));
+
+        $suburb = $this->Suburb->find('list', array('fields' => 'Suburb.id, Suburb.suburb_name', 'order' => 'Suburb.suburb_name ASC'));
+        $this->set('suburbs', $suburb);
+        
+        $phase = $this->Phase->find('list',array('fields' => array('id','name')));
+        $this->set(compact('phase'));
+        
+        $categories = $this->Category->find('list',array('fields' => array('id','name')));
+        $this->set(compact('categories'));
+        
+        $qualities = $this->Quality->find('list',array('fields' => array('id','name')));
+        $this->set(compact('qualities'));
+        
+        $marketings = $this->Marketing->find('list',array('fields' => array('id','name')));
+        $this->set(compact('marketings'));
+		
+		$codes = $this->LookupValueLeadsCountry->find('all',array('fields' => array('LookupValueLeadsCountry.id','LookupValueLeadsCountry.value','LookupValueLeadsCountry.code')));
+		$codes = Set::combine($codes, '{n}.LookupValueLeadsCountry.id',array('%s: %s','{n}.LookupValueLeadsCountry.value','{n}.LookupValueLeadsCountry.code'));
+		$this->set(compact('codes'));
+        
+        $types = $this->Type->find('list',array('fields' => array('id','name')));
+        $this->set(compact('types'));
+
+        $areas = $this->Area->find('list', array('fields' => 'Area.id, Area.area_name', 'order' => 'Area.area_name ASC'));
+        $this->set('areas', $areas);
+
+        $builders = $this->Builder->find('list', array('fields' => 'Builder.id, Builder.builder_name', 'order' => 'Builder.builder_name ASC'));
+        $this->set('builders', $builders);
+		
+		$bank_finance = $this->LookupProjectBankFinance->find('list', array('fields' => 'LookupProjectBankFinance.id, LookupProjectBankFinance.value','order' => 'LookupProjectBankFinance.value ASC'));
+        $this->set(compact('bank_finance'));
+		
+		$project_managed = $this->LookupProjectContactManagedBy->find('list', array('fields' => 'id, value','order' => 'value ASC'));
+        $this->set(compact('project_managed'));
+		
+		$projec_prepared = $this->LookupProjectContactPreparedBy->find('list', array('fields' => 'id, value','order' => 'value ASC'));
+        $this->set(compact('projec_prepared'));
+		
+		$projec_role = $this->LookupProjectContactProjectRole->find('list', array('fields' => 'id, value','order' => 'value ASC'));
+        $this->set(compact('projec_role'));
+
+		
+		$builder_contacts = $this->BuilderContact->find('all');
+        $this->set('builder_contacts', $builder_contacts);
+		
+		$builder_agreements = $this->BuilderAgreement->find('all');
+        $this->set('builder_agreements', $builder_agreements);
+
+        $this->request->data = $project;
+    }
+
+    function view($id = null) {
+
+        if (!$id) {
+            throw new NotFoundException(__('Invalid Channel'));
+        }
+
+        $project = $this->Project->findById($id);
+
+        if (!$project) {
+            throw new NotFoundException(__('Invalid Channel'));
+        }
+
+        $this->set('project', $project);
+
+        $suburbs = $this->Project->Suburb->find('all', array('order' => 'Suburb.suburb_name ASC'));
+        $arrSuburb = array();
+        if (count($suburbs) > 0) {
+            foreach ($suburbs as $suburb) {
+                $arrSuburb[$suburb['Suburb']['id']] = $suburb['Suburb']['suburb_name'];
+            }
+        }
+        $this->set('suburbs', $arrSuburb);
+
+        $this->request->data = $project;
+    }
+
+    function get_list_by_city_1() {
+
+        $this->layout = 'ajax';
+        $city_id = $this->data['Lead']['city_id'];
+
+        $projects = $this->Project->find('list', array(
+            'conditions' => array(
+                'Project.city_id' => $city_id
+            ),
+            'fields' => 'Project.id, Project.project_name',
+            'order' => 'Project.project_name ASC'
+        ));
+        $this->set('projects', $projects);
+    }
+
+    function get_list_by_city_2() {
+
+        $this->layout = 'ajax';
+        $city_id = $this->data['Project']['city_id'];
+
+        $builders = $this->Builder->find('list', array('conditions' => array('Builder.city_id' => $city_id), 'fields' => 'Builder.id, Builder.builder_name', 'order' => 'Builder.builder_name ASC'));
+        $this->set('builders', $builders);
+    }
+
+    function test() {
+        
+    }
+
+}

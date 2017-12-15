@@ -1,0 +1,1 @@
+ <?php echo $this->Form->input('id',array('type'=>'select','div' => array('id' => 'project'),'label' => false,'options'=>$projects,'empty'=>'--Select--'));?>

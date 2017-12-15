@@ -1,0 +1,1 @@
+<?php echo $DataArray['TravelHotelLookup']['address'];?>

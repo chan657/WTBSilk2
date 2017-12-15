@@ -1,0 +1,158 @@
+<?php $this->Html->addCrumb('My Actions','javascript:void(0);', array('class' => 'breadcrumblast'));?>
+<div class="row">
+							<div class="col-sm-12">
+                            	<div class="table-heading">
+										<h4 class="table-heading-title"><span class="badge badge-circle badge-success"> <?php
+                echo $this->Paginator->counter(array('format' => '{:count}'));
+                ?></span> My Actions</h4>
+                                        <!--<span class="badge badge-circle add-client nomrgn">
+                                        <i class="icon-plus" ></i> <?php echo $this->Html->link('Add Client', '/lead/add'); ?></span>-->
+                                        <span class="search_panel_icon"><i class="icon-plus" id="toggle_search_panel"></i></span>
+									</div>
+								<div class="panel panel-default">
+									<div class="panel_controls hideform">
+                                    
+                                    <?php            
+                    echo $this->Form->create('ActionItem', array('controller' => 'action_items', 'class' => 'quick_search', 'id' => 'SearchForm','novalidate'=>true,'inputDefaults' => array(
+																	'label' => false,
+																	'div' => false,
+																	'class' => 'form-control',
+																)));
+                    echo $this->Form->hidden('model_name', array('id' => 'model_name', 'value' => 'ActionItens'));
+                    ?> 
+										<div class="row" id="search_panel_controls">
+											
+											<div class="col-sm-3 col-xs-6">
+												<label for="un_member">Action Level:</label>
+												<?php echo $this->Form->input('action_item_level_id', array('options'=>$action_level,'empty'=>'--Select--'));?>
+											</div>
+                                            <div class="col-sm-3 col-xs-6">
+												<label for="un_member">Action Type:</label>
+												 <?php echo $this->Form->input('lead_id', array('options'=>$action_about,'empty'=>'--Select--')); ?>
+											</div>
+                                            <div class="col-sm-3 col-xs-6">
+												<label for="un_member">Last Action Date:</label>
+												<?php echo $this->Form->input('created', array('id' => 'date','type' => 'text'));?>
+											</div>
+                                            <div class="col-sm-3 col-xs-6">
+												<label for="un_member">Last Action Source::</label>
+												 <?php echo $this->Form->input('action_item_source', array('options'=>array(),'empty'=>'--Select--'));  ?>
+											</div>
+                                            <div class="col-sm-3 col-xs-6">
+												<label for="un_member">Last Action By:</label>
+												<?php echo $this->Form->input('created_by_id', array('options'=>array(),'empty'=>'--Select--')); ?>
+											</div>
+                                            <div class="col-sm-3 col-xs-6">
+												<label for="un_member">Last Action Status:</label>
+												<?php echo $this->Form->input('lead_status', array('options'=>$status,'empty'=>'--Select--')); ?>
+											</div>
+                                                                                       
+                                            
+											<div class="col-sm-3 col-xs-6">
+												<label>&nbsp;</label>
+                                                <?php
+											   echo $this->Form->submit('Filter', array('div' => false, 'class' => 'btn btn-default btn-sm"'));            
+											  // echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'btn btn-default btn-sm"'));
+					   
+					   							?>
+												
+											</div>
+										</div>
+                                         <?php echo $this->Form->end(); ?>
+									</div>
+									<table border="0" cellpadding="0" cellspacing="0" id="resp_table" class="table toggle-square myclitb" data-filter="#table_search" data-page-size="40">
+										<thead>
+                                        	<tr class="footable-group-row">
+                                                <th data-group="group1" colspan="11" class="nodis">Client Information</th>
+                                                <th data-group="group2" colspan="6">Action Interests</th>
+                                                <th data-group="group3" colspan="4">Action Logistics</th>
+                                                <th data-group="group4" class="nodis">Action Action</th>
+                                            </tr>
+											<tr>
+												<th data-group="group1" data-toggle="true" width="7%" valign="middle" align="left">Action Id</th>
+												<th data-group="group1" data-hide="phone" width="5%" valign="middle" align="left">Last Action Date</th>
+												<th data-group="group1" data-hide="phone" width="5%" valign="middle" align="left">Action Level</th>
+												<th data-group="group1" data-hide="phone" width="3%" valign="middle" align="left">Action About</th>
+                                                <th data-group="group1" data-hide="phone" width="3%" valign="middle" align="left">Last Action Status</th>
+												<th data-group="group2" data-hide="phone" width="3%" valign="middle" align="left">Last Action Type</th>
+                                                <th data-group="group1" data-hide="phone" width="3%" valign="middle" align="left">Last Action Source</th>
+                                                <th data-group="group1" data-hide="all" width="3%" valign="middle" align="left">Last Action By</th>
+                                                <th data-group="group1" data-hide="all" width="3%" valign="middle" align="left">Next Action By</th>
+                                                <th data-group="group1" data-hide="all" width="3%" valign="middle" align="left">Action Status</th>
+                                                <th data-group="group1" data-hide="all" width="3%" valign="middle" align="left">Action Channel</th>
+                                                <th data-group="group2" data-sort-ignore="true" data-hide="all" align="left">City</th>
+                                                <th data-group="group2" data-sort-ignore="true" data-hide="all" align="left">Suburb</th>
+                                                <th data-group="group2" data-sort-ignore="true" data-hide="all" align="left">Area</th>
+												<th data-group="group3" data-sort-ignore="true" data-hide="all" align="left">Builder</th>
+                                                <th data-group="group3" data-sort-ignore="true" data-hide="all" align="left">Project</th>
+                                                <th data-group="group3" data-sort-ignore="true" data-hide="all" align="left">Unit</th>
+                                                <th data-group="group3" data-sort-ignore="true" data-hide="all" align="left">Phone Office</th>
+                                                <th data-group="group3" data-sort-ignore="true" data-hide="all" align="left">Primary Manager</th>
+                                                <th data-group="group3" data-sort-ignore="true" data-hide="all" align="left">Secondary Manager</th>
+                                                <th data-group="group3" data-sort-ignore="true" data-hide="all" align="left">Associate</th>
+                                                <th data-group="group4" data-sort-ignore="true" width="10%" data-hide="phone" valign="middle" align="center">Action</th>        
+											</tr>
+										</thead>
+										<tbody>
+                                        	<?php
+		//pr($leads);
+		 $i = 1;
+									   if (isset($actionitems) && count($actionitems) > 0):
+										   foreach ($actionitems as $actionitem):
+											   $id = $actionitem['ActionItem']['id'];
+		?>
+		<tr>
+			<td class="tablebody" valign="middle" align="left"><?php echo $id;?></td>                     
+			<td class="tablebody" valign="middle" align="left"><?php echo date('d/m/Y g:i A',strtotime($actionitem['ActionItem']['created'])); ?></td>
+			<td class="tablebody" valign="middle" align="left"><?php echo $actionitem['ActionItemLevel']['level']; ?></td>
+			<td class="tablebody" valign="middle" align="left"><?php if($actionitem['Lead']['lead_fname']<>'') echo $actionitem['Lead']['lead_fname'].' '.$actionitem['Lead']['lead_lname']; if($actionitem['ActionBuilder']['builder_name']<>'') echo $actionitem['ActionBuilder']['builder_name']; if($actionitem['ActionProject']['project_name']<>'') echo $actionitem['ActionProject']['project_name']; ?></td>
+            <td class="tablebody" valign="middle" align="left"><?php echo $actionitem['LeadStatus']['status']; ?></td>
+            <td class="tablebody" valign="middle" align="left"><?php echo $actionitem['ActionType']['type']; ?></td>
+            <td class="tablebody" valign="middle" align="left"><?php echo $actionitem['Role']['role_name']; ?></td>
+            <td class="tablebody" valign="middle" align="left"><?php echo $actionitem['LastActionBy']['fname'].' '.$actionitem['LastActionBy']['lname']; ?></td>
+            <td class="tablebody" valign="middle" align="left"><?php echo $actionitem['NextActionBy']['fname'].' '.$actionitem['NextActionBy']['mname'].' '.$actionitem['NextActionBy']['lname']; ?></td>
+            <td class="tablebody" valign="middle" align="left"><?php echo $actionitem['ActionItem']['action_item_active']; ?></td>
+            <td class="tablebody" valign="middle" align="left"><?php if($actionitem['Channel']['channel_name'] <> '') echo $actionitem['Channel']['channel_name']; ?></td>
+            
+            <td class="sub-tablebody"><?php echo $actionitem['City']['city_name']; ?></td>
+            <td class="sub-tablebody"><?php echo $actionitem['Suburb']['suburb_name']; ?></td>
+            <td class="sub-tablebody"><?php echo $actionitem['Area']['area_name']; ?></td>
+            <td class="sub-tablebody"><?php echo $actionitem['Builder']['builder_name']; ?></td>
+            <td class="sub-tablebody"><?php echo $actionitem['Project']['project_name']; ?></td>
+            <td class="sub-tablebody"><?php echo $actionitem['Unit']['value']; ?></td>
+            <td class="sub-tablebody"><?php echo $actionitem['PhoneOfficer']['fname'].' '.$actionitem['PhoneOfficer']['mname'].' '.$actionitem['PhoneOfficer']['lname'];?></td>
+            <td class="sub-tablebody"><?php echo $actionitem['PrimaryManage']['fname'].' '.$actionitem['PrimaryManage']['lname']; ?></td>
+            <td class="sub-tablebody"><?php echo $actionitem['SecondaryManage']['fname'].' '.$actionitem['SecondaryManage']['lname']; ; ?></td>
+            <td class="sub-tablebody"><?php echo $actionitem['Associate']['fname'].' '.$actionitem['Associate']['mname'].' '.$actionitem['Associate']['lname']; ?></td>
+      
+                          
+                                            
+                                            
+                                                
+                                            <td align="center" valign="middle">
+                                           
+                                            	
+                                               
+                                            <?php
+											echo $this->Html->link('<span class="icon-list"></span>', '/action_items/add/' . $id, array('class' => 'act-ico open-popup-link add-btn','escape' => false,'data-placement' => "left", 'title' => "Action",'data-toggle' => "tooltip"));
+											
+											echo $this->Html->link('<span class="icon-pencil"></span>', array('controller' => 'builder','action' => 'edit','slug' =>$actionitem['ActionBuilder']['builder_name'].'-'.$actionitem['City']['city_name'],'id' => base64_encode($id),'mode' => '1'), array('class' => 'act-ico','escape' => false));
+											
+                                            
+                                            ?>
+                                            </td>
+                                    </tr>
+                                        
+                                        <?php
+                                        $i++;
+                                        endforeach; ?>
+                                       
+                                         <?php echo $this->element('paginate'); ?>
+                                 <?php   endif; ?>
+                                        </tbody>
+									</table>
+                                    
+								</div>
+							</div>
+						</div>
+

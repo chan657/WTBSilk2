@@ -1,0 +1,4 @@
+<p><?php echo $City; ?> | <?php echo $lead_name;?> | <?php echo $lead_primaryphonenumber;?> | <?php echo $lead_emailid;?> | <?php echo $TypeProject;?> | <?php echo $Suburb.' '.$Area.' '.$Builder.' '.$Project.' '.$Unit;?> | <?php echo $Budget;?></p>
+<p>ARRIVAL: <?php echo $Arrival; ?> | LAST ALLOCATION: <?php echo $LastAllocation; ?> | LAST RETURN: <?php echo $AllocationHistory; ?> | REJECTION: <?php echo $ReturnHistory; ?></p>
+<p><?php echo $LookupReject.' - '.$Reject;?></p>
+

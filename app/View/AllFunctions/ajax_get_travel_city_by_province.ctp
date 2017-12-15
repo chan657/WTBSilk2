@@ -1,0 +1,1 @@
+<?php echo $this->Form->input($model.'.answer2', array('label'=> false,'div'=> false,'options'=>$DataArray,'empty'=>'--Select--')); ?>

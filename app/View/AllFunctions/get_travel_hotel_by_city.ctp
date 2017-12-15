@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('hotel_wtb_code', array('label'=> false,'options'=>$array,'empty'=>'--Select--')); ?>

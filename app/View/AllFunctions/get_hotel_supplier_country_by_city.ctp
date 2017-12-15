@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('hotel_city_code', array('label'=> false,'div'=>false,'options'=>$DataArray,'empty'=>'--Select--')); ?>

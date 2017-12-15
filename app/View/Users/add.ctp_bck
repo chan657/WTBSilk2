@@ -1,0 +1,179 @@
+<style>
+    .st-accordion ul li{
+        height:auto;
+    }
+
+</style>
+<div align="left" valign="top" class="headerText">Add User</div>
+<?php echo $this->Session->flash(); ?>
+<div class="content">
+    <div class="tableheadbg">
+        <div style="padding: 14px 30px; font-weight: bold;" >Add Information</div>
+    </div>
+    <?php echo $this->Form->create('User');
+        echo $this->Form->hidden('role_id',array('value' => '6'));  ?>
+    <div class="tableboeder" style="padding-top: 25px;">
+     <div class="content_div">
+        <div class="popup_left">
+            <div class="div_line">
+                    <div class="pop_text">First Name</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                        echo $this->Form->input('fname',  array('div' =>true, 'label' => false, 'class' => 'inputbox', 'size' => '25', 'maxlength'=>'100'));
+                        ?>
+                    </div>
+	    </div>
+             <div class="div_line">
+                    <div class="pop_text">Last Name</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                        echo $this->Form->input('lname', array('div' =>true, 'label'=>false, 'class' => 'inputbox', 'size' => '25','maxlength'=>'100'));
+                        ?>
+                    </div>
+	    </div>
+            <div class="div_line">
+                    <div class="pop_text">Gender</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                        echo $this->Form->input('sex',  array('div' =>false, 'label' => false, 'options' => array('M'=>'Male', 'F'=>'Female'),'empty'=>'Select', 'class' => 'inputformadd', 'size' => '1','maxlength'=>'100'));
+                        ?>
+                    </div>
+	    </div>
+             <div class="div_line">
+                    <div class="pop_text">Board Number</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                        echo $this->Form->input('builder_boardnumber', array('div' => false, 'label' => false, 'class' => 'inputbox', 'size' => '1', 'maxlength' => '100'));
+                        ?>
+                    </div>
+	    </div>
+             <div class="div_line">
+                    <div class="pop_text">Personal Email-Id</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                        echo $this->Form->input('personal_email_id',  array('div' =>false, 'label' => false, 'type' => 'text', 'class' => 'inputbox', 'size' => '1','maxlength'=>'100'));
+                        ?>
+                    </div>
+	    </div>
+            <div class="div_line">
+                    <div class="pop_text">Primary Mobile Number</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                        echo $this->Form->input('primary_mobile_number',  array('div' =>false, 'label' => false,  'class' => 'inputbox', 'size' => '1','maxlength'=>'100'));
+                        ?>
+                    </div>
+	    </div>
+	   
+           
+            
+        </div>
+        <div class="popup_right">
+             <div class="div_line">
+                    <div class="pop_text">Middle Name</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                       echo $this->Form->input('mname',   array('div' =>false, 'label' => false, 'class' => 'inputbox', 'size' =>'1','maxlength'=>'100'));
+                        ?>
+                    </div>
+	    </div>
+             <div class="div_line">
+                    <div class="pop_text">City</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                        echo $this->Form->input('city_id',  array('div' =>false, 'label' => false, 'options' => $cities,'empty'=>'Select', 'class' => 'inputformadd', 'size' => '1','maxlength'=>'100'));
+                        ?>
+                    </div>
+	    </div>
+             <div class="div_line">
+                    <div class="pop_text">Company Email-Id</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                        echo $this->Form->input('company_email_id',  array('div' =>false, 'label' => false, 'type' => 'text', 'class' => 'inputbox', 'size' => '1','maxlength'=>'100'));
+                        ?>
+                    </div>
+	    </div>
+             <div class="div_line">
+                    <div class="pop_text">Secondary Mobile Number</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                        echo $this->Form->input('secondary_mobile_number',  array('div' =>false, 'label' => false, 'class' => 'inputbox', 'size' => '1','maxlength'=>'100'));
+                        ?>
+                    </div>
+	    </div>
+	      <div class="div_line">
+                    <div class="pop_text">Blackberry-Pin</div>
+                    <div class="colon">:</div>
+                    <div class="input_div">	<?php
+                        echo $this->Form->input('blackberry_pin',  array('div' =>false, 'label' => false, 'class' => 'inputbox', 'size' => '1','maxlength'=>'100'));
+                        ?>
+                    </div>
+	    </div>
+             
+          
+     
+        </div>
+    
+
+ 
+        <div class="blank"></div>
+    </div>
+
+        <div class="add-project-row-new1">
+            <div class="wrapper">
+                <div id="st-accordion" class="st-accordion">
+                    <ul>
+                        <li>
+                            <a href="#">Channel & Roles set<span class="st-arrow">Open or Close</span></a>
+                            <div class="st-content">
+				
+			<?php 
+
+				foreach($groups as $group){
+				    
+				?>
+				 <div class="add-project-row-new">
+                                    <label><?php echo $group['GroupsUser']['name'];?></label>
+                                    <div class="colon">:</div>
+                                    <div class="input-box">
+				    <?php
+					echo $this->Form->input($group['GroupsUser']['channel_field'],  array('div' =>true, 'label' =>false, 'options' => $channels, 'empty' => 'Select', 'class' => 'inputformadd inputbox_small', 'size' => '1','maxlength'=>'50'));
+					?>
+					<select class="inputformadd inputbox_small" name="data[User][<?php echo $group['GroupsUser']['role_field']?>]">
+						    <option value="">--Select--</option>
+					<?php
+					foreach ($roles as $role){
+							   
+						if($group['GroupsUser']['id'] == $role['Role']['group_id']){?>
+						     <option value="<?php echo $role['Role']['id'];?>" <?php if(in_array($role['Role']['id'],$role_id)){?> selected <?php }?> ><?php echo $role['Role']['role_name'];?></option>
+					       <?php }
+					}?>
+					 </select>
+		
+                                    </div>
+
+                                </div>
+				  <div class="blank"></div>
+	
+			<?php }
+				?>
+                             
+                                <div class="blank"></div>
+                            </div>
+                        </li>
+                       
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="blank"></div>
+
+        <div class="add-project-row-new">
+<?php
+echo $this->Form->submit('Add', array('class' => 'updateBox'));
+echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'updateBox updateBox2'));
+?>
+        </div>
+    </div>
+                <?php echo $this->Form->end(); ?>
+</div>

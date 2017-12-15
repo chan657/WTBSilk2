@@ -1,0 +1,11 @@
+<?php
+/*class HomeController extends AppController {
+	var $uses = null;
+
+	function beforeFilter() {	
+		$this->Auth->allow( 'index' );
+	}
+
+	function index() {
+	}
+}*/

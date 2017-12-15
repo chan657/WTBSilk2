@@ -1,0 +1,344 @@
+<!--<div class="row">
+							<div class="col-sm-3">
+								<div class="box_stat box_neg">
+									
+									<h4>Email</h4>
+									<small><?php echo $user['User']['company_email_id']; ?></small>
+								</div>
+							</div>
+                            <div class="col-sm-3">
+								<div class="box_stat box_neg">
+									
+									<h4>City</h4>
+									<small><?php echo $user['City']['city_name']; ?></small>
+								</div>
+							</div>
+                            <div class="col-sm-3">
+								<div class="box_stat box_neg">
+									
+									<h4>Role</h4>
+									<small><?php if($roles[0]['GroupsUser']['name']<>'') echo $roles[0]['GroupsUser']['name']; else  echo $user['Role']['role_name']; ?></small>
+								</div>
+							</div>
+                            <div class="col-sm-3">
+								<div class="box_stat box_neg">
+									
+									<h4>Help</h4>
+									<small>Need Help?</small>
+								</div>
+							</div>
+                            <div class="col-sm-3">
+								<div class="box_stat box_pos">
+									
+									<h4>My Calendar</h4>
+									<?php echo $this->Html->link($this->Html->image('blank.png',array('class' => 'img_ind')), '/events', array('escape' => false, 'style' => 'text-decoration:none')) ?>
+                                    <small><?php echo $count_events.' Events <span class="calendarblocksmalltext">(today)</span>';?></small>
+								</div>
+							</div>
+                            
+                            
+							<div class="col-sm-3">
+								<div class="box_stat box_pos">
+                                <h4>Action Items</h4>
+                                <?php echo $this->Html->link($this->Html->image('blank.png',array('class' => 'img_ind')), '/action-items', array('escape' => false)); ?>
+									
+									
+									
+								</div>
+							</div>
+							
+							
+							
+						</div>-->
+
+<!--<div class="row">
+							<div class="col-sm-12">
+								<div class="user_heading">
+									<div class="row">
+										<div class="col-sm-2 hidden-xs">
+                                        <?php echo $this->Html->image('user_avatar_lg.png')?>
+											
+										</div>
+										<div class="col-sm-10">
+											<div class="user_heading_info">
+												<div class="user_actions pull-right">
+													<a href="#" class="edit_form" data-toggle="tooltip" data-placement="top auto" title="Edit profile"><span class="icon-edit"></span></a><a href="#" class="view_form" data-toggle="tooltip" data-placement="top auto" title="View" style="display: none;"><span class="glyphicon glyphicon-eye-open"></span></a>
+													
+												</div>
+												<h1><?php echo $user['User']['fname'].' '.$user['User']['mname'].' '.$user['User']['lname'];?></h1>
+												<h2><?php echo $user['User']['system_desig'];?></h2>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="user_content">
+									<div class="row">
+										<div class="col-sm-10 col-sm-offset-2">
+                                        <?php
+			echo $this->Form->create('User', array('method' => 'post','class' => 'form-horizontal user_form',
+													'inputDefaults' => array(
+																	'label' => false,
+																	'div' => false,
+																	'class' => 'form-control',
+																)
+						));
+		 echo $this->Form->hidden('id', array('value' => $user['User']['id'])); 
+		
+		?>
+											
+												<h3 class="heading_a">General</h3>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">First Name</label>
+													<div class="col-sm-10 editable">
+														<p class="form-control-static"><?php echo $user['User']['fname'];?></p>
+														<div class="hidden_control">
+															<?php echo $this->Form->input('fname',  array( 'value' => $user['User']['fname'])); ?>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Middle Name</label>
+													<div class="col-sm-10 editable">
+														<p class="form-control-static"><?php echo $user['User']['mname'];?></p>
+														<div class="hidden_control">
+															<?php echo $this->Form->input('mname',  array( 'value' => $user['User']['mname'])); ?>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Last Name</label>
+													<div class="col-sm-10 editable">
+														<p class="form-control-static"><?php echo $user['User']['lname'];?></p>
+														<div class="hidden_control">
+															<?php echo $this->Form->input('lname',  array('value' => $user['User']['lname'])); ?>
+														</div>
+													</div>
+												</div>
+												<h3 class="heading_a">Contact info</h3>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Company Email</label>
+													<div class="col-sm-10 editable">
+														<p class="form-control-static"><?php echo $user['User']['company_email_id'];?></p>
+														<div class="hidden_control">
+                                                        <?php echo $user['User']['company_email_id'];?>
+                                                     
+															
+														</div>
+													</div>
+												</div>
+                                                <div class="form-group">
+													<label class="col-sm-2 control-label">Personal Email</label>
+													<div class="col-sm-10 editable">
+														<p class="form-control-static"><?php echo $user['User']['personal_email_id'];?></p>
+														<div class="hidden_control">
+                                                      
+                                                       <?php echo $this->Form->input('personal_email_id',  array('value' => $user['User']['personal_email_id'],'type' => 'text')); ?>
+															
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Mobile Number</label>
+													<div class="col-sm-10 editable">
+														<p class="form-control-static"><?php echo $user['User']['primary_mobile_number'];?></p>
+														<div class="hidden_control">
+															<?php echo $this->Form->input('primary_mobile_number',  array('value' => $user['User']['primary_mobile_number'])); ?>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Blackberry Pin</label>
+													<div class="col-sm-10 editable">
+														<p class="form-control-static"><?php echo $user['User']['blackberry_pin'];?></p>
+														<div class="hidden_control">
+															<?php echo $this->Form->input('blackberry_pin',  array( 'value' => $user['User']['blackberry_pin'])); ?>
+														</div>
+													</div>
+												</div>
+												<h3 class="heading_a">Other info</h3>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">PAN Card</label>
+													<div class="col-sm-10 editable">
+														<p class="form-control-static"><?php echo $user['User']['pan_card_number'];?></p>
+														<div class="hidden_control">
+															<?php echo $this->Form->input('pan_card_number',  array( 'value' => $user['User']['pan_card_number'])); ?>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Passport No.</label>
+
+													<div class="col-sm-10 editable">
+														<p class="form-control-static"><?php echo $user['User']['passport_number'];?></p>
+														<div class="hidden_control">
+															<?php echo $this->Form->input('passport_number',  array( 'value' => $user['User']['passport_number'])); ?>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Sex</label>
+													<div class="col-sm-10 editable">
+														<p class="form-control-static">
+                                                        <?php echo $user['User']['sex'];?></p>
+                                                       
+                                                       
+														<div class="hidden_control">
+															<?php echo $this->Form->input('sex',  array('options' => array('M'=>'Male', 'F'=>'Female'),'empty'=>'Select','selected' => $user['User']['sex']));?>
+														</div>
+													</div>
+												</div>
+												<div class="form_submit clearfix" style="display:none">
+													<div class="row">
+														<div class="col-sm-10 col-sm-offset-2">
+														
+                                                          <?php 
+														   echo $this->Form->submit('Update Profile', array('class' => 'btn btn-success sticky_success'));
+														 ?>
+                                                           
+														</div>
+													</div>
+												</div>
+												<?php echo $this->Form->end(); ?>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>-->
+
+
+<!--<div class="col-md-12">-->
+        
+
+    
+    <div class="row">
+    	<div class="col-md-4">
+    		<a title="Products/Services" href="clientarea.php?action=products">
+    			<div class="info-box  bg-info  text-white" id="initial-tour">
+    				<div class="info-icon bg-info-dark">
+    					<span aria-hidden="true" class="icon icon-layers"></span>
+    				</div>
+    				<div class="info-details">
+    					<h4>Number of Products/Services<span class="pull-right">1</span></h4>
+    					<p>Active<span class="badge pull-right bg-white text-success"> 0</span> </p>
+    				</div>
+    			</div>
+    		</a>
+    	</div>
+    	<div class="col-md-4">
+    		<a title="Domains" href="clientarea.php?action=domains">
+    			<div class="info-box  bg-info  text-white">
+    				<div class="info-icon bg-info-dark">
+    					<span aria-hidden="true" class="icon icon-globe"></span>
+    				</div>
+    				<div class="info-details">
+    					<h4>Domains<span class="pull-right">0</span></h4>
+    					<p>Active<span class="badge pull-right bg-white text-success"> 0 </span> </p>
+    				</div>
+    			</div>
+    		</a>
+    	</div>
+    	<div class="col-md-4">
+    		<div class="info-box  bg-info  text-white">
+    			<div class="info-icon bg-info-dark">
+    				<span aria-hidden="true" class="icon icon-drawer"></span>
+    			</div>
+    			<div class="info-details">
+    				<h4><span class="pull-right">0</span></h4>
+    				<p>Due Invoices<span class="badge pull-right bg-white text-success">$0.00 USD</span> </p>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
+    <div class="row">
+    	<div class="col-md-4">
+    		<div class="info-box  bg-warn  text-white">
+    			<div class="info-icon bg-warn-dark">
+    				<span aria-hidden="true" class="icon icon-wallet"></span>
+    			</div>
+    			<div class="info-details">
+    				<h4>Account Credit Balance<span class="pull-right"></span></h4>
+    				<p><span class="badge"> $0.00 USD</span> </p>
+    			</div>
+    		</div>
+    	</div>
+
+    	<div class="col-md-4">
+       <a title="Domains" href="cart.php">
+        <div class="info-box  bg-inactive  text-white">
+         <div class="info-icon bg-inactive-dark">
+          <span aria-hidden="true" class="icon icon-plus"></span>
+        </div>
+        <div class="info-details">
+          <h4>Order Now</h4> 
+          <p>Number of Products/Services</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+        <ul class="nav nav-tabs">
+     <li class="active"><a href="#home1" data-toggle="tab"><span class="badge badge-circle badge-success">0</span> Open Support Tickets</a></li>
+     <li><a href="submitticket.php"><span class="badge badge-circle badge-important"><span aria-hidden="true" class="icon icon-settings"></span> Open New Ticket</span></a></li>
+   </ul>
+   <table class="table table-data table-hover">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th class="hidden-sm hidden-xs">Department</th>
+        <th class="hidden-sm hidden-xs">Urgency</th>
+        <th class="hidden-sm hidden-xs">Last Updated</th>                
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr>
+        <td colspan="5" class="norecords">No Records Found</td>
+      </tr>    </tbody>
+  </table>
+  
+    <ul class="nav nav-tabs">
+    <li class="active"><a href="#home2" data-toggle="tab"><span class="badge badge-circle badge-important">0</span> Due Invoices</a></li>
+    <li><a href="clientarea.php?action=masspay&amp;all=true"><span class="badge badge-circle badge-important"><span aria-hidden="true" class="icon icon-arrow-right"></span> Pay All</span></a></li>
+  </ul>
+  <div class="tab-content" style="display: block;">
+    <div class="tab-pane active" id="home2">
+
+     <form method="post" action="clientarea.php?action=masspay">
+<input type="hidden" name="token" value="30a7290f9c614191eb7b250f6bcbc56a0497e2b7">
+      <table class="table table-data table-hover">
+       <thead>
+        <tr>         <th class="cell-checkbox">
+          <input type="checkbox" onclick="toggleCheckboxes('invids')">
+        </th>        <th>Invoice #</th>
+        <th class="text-center hidden-sm hidden-xs" style="white-space: nowrap;">Invoice Date</th>
+        <th class="text-center hidden-sm hidden-xs">Due Date</th>
+        <th class="text-center hidden-sm hidden-xs">Status</th>
+        <th class="text-right hidden-sm hidden-xs">Total</th>
+        <th class="cell-view"></th>
+      </tr>
+    </thead>
+    <tbody>   <tr>
+     <td colspan="7" class="norecords">No Records Found</td>
+   </tr></tbody>   <tfoot>
+     <tr>
+      <td class="cell-checkbox"><input type="checkbox" onclick="toggleCheckboxes('invids')" class="invids"></td>
+      <td colspan="5" class=""><input type="submit" name="masspayselected" value="Pay Selected" class="btn btn-default btn-sm"></td><td class="hidden-sm"></td>
+    </tr>
+  </tfoot></table>
+</form>	
+
+</div>
+</div>
+
+</div></div>
+
+
+
+
+
+
+
+	<!--</div>-->

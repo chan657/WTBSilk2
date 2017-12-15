@@ -1,0 +1,3 @@
+<p><?php echo $Source;?> | <?php echo $Type;?> | Created By- <?php echo $CreatedBy;?> | Phone Officer-<?php echo $PhoneOfficer;?> | Associate-<?php echo $Associate;?> | <?php echo $City; ?> | <?php echo $Urgency;?> | <?php echo $Importance;?> | <?php echo $Country;?> | <?php echo $lead_name;?> | <?php echo $lead_primaryphonenumber;?>| <?php echo $lead_emailid;?> |  <?php echo $Area;?> | <?php echo $Suburb;?>  | <?php echo $Builder;?> | <?php echo $Project;?> | <?php echo $Unit;?> | <?php echo $TypeProject;?>  | <?php echo $Description;?></p>
+
+

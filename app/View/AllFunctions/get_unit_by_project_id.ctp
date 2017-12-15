@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('unit_id', array('div' => false,'label'=> false,'options'=>$project_units,'empty'=>'--Select--')); ?>

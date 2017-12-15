@@ -1,0 +1,104 @@
+<div class="home-row">
+				<div class="container">
+                	<h2>Real Estate</h2>
+
+<?php
+$role_id = array_filter($role_id);
+?>
+<ul class="top_ico_nav clearfix">
+    <?php 
+	
+	if(count($role_id)){ ?>
+    <?php foreach ($role_id as $role) {
+        $arr = explode(',',$role);
+        $role = $arr[1];
+        $channel = $arr[0];
+         ?>
+        <li>
+		
+		<?php
+            echo $this->Html->link( $this->Html->image($role.'.png',array('alt' => $groups[$roles[$role]],'title' => $groups[$roles[$role]])).'<span class="menu_label">'.$groups[$roles[$role]].'</span><span>'.$channel_city[$channel].'</span>', array('controller' => 'users', 'action' => 'dashboard', 'id' => $role,'channel' => $channel), array('escape' => false));
+            ?> </li>   
+        <?php } 
+    }
+    else {
+        ?>
+         <li><?php
+		  echo $this->Html->link('<i class="icon-tasks icon-2x"></i><span class="menu_label">Others</span>', array('controller' => 'users', 'action' => 'dashboard'), array('escape' => false));
+		 
+          
+            ?></li>
+    <?php }?>
+</ul>
+</div>
+			</div>
+<div class="home-row">
+  <div class="container">
+  	<h2>Travel</h2>
+      <ul class="top_ico_nav clearfix">
+          <li>
+              <a href="#">
+                  <i class="icon-group icon-2x"></i>
+                  <span class="menu_label">Dummy Heading</span>
+                  <span>City Name</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="icon-group icon-2x"></i>
+                  <span class="menu_label">Dummy Heading</span>
+                  <span>City Name</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="icon-group icon-2x"></i>
+                  <span class="menu_label">Dummy Heading</span>
+                  <span>City Name</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="icon-group icon-2x"></i>
+                  <span class="menu_label">Dummy Heading</span>
+                  <span>City Name</span>
+              </a>
+          </li>
+      </ul>
+  </div>
+</div>
+<div class="home-row">
+  <div class="container">
+  	<h2>Internet</h2>
+      <ul class="top_ico_nav clearfix">
+          <li>
+              <a href="#">
+                  <i class="icon-group icon-2x"></i>
+                  <span class="menu_label">Dummy Heading</span>
+                  <span>City Name</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="icon-group icon-2x"></i>
+                  <span class="menu_label">Dummy Heading</span>
+                  <span>City Name</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="icon-group icon-2x"></i>
+                  <span class="menu_label">Dummy Heading</span>
+                  <span>City Name</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="icon-group icon-2x"></i>
+                  <span class="menu_label">Dummy Heading</span>
+                  <span>City Name</span>
+              </a>
+          </li>
+      </ul>
+  </div>
+</div>

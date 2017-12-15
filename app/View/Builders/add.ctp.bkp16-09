@@ -1,0 +1,428 @@
+
+<?php 
+
+$this->Html->addCrumb('Add Builder','javascript:void(0);', array('class' => 'breadcrumblast'));
+
+
+		
+						
+						?>
+                        
+                        <div class="col-sm-12" id="mycl-det">
+	<div class="panel panel-default">
+    	<div class="panel-heading">
+            <h4 class="panel-title">Add Information</h4>
+        </div>
+        <div class="panel-body">
+                                        <fieldset>
+                                            <legend><span>Add Builder</span></legend>
+                                        </fieldset>
+                        <div class="row">
+							<div class="col-sm-12">
+								<?php echo $this->Form->create('Builder', array('method' => 'post','id' => 'wizard_a','novalidate' => true,
+													'inputDefaults' => array(
+																	'label' => false,
+																	'div' => false,
+																	'class' => 'form-control',
+																)
+						));?>
+									
+									<h4>Primary Information</h4>
+									<fieldset>
+                                    <div class="row">
+                                    <div class="col-sm-12">
+                                       <div class="col-sm-6">
+                                                <div class="form-group">
+													<label for="reg_input_name" class="req">Builder Name</label>
+                                                    <span class="colon">:</span>
+													<div class="col-sm-10"> <?php  echo $this->Form->input('builder_name',array('data-required' => 'true'));?></div>
+												</div>
+                                                <div class="form-group">
+													<label>Website</label>
+                                                    <span class="colon">:</span>
+													<div class="col-sm-10"> <?php   echo $this->Form->input('builder_website');?></div>
+												</div>
+                                                <div class="form-group">
+													<label>Board Email</label>
+                                                    <span class="colon">:</span>
+													<div class="col-sm-10"> <?php  echo $this->Form->input('builder_boardemail');?></div>
+												</div>
+										
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                        <div class="form-group">
+													<label>Primary City</label>
+                                                    <span class="colon">:</span>
+													<div class="col-sm-10">
+													<?php
+														echo $this->Form->input('builder_primarycity',  array('options' => $city,'empty' => '--Select--'));
+														
+															?></div>
+												</div>
+                                                <div class="form-group slt-sm">
+													<label for="reg_input_name">Board Number</label>
+                                                    <span class="colon">:</span>
+													<div class="col-sm-10">
+													<?php
+				echo $this->Form->input('builder_boardnumber_code', array('options' => $codes, 'default' => '76','empty' => '--Select--'));
+				   echo $this->Form->input('builder_boardnumber',  array('class' => 'form-control sm rgt'));
+														
+															?></div>
+												</div>
+                                        </div>
+                                       </div>
+                                       </div>
+									</fieldset>
+									
+									<h4>Builder Operations</h4>
+									<fieldset>
+										<div class="row">
+											<div class="col-sm-3">
+												<div class="step_info">
+													<h4>Builder Operations</h4>
+													<p>Builder Multicity Operations, Builder Construction Capabilities.</p>
+													<p>Builder Rating</p>
+												</div> 
+											</div>
+											<div class="col-sm-9">
+												<div class="form_sep">
+													<label for="name">Primary City</label>
+													 <?php
+                                                           echo $this->Form->input('builder_primarycity',array('options' => $city,'empty' => '--Select--'));
+                                                            
+                                                                ?>
+												</div>
+												<div class="form_sep">
+													<label for="surname" class="req">Secondary City</label>
+													<?php
+                                                         echo $this->Form->input('builder_secondarycity',  array('options' => $city, 'empty' => '--Select--'));
+														 echo $this->Form->input('builder_tertiarycity',  array('options' => $city, 'empty' => '--Select--'));
+                                                          echo $this->Form->input('city_4',  array('options' => $city, 'empty' => '--Select--'));
+														  echo $this->Form->input('city_5',  array('options' => $city, 'empty' => '--Select--'));
+                                                            
+                                                                ?>
+												</div>
+												<div class="form_sep">
+													<label for="name">Residential</label>
+													  <?php echo $this->Form->input('builder_residential',array( 'options' => array('1' => 'Yes', '2' => 'No'), 'empty' => '--Select--')); ?>
+												</div>
+												<div class="form_sep">
+													<label for="address">High End Residential</label>
+													<?php echo $this->Form->input('builder_highendresidential',  array('options' =>  array('1' => 'Yes', '2' => 'No'), 'empty' => '--Select--')); ?>
+												</div>  
+                                                <div class="form_sep">
+													<label for="address">Commercial</label>
+													 <?php echo $this->Form->input('builder_commercial',  array('options' =>  array('1' => 'Yes', '2' => 'No'), 'empty' => '--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Rating</label>
+													  <?php echo $this->Form->input('builder_rating'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Brand Recognition</label>
+													 <?php echo $this->Form->input('builder_brandrecognition'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Quality of Construction</label>
+													 <?php echo $this->Form->input('builder_qualityofconstruction'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Timely Delivery</label>
+													  <?php echo $this->Form->input('builder_timelydelivery'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Past Track Record</label>
+													 <?php echo $this->Form->input('builder_pasttrackrecord'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Professionalism</label>
+													<?php echo $this->Form->input('builder_professionalismandtransparency'); ?>
+												</div>
+                                                
+                                                
+                                                
+											</div>
+										</div>
+									</fieldset>
+									
+									<h4>Builder Contacts</h4>
+									<fieldset>
+										<div class="row">
+											<div class="col-sm-3">
+												<div class="step_info">
+													<h4>Builder Contacts</h4>
+													<p>Content goes here.</p>
+													
+												</div> 
+											</div>
+											<div class="col-sm-9">
+												<div class="form_sep">
+													<label for="name" class="req">Contact Name</label>
+													 <?php
+                                                           echo $this->Form->input('BuilderContact.builder_contact_name',array('data-required' => 'true'));
+                                                            
+                                                                ?>
+												</div>
+												<div class="form_sep">
+													<label for="name">Designation</label>
+													<?php
+                                                         echo $this->Form->input('BuilderContact.builder_contact_designation');
+                                                            
+                                                                ?>
+												</div>
+												<div class="form_sep">
+													<label for="name">Primary Mobile</label>
+													  <?php echo $this->Form->input('BuilderContact.builder_contact_mobile_country_code', array('options' => $codes, 'default' => '76','empty' => '--Select--'));
+				   echo $this->Form->input('BuilderContact.builder_contact_mobile_no',  array('class' => 'form-control sm rgt')); ?>
+												</div>
+												<div class="form_sep">
+													<label for="name">Secondary Mobile</label>
+													<?php 
+													echo $this->Form->input('BuilderContact.builder_contact_secondary_mobile_country_code', array('options' => $codes, 'default' => '76','empty' => '--Select--'));
+				   echo $this->Form->input('BuilderContact.builder_contact_secondary_mobile_no',  array('class' => 'form-control sm rgt')); ?>
+												</div>  
+                                                <div class="form_sep">
+													<label for="name">Landline</label>
+													 <?php echo $this->Form->input('BuilderContact.builder_contact_lan_no_country_code', array('options' => $codes, 'default' => '76','empty' => '--Select--'));
+				   echo $this->Form->input('BuilderContact.builder_contact_lan_no',  array('class' => 'form-control sm rgt')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="email">Email Address</label>
+													  <?php  echo $this->Form->input('BuilderContact.builder_contact_email'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="name">Location</label>
+													 <?php echo $this->Form->input('BuilderContact.builder_contact_location'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="name">Level</label>
+													 <?php  echo $this->Form->input('BuilderContact.builder_contact_level',array('options' => $contact_level,'empty' => '--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>Status</label>
+													  <?php  echo $this->Form->input('BuilderContact.builder_contact_status',array('options' => $contact_status,'empty' => '--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>Initiated By</label>
+													 <?php echo $this->Form->input('BuilderContact.builder_contact_intiated_by'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>Intiator</label>
+													<?php  echo $this->Form->input('BuilderContact.builder_contact_intiated_by_id',array('options' => $contact_initiated,'empty' => '--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>Managed By</label>
+													<?php   echo $this->Form->input('BuilderContact.builder_contact_managed_by'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>Manager</label>
+													<?php echo $this->Form->input('BuilderContact.builder_contact_managed_by_id',array('options' => $contact_managed,'empty' => '--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>Created By</label>
+													<?php echo $this->Form->input('BuilderContact.builder_contact_prepared_by'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>Creator</label>
+													<?php   echo $this->Form->input('BuilderContact.builder_contact_prepared_by_id',array('options' => $contact_prepared,'empty' => '--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>For Company</label>
+													<?php   echo $this->Form->input('BuilderContact.builder_contact_company'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>For Company City</label>
+													<?php   echo $this->Form->input('BuilderContact.builder_contact_company_city',array('options' => $city,'empty' => '--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>Approved By</label>
+													<?php  echo $this->Form->input('BuilderContact.builder_contact_approved_by'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label>Approved Date</label>
+													<div class="input-group date ebro_datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+                                                    <?php
+
+              echo $this->Form->input('BuilderContact.builder_contact_approved_date',  array('type' => 'text'));
+           
+                    ?>
+                <span class="input-group-addon"><i class="icon-calendar"></i></span>
+            </div>
+												</div>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+											</div>
+										</div>
+									</fieldset>
+                                    
+                                    <h4>Builder Agreements</h4>
+									<fieldset>
+										<div class="row">
+											<div class="col-sm-3">
+												<div class="step_info">
+													<h4>Builder Agreements</h4>
+													<p>Content goes here.</p>
+													
+												</div> 
+											</div>
+											<div class="col-sm-9">
+												<div class="form_sep">
+													<label>With Company</label>
+													 <?php
+                                                           echo $this->Form->input('BuilderAgreement.builder_agreement_company');
+                                                            
+                                                                ?>
+												</div>
+												<div class="form_sep">
+													<label for="surname" class="req">Level</label>
+													<?php  echo $this->Form->input('BuilderAgreement.builder_agreement_level',array('options' => $agreement_level,'empty' => '--Select--'));
+                                                            
+                                                                ?>
+												</div>
+												<div class="form_sep">
+													<label for="name">Project Coverage</label>
+													  <?php  echo $this->Form->input('BuilderAgreement.builder_agreement_project_id'); ?>
+												</div>
+												<div class="form_sep">
+													<label for="address">Marketing Partner</label>
+													<?php  echo $this->Form->input('BuilderAgreement.builder_agreement_marketing_partner_id'); ?>
+												</div>  
+                                                <div class="form_sep">
+													<label for="address">Commission %</label>
+													 <?php echo $this->Form->input('BuilderAgreement.builder_agreement_commission_percent'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Commission Based On</label>
+													  <?php echo $this->Form->input('BuilderAgreement.builder_agreement_commission_based_on',array('options' =>$commission_based_on ,'empty' => '--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Status</label>
+													 <?php  echo $this->Form->input('BuilderAgreement.builder_agreement_status',array('options' =>$agreement_status ,'empty' => '--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Builder Agreement Counterparty</label>
+													 <?php echo $this->Form->input('BuilderAgreement.builder_agreement_counterparty_name');?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Signing Authority Name</label>
+													  <?php echo $this->Form->input('BuilderAgreement.builder_agreement_signed_by'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Created By</label>
+													 <?php echo $this->Form->input('BuilderAgreement.builder_agreement_prepared_by_id',array('options' => $prepare_by,'empty'=>'--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Creator</label>
+													<?php  echo $this->Form->input('BuilderAgreement.builder_agreement_prepared_by'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Company City</label>
+													<?php  echo $this->Form->input('BuilderAgreement.builder_agreement_company_city',array('options' => $city,'empty'=>'--Select--')); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Effective Date</label>
+													<div class="input-group date ebro_datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+                                                    <?php
+
+              echo $this->Form->input('BuilderAgreement.builder_agreement_effective_date',  array('type' => 'text'));
+           
+                    ?>
+                <span class="input-group-addon"><i class="icon-calendar"></i></span>
+            </div>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Expiry Date</label>
+													<div class="input-group date ebro_datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+                                                    <?php
+
+              echo $this->Form->input('BuilderAgreement.builder_agreement_expiry_date',  array('type' => 'text'));
+           
+                    ?>
+                <span class="input-group-addon"><i class="icon-calendar"></i></span>
+            </div>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Approved By</label>
+													<?php  echo $this->Form->input('BuilderAgreement.builder_agreement_approved_by'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Approved Date</label>
+													<div class="input-group date ebro_datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+                                                    <?php
+
+              echo $this->Form->input('BuilderAgreement.builder_agreement_approved_date',  array('type' => 'text'));
+           
+                    ?>
+                <span class="input-group-addon"><i class="icon-calendar"></i></span>
+            </div>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Signed By</label>
+													<?php  echo $this->Form->input('BuilderAgreement.builder_agreement_signed_by'); ?>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Signed Date</label>
+													<div class="input-group date ebro_datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+                                                    <?php
+
+              echo $this->Form->input('BuilderAgreement.builder_agreement_signed_date',  array('type' => 'text'));
+           
+                    ?>
+                <span class="input-group-addon"><i class="icon-calendar"></i></span>
+            </div>
+												</div>
+                                                <div class="form_sep">
+													<label for="address">Agreement Commission Terms</label>
+													<?php   echo $this->Form->input('BuilderAgreement.builder_agreement_commission_term',array('options' => $commission_terms,'empty'=>'--Select--')); ?>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+									
+								<?php echo $this->Form->end();?>
+							</div>
+						</div>
+                        
+                         </div>
+                            </div>
+                            
+                          
+             </div>
+<?php
+$this->Js->get('#BuilderCityId')->event('change', $this->Js->request(array(
+            'controller' => 'suburb',
+            'action' => 'get_list_by_city_for_builder'
+                ), array(
+            'update' => '#BuilderSuburbId',
+            'async' => true,
+            'method' => 'post',
+            'dataExpression' => true,
+            'data' => $this->Js->serializeForm(array(
+                'isForm' => true,
+                'inline' => true
+            ))
+        ))
+);
+?>
+<?php
+$this->Js->get('#BuilderSuburbId')->event('change', $this->Js->request(array(
+            'controller' => 'areas',
+            'action' => 'get_list_by_suburb_for_builder'
+                ), array(
+            'update' => '#BuilderAreaId',
+            'async' => true,
+            'method' => 'post',
+            'dataExpression' => true,
+            'data' => $this->Js->serializeForm(array(
+                'isForm' => true,
+                'inline' => true
+            ))
+        ))
+);
+?>

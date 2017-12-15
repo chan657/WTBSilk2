@@ -1,0 +1,161 @@
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	$('li.nav-toggle > button').click(function(e){
+    e.preventDefault();
+    $('.hidden-minibar').toggleClass("hide");
+    $('#wrapper_all').toggleClass("mini-sidebar");
+    if($('#wrapper_all').hasClass('mini-sidebar'))
+    {    
+      $('.sidebar-holder').tooltip({
+          selector: "a",
+          container: "body",
+          placement: "right"
+        });
+        $('li.submenu ul').tooltip('destroy');
+     }
+     else
+     {
+      $('.sidebar-holder').tooltip('destroy');
+     } 
+  });
+});
+</script>
+
+
+<nav id="sidebar">
+					<ul id="icon_nav_v" class="side_ico_nav">
+                    <li class="nav-toggle"><button class="btn  btn-nav-toggle"><i class="fa toggle-left fa-angle-double-left" style="color:#eee;"></i> </button></li>
+						<li>
+							<a href="#" title="Dashboard"><i class="icon-home"></i></a>
+						</li>
+						<li>             
+							<a href="#" title="Content"><i class="icon-edit"></i><span>Content</span></a>
+						</li>
+						<li>             
+							<a href="#" title="Users"><i class="icon-group"></i><span>Users</span></a>
+						</li>
+						<li>             
+							<a href="#"><i class="icon-tasks"></i><span>Tasks</span></a>
+						</li>
+						<li class="active">             
+							<a href="#"><i class="icon-beaker"></i><span>Beaker</span></a>
+						</li>
+						<li>             
+							<a href="#"><i class="icon-book"></i><span>Book</span></a>
+						</li>
+						<li>             
+							<a href="#"><i class="icon-tag"></i><span>Tag</span></a>
+						</li>
+						<li>             
+							<a href="#"><i class="icon-wrench"></i><span>Wrench</span></a>
+						</li>
+					</ul>
+				</nav>
+<!--<nav id="sidebar">
+					<div class="sepH_b">
+						<a href="javascript:void(0)" id="text_nav_v_collapse" class="btn btn-default btn-xs">Collapse All</a>
+						<a href="javascript:void(0)" id="text_nav_v_expand" class="btn btn-default btn-xs">Expand All</a>
+					</div>
+					<ul id="text_nav_v" class="side_text_nav">
+						<li class="parent_active">
+							<?php echo $this->Html->link('Dashboard',array('controller' => 'users', 'action' => 'dashboard')); ?>
+							
+						</li>
+						<li>
+							<a href="javascript:void(0)"><span class="icon-th-list"></span>Builders</a>
+							<ul>
+								<li><?php echo $this->Html->link('My Builders', '/my-builders') ?></li>
+								<li><?php echo $this->Html->link('Add Builders', '/builder/add') ?></li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:void(0)"><span class="icon-puzzle-piece"></span>Projects</a>
+							<ul>
+								<li><?php echo $this->Html->link('My Projects', '/my-projects') ?></li>
+								<li><?php echo $this->Html->link('Add Projects', '/project/add') ?></li>
+								
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:void(0)"><span class="icon-beaker"></span>Clients</a>
+							<ul>
+								<li><?php echo $this->Html->link('My Clients', '/my-clients') ?></li>
+								<li><?php echo $this->Html->link('Add Clients', '/lead/add') ?></li>
+							</ul>
+						</li>
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-leaf"></span>Activities</a>
+							
+						</li>
+						<li>
+							<a href="javascript:void(0)"><span class="icon-leaf"></span>Reports</a>
+							
+						</li>
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-leaf"></span>Audit & Compliance</a>
+							
+						</li>
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-beaker"></span>Cities</a>
+							<ul>
+								<li> <?php echo $this->Html->link('My Cities', '/my-cities') ?></li>
+								<li><?php echo $this->Html->link('Add City', '/city/add') ?></li>
+							</ul>
+						</li>
+                        
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-beaker"></span>Channels</a>
+							<ul>
+								<li><?php echo $this->Html->link('My Channels', '/my-channels') ?></li>
+								<li><?php echo $this->Html->link('Add Channel', '/channel/add') ?></li>
+							</ul>
+						</li>
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-beaker"></span>Suburbs</a>
+							<ul>
+								<li><?php echo $this->Html->link('My Suburbs', '/my-suburbs') ?></li>
+								<li><?php echo $this->Html->link('Add Suburb', '/suburb/add') ?></li>
+							</ul>
+						</li>
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-beaker"></span>Areas</a>
+							<ul>
+								<li><?php echo $this->Html->link('My Areas', '/my-areas') ?></li>
+								<li><?php  echo $this->Html->link('Add Area', '/areas/add') ?></li>
+							</ul>
+						</li>
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-beaker"></span>Groups</a>
+							<ul>
+								<li><?php echo $this->Html->link('My Groups', '/my-groups') ?></li>
+								<li><?php echo $this->Html->link('Add Groups', '/users/group_add') ?></li>
+							</ul>
+						</li>
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-beaker"></span>Roles</a>
+							<ul>
+								<li><?php echo $this->Html->link('My Role', '/my-roles') ?></li>
+								<li><?php echo $this->Html->link('Add Role', '/roles/add') ?></li>
+							</ul>
+						</li>
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-beaker"></span>Users</a>
+							<ul>
+								<li><?php  echo $this->Html->link('My Users', '/my-users/') ?></li>
+								<li><?php echo $this->Html->link('Add User', '/users/add') ?></li>
+							</ul>
+						</li>
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-beaker"></span>Role Permissions</a>
+							<ul>
+								<li><?php echo $this->Html->link('My Permission', '/my-permissions') ?></li>
+							</ul>
+						</li>
+                        <li>
+							<a href="javascript:void(0)"><span class="icon-beaker"></span>Look Ups</a>
+							<ul>
+								<li><?php  echo $this->Html->link('My Look Ups', '/my-look-ups') ?></li>
+							</ul>
+						</li>
+					</ul>				
+               	</nav>-->

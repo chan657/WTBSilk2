@@ -1,0 +1,77 @@
+Array
+(
+    [SOAP:ENVELOPE] => Array
+        (
+            [SOAP:ENVELOPE] => Array
+                (
+                )
+
+            [SOAP:BODY] => Array
+                (
+                    [SOAP:ENVELOPE] => Array
+                        (
+                        )
+
+                    [SOAP:BODY] => 
+                    [PROCESSXMLRESPONSE] => Array
+                        (
+                            [SOAP:ENVELOPE] => Array
+                                (
+                                )
+
+                            [SOAP:BODY] => 
+                            [PROCESSXMLRESPONSE] => 
+                            [PROCESSXMLRESULT] => Array
+                                (
+                                    [SOAP:ENVELOPE] => Array
+                                        (
+                                        )
+
+                                    [SOAP:BODY] => 
+                                    [PROCESSXMLRESPONSE] => 
+                                    [PROCESSXMLRESULT] => 
+                                    [RESOURCEDATA_SUBURB] => Array
+                                        (
+                                            [SOAP:ENVELOPE] => Array
+                                                (
+                                                )
+
+                                            [SOAP:BODY] => 
+                                            [PROCESSXMLRESPONSE] => 
+                                            [PROCESSXMLRESULT] => 
+                                            [RESOURCEDATA_SUBURB] => 
+                                            [RESPONSEAUDITINFO] => Array
+                                                (
+                                                    [SOAP:ENVELOPE] => Array
+                                                        (
+                                                        )
+
+                                                    [SOAP:BODY] => 
+                                                    [PROCESSXMLRESPONSE] => 
+                                                    [PROCESSXMLRESULT] => 
+                                                    [RESOURCEDATA_SUBURB] => 
+                                                    [RESPONSEAUDITINFO] => 
+                                                    [RESPONSEINFO] => Array
+                                                        (
+                                                            [RESPONSEID] => Array
+                                                                (
+                                                                    [0] => 201
+                                                                )
+
+                                                            [RESPONSETIME] => Array
+                                                                (
+                                                                    [0] => 2015-08-20T13:51:35
+                                                                )
+
+                                                        )
+
+                                                    [UPDATEINFO] => Array
+                                                        (
+                                                            [STATUS] => Array
+                                                                (
+                                                                    [0] => Successfully Processed
+                                                                )
+
+                                                        )
+
+                                                )

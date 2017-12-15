@@ -1,0 +1,1 @@
+<?php echo $this->Form->input($model.'.country_id', array('label'=> false,'div'=>false,'options'=>$DataArray,'empty'=>'--Select--')); ?>

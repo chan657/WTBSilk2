@@ -1,0 +1,416 @@
+<?php
+
+ echo $this->Html->css(array('/bootstrap/css/bootstrap.min','popup',
+									
+									'font-awesome/css/font-awesome.min',
+									
+									'/js/lib/datepicker/css/datepicker',
+									'/js/lib/timepicker/css/bootstrap-timepicker.min'
+									
+									
+									)
+							);
+echo $this->Html->script(array('jquery.min','lib/chained/jquery.chained.remote.min','lib/jquery.inputmask/jquery.inputmask.bundle.min','lib/parsley/parsley.min','pages/ebro_form_validate','lib/datepicker/js/bootstrap-datepicker','lib/timepicker/js/bootstrap-timepicker.min','pages/ebro_form_extended'));
+		/* End */
+?>
+
+<!----------------------------start add project block------------------------------>
+<div class="pop-outer">
+     <div class="pop-up-hdng">Edit Event </div>
+
+
+    <?php
+    //echo $this->Form->create('Remark', array('enctype' => 'multipart/form-data'));
+	echo $this->Form->create('Event', array('action' => 'edit','method' => 'post','id' => 'parsley_reg','novalidate' => true,
+													'inputDefaults' => array(
+																	'label' => false,
+																	'div' => false,
+																	'class' => 'form-control',
+																)
+						));
+  
+  
+   
+    ?>
+<div class="col-sm-4">
+       
+        
+       
+            <div class="form-group">
+                <label>Event Date</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10">
+                <div class="input-group date ebro_datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+                                                    <?php
+
+              echo $this->Form->input('date',  array('type' => 'text','value' => date("d-m-Y", strtotime($this->data['Event']['start_date']))));
+           
+                    ?>
+													<span class="input-group-addon"><i class="icon-calendar"></i></span>
+                                                </div>
+                
+                	</div>
+            </div>
+
+
+            
+            
+        
+        
+	</div>
+	   	<div class="col-sm-4">
+        <div class="form-group">
+               <label>Form</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10">
+				<div class="input-group bootstrap-timepicker">
+                                                   <?php
+                   echo $this->Form->input('start_time',  array('type' => 'text','id'=>'start_time','value' =>  date("g:i A", strtotime($this->data['Event']['start_date'])))); 
+                    ?>
+                                                    <span class="input-group-addon"><i class="icon-time"></i></span>
+                                                </div>
+				
+				</div>
+            </div>
+        	
+        </div>
+        <div class="col-sm-4">
+        	<div class="form-group">
+            	<label>To</label>
+                <span class="colon">:</span>
+                <div class="col-sm-10">
+                <div class="input-group bootstrap-timepicker">
+                                                   <?php
+                   echo $this->Form->input('end_time',  array('type' => 'text','id'=>'end_time','value' => date("g:i A", strtotime($this->data['Event']['end_date'])))); 
+                    ?>
+                                                    <span class="input-group-addon"><i class="icon-time"></i></span>
+                                                </div>
+                
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 flr">
+        	<div class="form-group">
+            	<label class="sm">Activity Level</label>
+                <span class="colon">:</span>
+                <div class="col-sm-4">
+                	<?php
+echo $this->Form->input('activity_level', array('id' => 'activity_level', 'options' => $activity_levels));
+?>
+                </div>
+                <div class="col-sm-4">
+                	<?php
+if($this->data['Event']['activity_level'] == 1)
+	$style_client = 'display:block;';
+else
+	$style_client = 'display:none;';
+	
+if($this->data['Event']['activity_level'] == 2)
+	$style_builder = 'display:block;';
+else
+	$style_builder = 'display:none;';
+	
+	
+if($this->data['Event']['activity_level'] == 3)
+	$style_project = 'display:block;';
+else
+	$style_project = 'display:none;';
+	
+if($this->data['Event']['activity_level'] == 4)
+	$style_city = 'display:block;';
+else
+	$style_city = 'display:none;';
+	
+	
+if($this->data['Event']['activity_level'] == 5)
+	$style_suburb = 'display:block;';
+else
+	$style_suburb = 'display:none;';
+	
+	
+if($this->data['Event']['activity_level'] == 6)
+	$style_area = 'display:block;';
+else
+	$style_area = 'display:none;';	
+	
+if($this->data['Event']['activity_level'] == 7)
+	$style_company = 'display:block;';
+else
+	$style_company = 'display:none;';							
+
+echo $this->Form->input('project_id', array('id' => 'project_id', 'options' => $projects,'div' => array('class' => 'project_id', 'style' => $style_project), 'empty' => '--Select--'));
+
+echo $this->Form->input('builder_id', array('id' => 'builder_id', 'options' => $builders, 'div' => array('class' => 'builder_id', 'style' => $style_builder), 'empty' => '--Select--'));
+
+echo $this->Form->input('lead_id', array('id' => 'lead_id', 'options' => $clients,'div' => array('class' => 'lead_id_div', 'style' => $style_client), 'empty' => '--Select--'));
+
+echo $this->Form->input('city_id', array('id' => 'city_id', 'options' => $cities,'div' => array('class' => 'city_id_div', 'style' => $style_city), 'empty' => '--Select--'));
+
+echo $this->Form->input('suburb_id', array('id' => 'suburb_id', 'options' => $suburbs,'div' => array('class' => 'suburbs_id_div', 'style' => $style_suburb), 'empty' => '--Select--'));
+
+echo $this->Form->input('area_id', array('id' => 'area_id', 'options' => $suburbs,'div' => array('class' => 'area_id_div', 'style' => $style_area), 'empty' => '--Select--'));
+
+echo $this->Form->input('event_level_desc', array('div' => array('class' => 'company_div', 'style' => $style_company)));
+
+?>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 flr">
+        	<div class="form-group">
+            	<label class="sm">Activity Type</label>
+                <span class="colon">:</span>
+                <div class="col-sm-4">
+                	<?php echo $this->Form->input('activity_type', array('id' => 'activity_type', 'options' => $activity_types,  'empty' => '--Select--'));
+					?>
+                </div>
+                <div class="col-sm-4">
+                	<?php 
+
+
+if($this->data['Event']['activity_type'] == 1 || $this->data['Event']['activity_type'] == 2 || $this->data['Event']['activity_type'] == 3)
+	$style_user = 'display:block;';
+else
+	$style_user = 'display:none;';	
+	
+if($this->data['Event']['activity_type'] == 4 || $this->data['Event']['activity_type'] == 5 || $this->data['Event']['activity_type'] == 6 || $this->data['Event']['activity_type'] == 7 || $this->data['Event']['activity_type'] == 8 )	
+	$style_channel = 'display:block;';
+else
+	$style_channel = 'display:none;';
+	
+if($this->data['Event']['activity_type'] == 9)	
+	$style_city_fr_to = 'display:block;';
+else
+	$style_city_fr_to = 'display:none;';
+	
+if($this->data['Event']['activity_type'] == 10)	
+	$style_type_desc = 'display:block;';
+else
+	$style_type_desc = 'display:none;';	
+	
+		
+	
+
+
+echo $this->Form->input('call', array('options' => $user_name,'div' => array('class' => 'call_div', 'style' => $style_user), 'empty' => '--Select--'));
+
+echo $this->Form->input('channel_id', array('options' => $channel, 'div' => array('class' => 'channel_div', 'style' => $style_channel), 'empty' => '--Select--'));
+
+echo $this->Form->input('from_city_id', array('options' => $all_cities, 'div' => array('class' => 'from_city_div', 'style' => $style_city_fr_to), 'empty' => '--Select--'));
+
+echo $this->Form->input('to_city_id', array('options' => $all_cities, 'div' => array('class' => 'to_city_div', 'style' => $style_city_fr_to), 'empty' => '--Select--'));
+ 
+echo $this->Form->input('event_type_desc', array('div' => array('class' => 'other_div', 'style' => $style_type_desc)));
+
+ ?>
+                </div>
+            </div>
+        </div>
+               
+        <div class="row">
+        	<div class="col-sm-12 flr"><?php echo $this->Form->submit('Add', array('class' => 'success btn','div' => false, 'id' => 'udate_unit')); ?><?php
+                echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'reset btn'));
+               
+                ?></div>
+
+               
+                 </div>
+            
+        
+
+    <?php echo $this->Form->end();
+    ?>
+</div>	
+
+<script type="text/javascript">
+    $(document).ready(function(e) {
+		
+        $('#activity_level').change(function() {
+            var activity_id = $(this).val();
+			
+			if (activity_id == 1) {
+                $('.lead_id_div').css('display', 'block');
+                $('.builder_id').css('display', 'none');
+				 $('.project_id').css('display', 'none');
+				 $('.city_id_div').css('display', 'none');
+				 $('.suburbs_id_div').css('display', 'none');
+				 $('.area_id_div').css('display', 'none');
+				 $('.company_div').css('display', 'none');
+            }
+			
+           else if (activity_id == 2) {
+                $('.project_id').css('display', 'none');
+				 $('.lead_id_div').css('display', 'none');
+                $('.builder_id').css('display', 'block');
+				$('.city_id_div').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+            else if (activity_id == 3) {
+
+                $('.project_id').css('display', 'block');
+				$('.lead_id_div').css('display', 'none');
+                $('.builder_id').css('display', 'none');
+				$('.city_id_div').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+			else if (activity_id == 4) {
+
+                $('.project_id').css('display', 'none');
+				$('.city_id_div').css('display', 'block');
+                $('.builder_id').css('display', 'none');
+				$('.lead_id_div').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+			else if (activity_id == 5) {
+
+                $('.project_id').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'block');
+				$('.lead_id_div').css('display', 'none');
+                $('.builder_id').css('display', 'none');
+				$('.lead_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+			else if (activity_id == 6) {
+
+                $('.project_id').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'block');
+				$('.lead_id_div').css('display', 'none');
+                $('.builder_id').css('display', 'none');
+				$('.lead_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+			else if (activity_id == 7) {
+
+                $('.project_id').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'block');
+				$('.lead_id_div').css('display', 'none');
+                $('.builder_id').css('display', 'none');
+				$('.lead_id_div').css('display', 'none');
+            }
+            else
+            {
+				$('.lead_id_div').css('display', 'none');
+				$('.city_id_div').css('display', 'none');
+                $('.project_id').css('display', 'none');
+                $('.builder_id').css('display', 'none');
+				$('.suburbs_id_div').css('display', 'none');
+				$('.area_id_div').css('display', 'none');
+				$('.company_div').css('display', 'none');
+            }
+        });
+		$('#activity_past').change(function(){
+			var value  = $(this).val();
+			if(value == 'Yes')
+				{
+					$('#event_id').css('display','block');
+					$('#event_date_present_div').css('display','none');
+					$('#event_date_past_div').css('display','block');
+					
+					
+				}
+			else{
+				$('#event_date_past_div').css('display','none');
+				$('#event_id').css('display','block');
+				$('#event_date_present_div').css('display','block');
+		
+			}		
+		});
+		
+		$('#activity_type').change(function(){
+
+			 var activity_type = $(this).val();
+			// alert(activity_type);
+			 if(activity_type == 1){
+			 	 $('.call_div').css('display','block');
+				 $('.channel_div').css('display','none');
+				 $('.from_city_div').css('display','none');
+				 $('.to_city_div').css('display','none');
+				 $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 2){
+			 	 $('.call_div').css('display','block');
+				 $('.channel_div').css('display','none');
+				 $('.from_city_div').css('display','none');
+				 $('.to_city_div').css('display','none');
+				 $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 3){
+			 	 $('.call_div').css('display','block');
+				 $('.channel_div').css('display','none');
+				 $('.to_city_div').css('display','none');
+				 $('.from_city_div').css('display','none');
+				 $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 4){
+			 	 $('.channel_div').css('display','block');
+				  $('.call_div').css('display','none');
+				  $('.from_city_div').css('display','none');
+				  $('.to_city_div').css('display','none');
+				  $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 5){
+			 	 $('.channel_div').css('display','block');
+				  $('.call_div').css('display','none');
+				  $('.from_city_div').css('display','none');
+				  $('.to_city_div').css('display','none');
+				  $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 6){
+			 	 $('.channel_div').css('display','block');
+				  $('.call_div').css('display','none');
+				  $('.from_city_div').css('display','none');
+				  $('.to_city_div').css('display','none');
+				  $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 7){
+			 	 $('.channel_div').css('display','block');
+				  $('.call_div').css('display','none');
+				  $('.from_city_div').css('display','none');
+				  $('.to_city_div').css('display','none');
+				  $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 8){
+			 	 $('.channel_div').css('display','block');
+				  $('.call_div').css('display','none');
+				  $('.from_city_div').css('display','none');
+				  $('.to_city_div').css('display','none');
+				  $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 9){
+			 	 $('.from_city_div').css('display','block');
+				 $('.to_city_div').css('display','block');
+			 	 $('.channel_div').css('display','none');
+				 $('.call_div').css('display','none');
+				 $('.other_div').css('display','none');
+			 }
+			 else if(activity_type == 10){
+			 	 $('.other_div').css('display','block');
+				  $('.from_city_div').css('display','none');
+				 $('.to_city_div').css('display','none');
+			 	 $('.channel_div').css('display','none');
+				 $('.call_div').css('display','none');
+			 }
+			 else{
+			 	 $('.call_div').css('display','none');
+				 $('.channel_div').css('display','none');
+				 $('.from_city_div').css('display','none');
+				 $('.to_city_div').css('display','none');
+				 $('.other_div').css('display','none');
+			 }
+		});
+		
+
+    });
+
+</script>		
+<!----------------------------end add project block------------------------------>

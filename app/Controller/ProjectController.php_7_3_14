@@ -1,0 +1,237 @@
+<?php
+
+class ProjectController extends AppController {
+
+    public $helpers = array('Html', 'Form', 'Session');
+    public $components = array('Session', 'Image');
+    public $uses = array('Project', 'Builder', 'Area', 'Suburb', 'City','Unit','Amenitie');
+    public $uploadDir;
+    var $paginate = array('limit' => 8, 'page' => 1);
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->uploadDir = ROOT . DS . APP_DIR . DS . WEBROOT_DIR . '/uploads/projects';
+    }
+
+    public function index() {
+
+        //echo '<pre>'.print_r($this->City->findByCityName('Kolkata'), true).'</pre>';
+        //exit;
+       
+
+        $projects = $this->Project->find('all', array('order' => 'Project.project_name ASC'));
+		
+        $units = $this->Unit->find('all', array('order' => 'Unit.unit_type ASC'));
+        $amenities = $this->Amenitie->find('all', array(
+            'fields' => array('Amenitie.group_id,Amenitie.id,Amenitie.project_id,Amenitie.status,GROUP_CONCAT(Amenitie.amenity_name separator " , ") AS amenity_name','Group.group_name'),
+            'joins' =>array(
+                array(
+                    'table' => 'groups',
+                    'alias' => 'Group',
+                    'type' => 'INNER',
+                    'conditions' => 'Amenitie.group_id = Group.id'
+                )
+            ),
+            'conditions' => 'Amenitie.status = 1' ,
+            'order' => 'Amenitie.group_id',
+            'group' => array('Amenitie.group_id')));
+    //    $amenities1 = $this->Amenitie->query("select group_id,GROUP_CONCAT(amenity_name) from amenities group by group_id");
+     //  pr($amenities);
+     //   die;
+        $projects = $this->paginate();
+        $this->set('projects', $projects);
+        $this->set('units', $units);
+        $this->set('amenities', $amenities);
+      //   $this->Session->delete('success_msg');
+    }
+
+    public function add() {
+
+        if ($this->request->is('post')) {
+
+            //pr($this->data);
+            //echo $this->data['Project']['suburb_id'];
+            //exit;
+
+            $image = '';
+            $brochure = '';
+
+            if (is_uploaded_file($this->data['Project']['proj_brochure']['tmp_name'])) {
+
+                $brochure = time() . str_replace(" ", "-", $this->request->data['Project']['proj_brochure']['name']);
+
+                if (move_uploaded_file($this->request->data['Project']['proj_brochure']['tmp_name'], $this->uploadDir . '/' . $brochure)) {
+                    // $this->request->data['Project']['proj_brochure'] = $brochure;
+                }
+            }
+            unset($this->request->data['Project']['proj_brochure']);
+            $this->request->data['Project']['proj_brochure'] = $brochure;
+
+
+            //  pr($this->request->data);
+            if (is_uploaded_file($this->request->data['Project']['proj_image']['tmp_name'])) {
+                // echo 'asd';
+                $image = $this->Image->upload(null, $this->request->data['Project']['proj_image'], $this->uploadDir);
+            }
+            unset($this->request->data['Project']['proj_image']);
+            $this->request->data['Project']['proj_image'] = $image;
+
+
+            $this->Project->create();
+
+
+            if ($this->Project->save($this->request->data)) {
+                $this->Session->setFlash('Project has been saved.', 'success');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash('Unable to add Project.', 'failure');
+            }
+        }
+        $city = $this->City->find('list', array('fields' => 'City.id, City.city_name', 'order' => 'City.city_name ASC'));
+
+        $this->set('city', $city);
+
+        $suburb = $this->Suburb->find('list', array('fields' => 'Suburb.id, Suburb.suburb_name', 'order' => 'Suburb.suburb_name ASC'));
+        $this->set('suburbs', $suburb);
+
+        $areas = $this->Area->find('list', array('fields' => 'Area.id, Area.area_name', 'order' => 'Area.area_name ASC'));
+        $this->set('areas', $areas);
+
+        $builders = $this->Builder->find('list', array('fields' => 'Builder.id, Builder.builder_name', 'order' => 'Builder.builder_name ASC'));
+        $this->set('builders', $builders);
+    }
+
+    /* $cities = $this->Suburb->City->find('all', array('order' => 'City.city_name ASC'));
+      $arrCity = array();
+      if (count($cities) > 0)
+      {
+      foreach ($cities as $city)
+      {
+      $arrCity[$city['City']['id']] = $city['City']['city_name'];
+      }
+      }
+
+      $this->set('citiess', $arrCity);
+      }
+     */
+
+    function edit($id = null) {
+
+        if (!$id) {
+            throw new NotFoundException(__('Invalid Project'));
+        }
+
+        $project = $this->Project->findById($id);
+
+        if (!$project) {
+            throw new NotFoundException(__('Invalid Project'));
+        }
+
+        if ($this->request->data) {
+            $this->Project->id = $id;
+            $image = '';
+            $brochure = '';
+            if (is_uploaded_file($this->data['Project']['proj_brochure_edit']['tmp_name'])) {
+                if ($project['Project']['proj_brochure']) {
+                    unlink($this->uploadDir . '/' . $project['Project']['proj_brochure']);
+                }
+                $brochure = time() . str_replace(" ", "-", $this->request->data['Project']['proj_brochure_edit']['name']);
+               move_uploaded_file($this->request->data['Project']['proj_brochure_edit']['tmp_name'], $this->uploadDir . '/' . $brochure);                  
+            }
+            unset($this->request->data['Project']['proj_brochure_edit']);
+            $this->request->data['Project']['proj_brochure'] = $brochure;
+
+            if (is_uploaded_file($this->request->data['Project']['proj_image_edit']['tmp_name'])) {
+                $image = $this->Image->upload($project['Project']['proj_image'], $this->request->data['Project']['proj_image_edit'], $this->uploadDir, 'image');
+                $this->request->data['Project']['proj_image'] = $image;
+            } else {
+                unset($this->request->data['Project']['proj_image_edit']);
+            }
+
+            if ($this->Project->save($this->request->data)) {
+                $this->Session->setFlash('Project has been updated.', 'success');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash('Unable to update Project.', 'failure');
+            }
+        }
+
+        $suburbs = $this->Project->Suburb->find('all', array('order' => 'Suburb.suburb_name ASC'));
+        $arrSuburb = array();
+        if (count($suburbs) > 0) {
+            foreach ($suburbs as $suburb) {
+                $arrSuburb[$suburb['Suburb']['id']] = $suburb['Suburb']['suburb_name'];
+            }
+        }
+        $this->set('suburbs', $arrSuburb);
+
+        $city = $this->City->find('list', array('fields' => 'City.id, City.city_name', 'order' => 'City.city_name ASC'));
+        $this->set('city', $city);
+
+        $suburb = $this->Suburb->find('list', array('fields' => 'Suburb.id, Suburb.suburb_name', 'order' => 'Suburb.suburb_name ASC'));
+        $this->set('suburbs', $suburb);
+
+        $areas = $this->Area->find('list', array('fields' => 'Area.id, Area.area_name', 'order' => 'Area.area_name ASC'));
+        $this->set('areas', $areas);
+
+        $builders = $this->Builder->find('list', array('fields' => 'Builder.id, Builder.builder_name', 'order' => 'Builder.builder_name ASC'));
+        $this->set('builders', $builders);
+
+        $this->request->data = $project;
+    }
+
+    function view($id = null) {
+
+        if (!$id) {
+            throw new NotFoundException(__('Invalid Channel'));
+        }
+
+        $project = $this->Project->findById($id);
+
+        if (!$project) {
+            throw new NotFoundException(__('Invalid Channel'));
+        }
+
+        $this->set('project', $project);
+
+        $suburbs = $this->Project->Suburb->find('all', array('order' => 'Suburb.suburb_name ASC'));
+        $arrSuburb = array();
+        if (count($suburbs) > 0) {
+            foreach ($suburbs as $suburb) {
+                $arrSuburb[$suburb['Suburb']['id']] = $suburb['Suburb']['suburb_name'];
+            }
+        }
+        $this->set('suburbs', $arrSuburb);
+
+        $this->request->data = $project;
+    }
+
+    function get_list_by_city_1() {
+
+        $this->layout = 'ajax';
+        $city_id = $this->data['Lead']['city_id'];
+
+        $projects = $this->Project->find('list', array(
+            'conditions' => array(
+                'Project.city_id' => $city_id
+            ),
+            'fields' => 'Project.id, Project.project_name',
+            'order' => 'Project.project_name ASC'
+        ));
+        $this->set('projects', $projects);
+    }
+
+    function get_list_by_city_2() {
+
+        $this->layout = 'ajax';
+        $city_id = $this->data['Project']['city_id'];
+
+        $builders = $this->Builder->find('list', array('conditions' => array('Builder.city_id' => $city_id), 'fields' => 'Builder.id, Builder.builder_name', 'order' => 'Builder.builder_name ASC'));
+        $this->set('builders', $builders);
+    }
+
+    function test() {
+        
+    }
+
+}

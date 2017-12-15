@@ -1,0 +1,281 @@
+<?php
+	App::uses('AppModel', 'Model');
+	
+	class ActionItem extends AppModel 
+	{
+
+		var $name = 'ActionItem';
+
+		public $validate = array(
+			
+			'type_id' => array
+								(
+								'unique' => array
+										(
+										// 'rule' => array('lead_id', 'next_action_by','type_id' ,'key'),
+										'rule' => array('checkUnique', array('type_id','action_item_level_id','created_by','next_action_by','parent_action_item_id')),
+										'message' => 'This action is already added, check your input and try again.',
+										)
+								),
+			);
+            
+		public $belongsTo = array(
+                                     
+				      
+				      'Lead' => array(
+						'className' => 'Lead',
+						'foreignKey' => 'lead_id'
+				      ),
+				      'ActionBuilder' => array(
+						'fields' => array('builder_name'),
+						'className' => 'Builder',
+						'foreignKey' => 'builder_id'
+						
+							       ),
+					'Reimbursement' => array(
+						'className' => 'Reimbursement',
+						'foreignKey' => 'event_id'
+						
+							       ),			   
+					'BuilderContact' => array(
+						'fields' => array('builder_contact_name'),
+						'className' => 'BuilderContact',
+						'foreignKey' => 'builder_contact_id'
+						
+							       ),			   
+					'ActionStatus' => array(
+									'className' => 'LookupValueActionItemStatus',
+									'foreignKey' => 'action_item_status'
+						
+							       ),
+					'LookupReturn' => array(
+									'className' => 'LookupValueActionItemReturn',
+									'foreignKey' => 'lookup_return_id'
+						
+							       ),
+					'LookupReject' => array(
+									'className' => 'LookupValueActionItemRejection',
+									'foreignKey' => 'lookup_rejection_id'
+						
+							       ),			   			   
+					'CreatedBy' => array(
+									'className'    => 'User',
+									'fields' => array('CreatedBy.fname','CreatedBy.lname'),
+									'foreignKey'   => 'created_by'
+					),			   		   
+				      'ActionProject' => array(
+									'fields' => array('project_name'),
+									'className' => 'Project',
+									'foreignKey' => 'project_id'
+						
+							       ),
+				      'Channel' => array(
+								'className'    => 'Channel',
+								'fields' => array('Channel.channel_name'),
+								'foreignKey' => false,
+								'conditions' => 'Lead.lead_channel = Channel.id',
+					
+				    
+					    ),
+					'PrimaryCode' => array(
+							'className'    => 'LookupValueLeadsCountry',
+							'foreignKey' => false,
+							'conditions' => 'Lead.lead_primary_phone_country_code = PrimaryCode.id',
+							
+					),
+					'BudgetUnit' => array(
+							'className'    => 'LookupValueLeadsCurrency',
+							'foreignKey' => false,
+							'conditions' => 'Lead.lead_budget_unit = BudgetUnit.id',
+							
+					),	
+					'PhoneOfficer' => array(
+									'className'    => 'User',
+									'fields' => array('PhoneOfficer.fname','PhoneOfficer.mname','PhoneOfficer.lname'),
+									'foreignKey' => false,
+									'conditions' => 'Lead.lead_phoneofficer = PhoneOfficer.id',
+							),
+					'Associate' => array(
+									'className' => 'User',
+									'fields' => array('Associate.fname','Associate.mname','Associate.lname'),
+									'foreignKey' => false,
+									'conditions' => 'Lead.lead_associate = Associate.id',
+							 
+							    ),
+											
+				      'City' => array(
+									'className'    => 'City',
+									'fields' => array('City.city_name'),
+									'foreignKey' => false,
+									'conditions' => 'Lead.city_id = City.id',
+					    ),
+				      	'Project' => array(
+									'className'    => 'Project',
+									'fields' => array('Project.project_name'),
+									'foreignKey' => false,
+									'conditions' => 'Lead.proj_id1 = Project.id',
+							),
+					'Builder' => array(
+								'className'    => 'Builder',
+								'fields' => array('Builder.builder_name'),
+								'foreignKey' => false,
+								'conditions' => 'Lead.builder_id1 = Builder.id',
+							),
+					'Source' => array(
+							    'className' => 'LookupValueLeadsSource',
+								'foreignKey' => false,
+								'conditions' => 'Lead.lead_source = Source.id',
+							   
+							    ),		
+					'Area' => array(
+								'className'    => 'Area',
+								'fields' => array('Area.area_name'),
+								'foreignKey' => false,
+								'conditions' => 'Lead.lead_areapreference1 = Area.id',
+
+						    ),
+					'TypeProject' => array(
+								'className'    => 'LookupValueProjectPhase',
+								'fields' => array('TypeProject.value'),
+								'foreignKey' => false,
+								'conditions' => 'Lead.lead_typeofprojectpreference1 = TypeProject.id',
+
+						    ),
+					'Type' => array(
+								'className'    => 'LookupValueLeadsType',
+								'fields' => array('Type.value'),
+								'foreignKey' => false,
+								'conditions' => 'Lead.lead_type = Type.id',
+
+						    ),		
+							
+					'Area' => array(
+						'className'    => 'Area',
+						'fields' => array('Area.area_name'),
+						'foreignKey' => false,
+						'conditions' => 'Lead.lead_areapreference1 = Area.id',
+
+						    ),
+					'Suburb' => array(
+						'className'    => 'Suburb',
+						'fields' => array('Suburb.suburb_name'),
+						'foreignKey' => false,
+						'conditions' => 'Lead.lead_suburb1 = Suburb.id',
+
+						    ),
+					'Unit' => array(
+						'className'    => 'LookupValueProjectUnitPreference',
+						
+						'foreignKey' => false,
+						'conditions' => 'Lead.lead_unit_id_1 = Unit.id',
+
+						    ),
+					'Importance' => array(
+						'className'    => 'LookupValueLeadsImportance',
+						'foreignKey' => false,
+						'conditions' => 'Lead.lead_importance = Importance.id',
+	
+					    ),
+					'Urgency' => array(
+						'className'    => 'LookupValueLeadsUrgency',
+						'foreignKey' => false,
+						'conditions' => 'Lead.lead_urgency = Urgency.id',
+	
+					    ),
+					'Country' => array(
+						'className'    => 'LookupValueLeadsCountry',
+						'foreignKey' => false,
+						'conditions' => 'Lead.lead_country = Country.id',
+					    
+						    ),
+					'PrimaryManage' => array(
+							'className'    => 'User',
+							'fields' => array('PrimaryManage.fname','PrimaryManage.lname'),
+							'foreignKey'   => 'primary_manager_id'
+							),
+					'Associate' => array(
+							'className'    => 'User',
+							'fields' => array('Associate.fname','Associate.mname','Associate.lname'),
+							'foreignKey' => false,
+							'conditions' => 'Lead.lead_associate = Associate.id',
+							),		
+					'NextActionBy' => array(
+							'className'    => 'User',
+							'fields' => array('NextActionBy.fname','NextActionBy.mname','NextActionBy.lname'),
+							'foreignKey'   => 'next_action_by'
+							),		
+					'SecondaryManage' => array(
+							'className'    => 'User',
+							'fields' => array('SecondaryManage.fname','SecondaryManage.lname'),
+							'foreignKey'   => 'secondary_manager_id'
+							),		
+					'PhoneOfficer' => array(
+						'className'    => 'User',
+						'fields' 	=> array('PhoneOfficer.fname','PhoneOfficer.mname','PhoneOfficer.lname'),
+						'foreignKey' => false,
+						'conditions' => 'Lead.lead_phoneofficer = PhoneOfficer.id',
+					    
+						    ),
+					'ActionItemLevel' => array(
+						'className' => 'ActionItemLevel',
+						'foreignKey' => 'action_item_level_id'
+					),
+					'LeadStatus' => array(
+						'className' => 'LeadStatus',
+						'foreignKey' => false,
+						'conditions' => 'Lead.lead_status = LeadStatus.id',
+					
+				      ),
+					  'ActionType' => array(
+						'className' => 'action_item_types',
+						'foreignKey' => 'type_id',
+						
+					
+				      ),
+					   'Role' => array(
+						'className' => 'Role',
+						'foreignKey' => 'action_item_source',
+
+				      ),
+					   'LastActionBy' => array(
+						'className' => 'User',
+						'foreignKey' => 'created_by_id',
+						
+					
+				      ),
+             );
+	public function GetLastAllocationDate($lead_id){
+		$action = $this->find('first',array('fields' => array('created'),'conditions' => array('ActionItem.lead_id' => $lead_id,'ActionItem.type_id' => 4),'order' => array('ActionItem.id' => 'DESC')));
+
+		return $action['ActionItem']['created'];
+		
+	}		 
+			 
+	    /*
+	    public $hasMany = array(
+        'Remark' => array('conditions' => array('Remark.lead_id' => 'ActionItem.lead_id'))
+     );
+     */
+	   /*  var $hasMany = array(   
+        'Remark' => array(
+                    'className' => 'Remark',
+                    'foreignKey' => 'lead_id',
+		     'joinTable' => 'action_items',
+		     'alias' => 'ActionItem',
+                    'conditions' => 'ActionItem.lead_id = Remark.lead_id',     
+
+                    )
+	);
+	*/
+	   /* var $hasMany = array(
+		'Remark' => array(
+		    'className' => 'Remark',
+		    'joinTable' => 'action_items',
+		    'foreignKey' => 'lead_id',
+		    'associationForeignKey' => 'lead_id'
+		)
+	    );
+	    */
+
+        }
+?>

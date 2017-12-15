@@ -1,0 +1,316 @@
+<?php
+$this->Html->addCrumb('Transaction Action', 'javascript:void(0);', array('class' => 'breadcrumblast'));
+echo $this->Form->create('ActionItem', array('method' => 'post',
+    'id' => 'parsley_reg',
+    'novalidate' => true,
+    'inputDefaults' => array(
+        'label' => false,
+        'div' => false,
+        'class' => 'form-control',
+    ),
+));
+?>
+<div class="col-sm-12" id="mycl-det">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Action</h4>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <legend><span>Action</span></legend>
+            </fieldset>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Choose Action Type</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+<?php
+echo $this->Form->input('type_id', array('options' => $action_type, 'empty' => '--Select--', 'data-required' => 'true'));
+?></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 release_cln" style="display:none;">
+                        <div class="form-group" id="rejection">
+                            <label>Reason for Release</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10"><?php echo $this->Form->input('lookup_release_id', array('id' => 'release_id', 'options' => $release, 'empty' => '--Select--')); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 report_tran" style="display:none;">
+                        <div class="form-group">
+                            <label>Cost Currency </label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10"><?php echo $this->Form->input('Lead.unit_cost_currency', array('options' => array('INR' => 'INR', 'AED' => 'AED', 'USD' => 'USD'), 'empty' => '--Select--', 'value' => 'INR', 'disabled' => TRUE, 'selected' => TRUE, 'tabindex' => '20')); ?></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 report_tran" style="display:none; clear:both;">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Transaction Type</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+<?php
+echo $this->Form->input('Lead.city_name', array('options' => $LookupValueLeadTransactionType, 'empty' => '--Select--','disabled' => array('3','4','5','6')));
+?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Choose Builder</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('Lead.builder_id', array('options' => $builders, 'empty' => '--Select'));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Project Legal Name</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('Lead.project_legal_name_id', array('options' => array(), 'empty' => '--Select'));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Sellable / Carpet</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10"><?php echo $this->Form->input('Lead.unit_price_on_sellable_or_carpet', array('options' => array('Sellable' => 'Sellable', 'Carpet' => 'Carpet'), 'empty' => '--Select--', 'default' => 'Sellable', 'tabindex' => '26')); ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Floor Number</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10"><?php echo $this->Form->input('Lead.unit_floor_number', array('class' => 'form-control rgt', 'value' => '0', 'readonly' => true, 'tabindex' => '19')); ?></div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Billing Type</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+<?php
+echo $this->Form->input('Lead.city_name', array('options' => array('1' => 'Seller / Builder', '2' => 'Buyer', '3' => 'Both'), 'empty' => '--Select--'));
+?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Choose Project</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('Lead.project_id', array('options' => array(), 'empty' => '--Select'));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Choose Unit</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+<?php
+echo $this->Form->input('Lead.unit_id', array('options' => array(), 'empty' => '--Select'));
+?></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Cost Currency </label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10"><?php echo $this->Form->input('Lead.unit_cost_currency', array('options' => array('INR' => 'INR', 'AED' => 'AED', 'USD' => 'USD'), 'empty' => '--Select--', 'value' => 'INR', 'disabled' => TRUE, 'selected' => TRUE, 'tabindex' => '20')); ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Choose Client</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('Lead.lead_id', array('options' => $leads, 'empty' => '--Select'));
+                                ?></div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <div class="col-sm-12 release_cln" style="display:none;">
+                    <div class="form-group">
+                        <label>Comment</label>
+                        <span class="colon">:</span>
+                        <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('other_release', array('type' => 'textarea'));
+                                ?></div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12 report_tran" id="ajax_prolegal">
+
+                </div>     
+                <div class="col-sm-12 report_tran" id="ajax_client">
+
+                </div>
+                <div class="col-sm-12 report_tran" id="ajax_unit">
+
+                </div>
+                <div class="col-sm-12">
+                    <div class="row">
+
+                        <div class="col-sm-1">
+<?php
+echo $this->Form->submit('Add', array('class' => 'btn btn-success sticky_success'));
+?>
+                        </div>
+                        <div class="col-sm-1">
+<?php echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'btn btn-danger sticky_important')); ?>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                            <?php
+                            echo $this->Form->end();
+
+                            /*                             * *****************************Ajax function *********************************** */
+                            /**
+
+                             * Get Project List By Builder Id
+                             */
+                            $this->Js->get('#LeadBuilderId')->event('change', $this->Js->request(array(
+                                        'controller' => 'all_functions',
+                                        'action' => 'get_project_by_builder_id/Lead'
+                                            ), array(
+                                        'update' => '#LeadProjectId',
+                                        'async' => true,
+                                        'before' => 'loading("LeadProjectId")',
+                                        'complete' => 'loaded("LeadProjectId")',
+                                        'method' => 'post',
+                                        'dataExpression' => true,
+                                        'data' => $this->Js->serializeForm(array(
+                                            'isForm' => true,
+                                            'inline' => true
+                                        ))
+                                    ))
+                            );
+
+                            /**
+                             *
+                             * Get Unit List By Project Id
+                             */
+                            $this->Js->get('#LeadProjectId')->event('change', $this->Js->request(array(
+                                        'controller' => 'all_functions',
+                                        'action' => 'get_unit_by_project_id/Lead'
+                                            ), array(
+                                        'update' => '#LeadUnitId',
+                                        'async' => true,
+                                        'before' => 'loading("LeadUnitId")',
+                                        'complete' => 'loaded("LeadUnitId")',
+                                        'method' => 'post',
+                                        'dataExpression' => true,
+                                        'data' => $this->Js->serializeForm(array(
+                                            'isForm' => true,
+                                            'inline' => true
+                                        ))
+                                    ))
+                            );
+
+                            /**
+                             *
+                             * Get Project Legal List By Project Id
+                             */
+                            $this->Js->get('#LeadProjectId')->event('change', $this->Js->request(array(
+                                        'controller' => 'all_functions',
+                                        'action' => 'get_project_legal_list_by_project_id/Lead'
+                                            ), array(
+                                        'update' => '#LeadProjectLegalNameId',
+                                        'async' => true,
+                                        'before' => 'loading("LeadProjectLegalNameId")',
+                                        'complete' => 'loaded("LeadProjectLegalNameId")',
+                                        'method' => 'post',
+                                        'dataExpression' => true,
+                                        'data' => $this->Js->serializeForm(array(
+                                            'isForm' => true,
+                                            'inline' => true
+                                        ))
+                                    ))
+                            );
+
+                            /**
+                             *
+                             * Get Project Legal Name Details By Project Legal Id
+                             */
+                            $this->Js->get('#LeadProjectLegalNameId')->event('change', $this->Js->request(array(
+                                        'controller' => 'all_functions',
+                                        'action' => 'get_project_legal_details_by_prolegal_id/Lead'
+                                            ), array(
+                                        'update' => '#ajax_prolegal',
+                                        'async' => true,
+                                        'before' => 'loading_img("ajax_prolegal")',
+                                        'complete' => 'loaded_img("ajax_prolegal")',
+                                        'method' => 'post',
+                                        'dataExpression' => true,
+                                        'data' => $this->Js->serializeForm(array(
+                                            'isForm' => true,
+                                            'inline' => true
+                                        ))
+                                    ))
+                            );
+
+                            /**
+                             *
+                             * Get Unit Details By UNit Id
+                             */
+                            $this->Js->get('#LeadUnitId')->event('change', $this->Js->request(array(
+                                        'controller' => 'all_functions',
+                                        'action' => 'get_project_unit_details_by_unit_id/Lead'
+                                            ), array(
+                                        'update' => '#ajax_unit',
+                                        'async' => true,
+                                        'before' => 'loading_img("ajax_unit")',
+                                        'complete' => 'loaded_img("ajax_unit")',
+                                        'method' => 'post',
+                                        'dataExpression' => true,
+                                        'data' => $this->Js->serializeForm(array(
+                                            'isForm' => true,
+                                            'inline' => true
+                                        ))
+                                    ))
+                            );
+
+                            /**
+                             *
+                             * Get Client Details By Client Id
+                             */
+                            $this->Js->get('#LeadLeadId')->event('change', $this->Js->request(array(
+                                        'controller' => 'all_functions',
+                                        'action' => 'get_client_details_by_client_id/Lead'
+                                            ), array(
+                                        'update' => '#ajax_client',
+                                        'async' => true,
+                                        'before' => 'loading_img("ajax_client")',
+                                        'complete' => 'loaded_img("ajax_client")',
+                                        'method' => 'post',
+                                        'dataExpression' => true,
+                                        'data' => $this->Js->serializeForm(array(
+                                            'isForm' => true,
+                                            'inline' => true
+                                        ))
+                                    ))
+                            );
+                            ?>   
+<script>
+    $('#ActionItemTypeId').change(function() {
+        var val = $(this).val();
+        if (val == '11') {
+            $('.release_cln').css('display', 'block');
+            $('.report_tran').css('display', 'none');
+        }
+        else
+        {
+            $('.release_cln').css('display', 'none');
+            $('.report_tran').css('display', 'block');
+        }
+    });
+</script>

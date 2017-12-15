@@ -1,0 +1,17 @@
+id,area_name,suburb_id,suburb_name,city_id,city_name,country_id,country_name,continent_id,continent_name,area_description,area_active,top_area,area_status,wtb_status,is_update,province_id,province_name,approved_by,approved_date,created_by,created
+NULL,Chumphon Buri,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Chumphon Buri,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Tha Tum,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Tha Tum,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Chom Phra,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Chom Phra,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Prasat,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Prasat,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Kap Choeng,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Kap Choeng,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Rattanaburi,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Rattanaburi,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Sanom,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Sanom,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Sikhoraphum,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Sikhoraphum,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Sangkha,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Sangkha,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Lamduan,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Lamduan,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Samrong Thap,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Samrong Thap,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Buachet,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Buachet,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Phanom Dong Rak,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Phanom Dong Rak,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Si Narong,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Si Narong,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Khwao Sinarin,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Khwao Sinarin,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Non Narai,942,Greater Surin,15613,Surin,220,Thailand,2,Asia,Non Narai,TRUE,FALSE,1,1,Y,62,Surin,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00

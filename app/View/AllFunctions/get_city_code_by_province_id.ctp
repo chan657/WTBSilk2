@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('city_wtb_code', array('label'=> false,'div'=>false,'options'=>$array,'empty'=>'--Select--')); ?>

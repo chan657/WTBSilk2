@@ -1,0 +1,64 @@
+<?php
+
+ echo $this->Html->css(array('/bootstrap/css/bootstrap.min','popup','style'));
+ echo $this->Html->script(array('jquery.min','/bootstrap/js/bootstrap.min','lib/FooTable/js/footable',
+									'lib/FooTable/js/footable.sort',
+									'lib/FooTable/js/footable.filter',
+									'lib/FooTable/js/footable.paginate',
+									'pages/ebro_responsive_table'));							
+
+?>
+
+<!----------------------------start add project block------------------------------>
+<div class="pop-outer">
+     <div class="pop-up-hdng"><span class="badge badge-circle badge-success"><?php echo count($this->data['Action'])?></span>Action History</div>
+
+		<div class="form-group">
+                                                       
+                                                        <div class="col-sm-12">
+                                                        	
+                                                           
+                                                            <table class="table">
+					
+					 <tr class="table-header">
+						<th class="borderRightNone" align="left">Action Id</th>
+						<th align="left">Action Parent Id</th>
+						<th align="left">Action Level</th>
+						<th align="left">Action Type</th>
+						<th align="left">Action Status</th>
+						<th align="left">Action Date</th>
+						<th align="left">Action Source</th>
+						<th align="left">Action By</th>
+						<th align="left">The Action</th>	
+						
+					 </tr>
+					 <?php
+					// pr($created_by);
+					 if(count($this->data['Action'])){
+					 foreach($this->data['Action'] as $actions ){?>
+					<tr style="background-color:#FFF;">
+						
+						<td class="borderRightNone" align="left"><b><?php echo $actions['id'];?></b></td>
+						<td class="borderRightNone" align="left"><b><?php echo $actions['parent_action_item_id'];?></b></td>
+						<td class="borderRightNone" align="left"><b><?php echo $action_level[$actions['action_item_level_id']];?></b></td>
+						<td class="borderRightNone" align="left"><b><?php echo $action_type[$actions['type_id']];?></b></td>
+						<td class="borderRightNone" align="left"><b><?php echo $action_status[$actions['action_item_status']];?></b></td>	
+						<td class="borderRightNone" align="left"><b><?php echo date("d/m/Y", strtotime($actions['created']));?></b></td>
+						<td class="borderRightNone" align="left"><b><?php echo $source[$actions['action_item_source']];?></b></td>	
+						<td class="borderRightNone" align="left"><b><?php echo $created_by[$actions['created_by']];?></b></td>
+						<td class="borderRightNone" align="left"><b><?php echo $actions['description'];?></b></td>
+						
+					</tr>
+					<?php }
+					}
+					 ?>
+					
+				</table>
+                                                            
+                                                        </div>
+                                                    </div>    
+
+</div>	
+
+		
+<!----------------------------end add project block------------------------------>

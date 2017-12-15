@@ -1,0 +1,383 @@
+<?php
+$this->Html->addCrumb('Add Mapping', 'javascript:void(0);', array('class' => 'breadcrumblast'));
+echo $this->Form->create('Mapping', array('method' => 'post',
+    'id' => 'parsley_reg',
+    'novalidate' => true,
+    'inputDefaults' => array(
+        'label' => false,
+        'div' => false,
+        'class' => 'form-control',
+    ),
+));
+echo $this->Form->hidden('base_url', array('id' => 'hidden_site_baseurl', 'value' => $this->request->base . ((!is_null($this->params['language'])) ? '/' . $this->params['language'] : '')));
+?>
+<div class="col-sm-12" id="mycl-det">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Add Mapping</h4>
+        </div>
+        <div class="panel-body">
+           
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="reg_input_name" class="req"  style="margin-left: 14px;">Mapping Type</label>
+                        <span class="colon">:</span>
+                        <div class="col-sm-4">
+                            <?php
+                            echo $this->Form->input('mapping_type', array('options' => $TravelMappingTypes, 'empty' => '--Select--', 'data-required' => 'true'));
+                            ?></div>
+                    </div>
+                </div>
+                <div class="col-sm-12" id="country" style="display: none;">
+                    <div class="col-sm-6">
+                       
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Supplier</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('country_supplier_code', array('id' => 'country_supplier_code','options' => $TravelSuppliers, 'empty' => '--Select--'));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">SUPP Country Code</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('supplier_country_code');
+                                ?></div><span class="icon-info-sign" style="color: #5DD0ED;" data-toggle="tooltip"  data-placement="left" title="Please check the Country data provided by your supplier for this code. IMPORTANT: This code may be different from WTB Country code."></span>
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Mapping Name</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('country_mapping_name',array('placeholder' => 'SUPP NAME | COUNTRY NAME'));
+                                ?></div><span class="icon-info-sign" style="color: #5DD0ED;" data-toggle="tooltip"  data-placement="left" title="Example: RezLive | Slovakia"></span>
+                        </div>-->
+
+                    </div>
+                    <div class="col-sm-6">
+                      
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">WTB Country</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('pf_country_code', array('id' => 'pf_country_code','options' => array(), 'empty' => '--Select--'));
+                                ?></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-12" id="city" style="display: none;">
+                    <div class="col-sm-6">
+                        
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Supplier</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('city_supplier_code', array('id' => 'city_supplier_code','options' => $TravelSuppliers, 'empty' => '--Select--'));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">WTB City</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('pf_city_code', array('id' => 'pf_city_code','options' => array(), 'empty' => '--Select--'));
+                                ?></div>
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Mapping Name</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('city_mapping_name',array('placeholder' => 'SUPP NAME | COUNTRY NAME | CITY NAME'));
+                                ?></div>
+                        </div>-->
+
+                    </div>
+                    <div class="col-sm-6">
+                       
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">WTB Country</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('city_country_code', array('id' => 'city_country_code','options' => array(), 'empty' => '--Select--'));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Supplier City Code</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('supplier_city_code');
+                                ?></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear" style="clear: both;"></div>
+                <div class="col-sm-12" id="hotel" style="display: none;">
+                    <div class="col-sm-6">
+                      
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Supplier</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_supplier_code', array('id' => 'hotel_supplier_code','options' => $TravelSuppliers, 'empty' => '--Select--'));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">WTB City</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_city_code', array('id' => 'hotel_city_code','options' => array(), 'empty' => '--Select--'));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Supplier Hotel Code</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('supplier_item_code1');
+                                ?></div>
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">Mapping Name</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_mapping_name',array('placeholder' => 'SUPP NAME | COUNTRY NAME | CITY NAME | HOTEL NAME'));
+                                ?></div>
+                        </div>-->
+
+                    </div>
+                    <div class="col-sm-6">
+                      
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">WTB Country</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_country_code', array('id' => 'hotel_country_code','options' => array(), 'empty' => '--Select--'));
+                                ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_input_name" class="req">WTB Hotel</label>
+                            <span class="colon">:</span>
+                            <div class="col-sm-10">
+                                <?php
+                                echo $this->Form->input('hotel_code', array('id' => 'hotel_code','options' => array(), 'empty' => '--Select--'));
+                                ?></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="clear" style="clear: both;"></div>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <?php
+                            echo $this->Form->submit('Add', array('class' => 'btn btn-success sticky_success'));
+                            ?>
+                        </div>
+                        <div class="col-sm-1">
+                            <?php echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'btn btn-danger sticky_important')); ?>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+echo $this->Form->end();
+
+$this->Js->get('#country_supplier_code')->event('change', $this->Js->request(array(
+            'controller' => 'all_functions',
+            'action' => 'get_supplier_by_country/Mapping/country_supplier_code'
+                ), array(
+            'update' => '#pf_country_code',
+            'async' => true,
+            'before' => 'loading("pf_country_code")',
+            'complete' => 'loaded("pf_country_code")',
+            'method' => 'post',
+            'dataExpression' => true,
+            'data' => $this->Js->serializeForm(array(
+                'isForm' => true,
+                'inline' => true
+            ))
+        ))
+);
+
+$this->Js->get('#city_supplier_code')->event('change', $this->Js->request(array(
+            'controller' => 'all_functions',
+            'action' => 'get_supplier_by_city/Mapping/city_supplier_code'
+                ), array(
+            'update' => '#city_country_code',
+            'async' => true,
+            'before' => 'loading("city_country_code")',
+            'complete' => 'loaded("city_country_code")',
+            'method' => 'post',
+            'dataExpression' => true,
+            'data' => $this->Js->serializeForm(array(
+                'isForm' => true,
+                'inline' => true
+            ))
+        ))
+);
+
+$this->Js->get('#hotel_supplier_code')->event('change', $this->Js->request(array(
+            'controller' => 'all_functions',
+            'action' => 'get_supplier_by_city/Mapping/hotel_supplier_code'
+                ), array(
+            'update' => '#hotel_country_code',
+            'async' => true,
+            'before' => 'loading("hotel_country_code")',
+            'complete' => 'loaded("hotel_country_code")',
+            'method' => 'post',
+            'dataExpression' => true,
+            'data' => $this->Js->serializeForm(array(
+                'isForm' => true,
+                'inline' => true
+            ))
+        ))
+);
+/*
+$this->Js->get('#city_country_code')->event('change', $this->Js->request(array(
+            'controller' => 'all_functions',
+            'action' => 'get_supplier_country_by_city/Mapping/city_country_code'
+                ), array(
+            'update' => '#pf_city_code',
+            'async' => true,
+            'before' => 'loading("pf_city_code")',
+            'complete' => 'loaded("pf_city_code")',
+            'method' => 'post',
+            'dataExpression' => true,
+            'data' => $this->Js->serializeForm(array(
+                'isForm' => true,
+                'inline' => true
+            ))
+        ))
+);
+
+$this->Js->get('#city_country_code')->event('change', $this->Js->request(array(
+            'controller' => 'all_functions',
+            'action' => 'get_supplier_country_by_city/Mapping/city_country_code'
+                ), array(
+            'update' => '#pf_city_code',
+            'async' => true,
+            'before' => 'loading("pf_city_code")',
+            'complete' => 'loaded("pf_city_code")',
+            'method' => 'post',
+            'dataExpression' => true,
+            'data' => $this->Js->serializeForm(array(
+                'isForm' => true,
+                'inline' => true
+            ))
+        ))
+);
+ * 
+ */
+?>   
+<script>
+    var FULL_BASE_URL = $('#hidden_site_baseurl').val();
+    
+        $('#MappingMappingType').change(function(){
+        var value = $(this).val();
+        if(value == '1'){
+            $('#country').css('display','block');
+            $('#city').css('display','none');
+            $('#hotel').css('display','none');
+        }
+        else if(value == '2'){
+            $('#city').css('display','block');
+            $('#country').css('display','none');
+            $('#hotel').css('display','none');
+        }
+        else if(value == '3'){
+            $('#hotel').css('display','block');
+            $('#country').css('display','none');
+            $('#city').css('display','none');
+        }
+    });
+    
+    
+    $('#city_country_code').change(function() {
+        var country_id = $(this).val();
+        var supplier_code = $('#city_supplier_code').val();
+        var dataString = 'country_id=' + country_id + '&supplier_code='+supplier_code;
+       
+        $('#pf_city_code').attr('disabled', 'true');
+        $.ajax({
+            type: "POST",
+            data: dataString,
+            url: FULL_BASE_URL + '/all_functions/get_supplier_country_by_city',
+            beforeSend: function() {
+                
+                $('#pf_city_code').attr('disabled', 'true');
+            },
+            success: function(return_data) {
+                $('#pf_city_code').removeAttr('disabled', 'false');
+                $('#pf_city_code').html(return_data);
+            }
+        });
+
+    });
+    
+    $('#hotel_country_code').change(function() {
+        var country_id = $(this).val();
+        var supplier_code = $('#hotel_supplier_code').val();
+        var dataString = 'country_id=' + country_id + '&supplier_code='+supplier_code;
+       
+        $('#hotel_city_code').attr('disabled', 'true');
+        $.ajax({
+            type: "POST",
+            data: dataString,
+            url: FULL_BASE_URL + '/all_functions/get_hotel_supplier_country_by_city',
+            beforeSend: function() {
+                
+                $('#hotel_city_code').attr('disabled', 'true');
+            },
+            success: function(return_data) {
+                $('#hotel_city_code').removeAttr('disabled', 'false');
+                $('#hotel_city_code').html(return_data);
+            }
+        });
+
+    });
+    
+    $('#hotel_city_code').change(function() {
+        var city_code = $('#hotel_city_code').val();
+        var country_code = $('#hotel_country_code').val();
+        var supplier_code = $('#hotel_supplier_code').val();
+        var dataString = 'country_code=' + country_code + '&supplier_code='+supplier_code+ '&city_code='+city_code;
+       
+        $('#hotel_code').attr('disabled', 'true');
+        $.ajax({
+            type: "POST",
+            data: dataString,
+            url: FULL_BASE_URL + '/all_functions/get_hotel_by_city_country_supplier',
+            beforeSend: function() {
+                
+                $('#hotel_code').attr('disabled', 'true');
+            },
+            success: function(return_data) {
+                $('#hotel_code').removeAttr('disabled', 'false');
+                $('#hotel_code').html(return_data);
+            }
+        });
+
+    });
+</script>

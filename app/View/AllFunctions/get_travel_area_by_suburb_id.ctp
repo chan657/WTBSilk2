@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('area_id', array('div' => false,'label'=> false,'options'=>$DataArray,'empty'=>'--Select--')); ?>

@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('lead_suburb1', array('type' => 'select','label'=> false,'options'=>$suburbs,'empty'=>'--Select--')); ?>

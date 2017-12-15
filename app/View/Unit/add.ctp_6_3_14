@@ -1,0 +1,11 @@
+<h1>Add Project Unit Name</h1>
+<?php
+echo $this->Form->create('Unit');
+echo $this->Form->input('unit_name',array('div' =>true,
+                   'label' => array(
+                   'text'=> 'Project Unit Name', 'class' =>'myclass'),
+                   'class' => 'input', 'size' => '25','maxlength'=>'100'));
+				   
+echo $this->Form->end('Save');
+
+?>

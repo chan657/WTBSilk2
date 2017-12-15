@@ -1,0 +1,221 @@
+<header id="top_header">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-6 col-sm-2">
+                        <?php
+					
+						 echo $this->Html->link(
+                        $this->Html->image('logonew.png', array('alt' => 'Logo', 'border' => '0')),array('controller' => 'users', 'action' => 'dashboard'), array('escape' => false,'class' => 'logo_main')
+                );
+						?>
+							
+						</div>
+                        <div class="col-sm-push-4 col-sm-3 text-right hidden-xs">
+							
+							
+							<div class="notification_dropdown dropdown">
+								<a href="#" class="notification_icon dropdown-toggle" data-toggle="dropdown">
+									<span class="label label-danger">12</span>
+									<i class="icon-envelope-alt icon-2x"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-wide">
+									<li>
+										<div class="dropdown_heading">Messages</div>
+										<div class="dropdown_content">
+											<ul class="dropdown_items">
+												<li>
+													<h3><a href="#">Lorem ipsum dolor sit amet</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+													<i class="icon-exclamation-sign indicator"></i>
+												</li>
+												<li>
+													<h3><a href="#">Lorem ipsum dolor&hellip;</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aliquam assumenda&hellip;</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+												</li>
+												<li>
+													<h3><a href="#">Lorem ipsum dolor&hellip;</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur&hellip;</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+													<i class="icon-exclamation-sign indicator"></i>
+												</li>
+											</ul>
+										</div>
+										<div class="dropdown_footer">
+											<a href="#" class="btn btn-sm btn-default">Show all</a>
+											<div class="pull-right dropdown_actions">
+												<a href="#"><i class="icon-refresh"></i></a>
+												<a href="#"><i class="icon-cog"></i></a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!--<div class="col-sm-push-4 col-sm-3 text-right hidden-xs">
+							
+							
+							<div class="notification_dropdown dropdown">
+								<a href="#" class="notification_icon dropdown-toggle" data-toggle="dropdown">
+									<span class="label label-danger">12</span>
+									<i class="icon-envelope-alt icon-2x"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-wide">
+									<li>
+										<div class="dropdown_heading">Messages</div>
+										<div class="dropdown_content">
+											<ul class="dropdown_items">
+												<li>
+													<h3><a href="#">Lorem ipsum dolor sit amet</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+													<i class="icon-exclamation-sign indicator"></i>
+												</li>
+												<li>
+													<h3><a href="#">Lorem ipsum dolor&hellip;</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aliquam assumenda&hellip;</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+												</li>
+												<li>
+													<h3><a href="#">Lorem ipsum dolor&hellip;</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur&hellip;</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+													<i class="icon-exclamation-sign indicator"></i>
+												</li>
+											</ul>
+										</div>
+										<div class="dropdown_footer">
+											<a href="#" class="btn btn-sm btn-default">Show all</a>
+											<div class="pull-right dropdown_actions">
+												<a href="#"><i class="icon-refresh"></i></a>
+												<a href="#"><i class="icon-cog"></i></a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+                          <?php $user = $this->Session->read('Auth.User');
+						  		
+						  	?>
+						<div class="col-xs-6 col-sm-push-4 col-sm-3">
+							<div class="pull-right dropdown">
+								<a href="#" class="user_info dropdown-toggle" title="Jonathan Hay" data-toggle="dropdown">
+									<?php echo $this->Html->image('user_avatar.png');?>
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><?php echo $this->Html->link('Profile', array('controller' => 'users','action' => 'edit','slug' => $user['fname'].'-'.$user['mname'].'-'.$user['lname'],'id' => base64_encode($user['id'])));?></li>
+									<li><?php echo $this->Html->link('Logout', '/users/logout') ?></li>
+								</ul>
+							</div>
+						</div>-->
+                        
+                        
+                        <ul class="nav navbar-nav user-menu navbar-right" id="user-menu">
+       
+          <li>
+          <?php  echo $this->Html->link('<span class="username"><img src="https://www.gravatar.com/avatar/26b8da05a71fbb9e973a4dfebc975354?s=50&amp;d=mm" class="user-avatar">'.$fname.' '.$lname.'</span>', array('controller' => 'users', 'action' => 'dashboard'), array('data-toggle' => 'dropdown','escape' => false)); ?>
+
+            <ul class="dropdown-menu">          
+              <li>
+              <div class="dropdown_heading"><span aria-hidden="true" class="icon icon-user"></span></div>
+										<div class="dropdown_content">
+											<ul class="dropdown_items">
+												<li>
+													<h3><a href="#">Lorem ipsum dolor sit amet</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+													<i class="icon-exclamation-sign indicator"></i>
+												</li>
+												<li>
+													<h3><a href="#">Lorem ipsum dolor&hellip;</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aliquam assumenda&hellip;</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+												</li>
+												<li>
+													<h3><a href="#">Lorem ipsum dolor&hellip;</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur&hellip;</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+													<i class="icon-exclamation-sign indicator"></i>
+												</li>
+											</ul>
+										</div>
+										<div class="dropdown_footer">
+											<a href="#" class="btn btn-sm btn-default">Show all</a>
+											<div class="pull-right dropdown_actions">
+												<a href="#"><i class="icon-refresh"></i></a>
+												<a href="#"><i class="icon-cog"></i></a>
+											</div>
+										</div>
+              
+              <!--<a href="clientarea.php?action=details"><span aria-hidden="true" class="icon icon-user"></span> Edit Account Details</a>--></li>
+              <li><a href="clientarea.php?action=changepw"><span aria-hidden="true" class="icon icon-lock"></span> Change Password</a></li>
+              <li class="divider"></li>
+              <li><a href="clientarea.php?action=addfunds"><span aria-hidden="true" class="icon icon-plus"></span> Add Funds</a></li>                            <li class="divider"></li>
+              <li>
+              <?php echo $this->Html->link('<span aria-hidden="true" class="icon icon-logout"></span> Logout', '/users/logout',array('escape' => false));?>
+              <!--<a href="logout.php"><span aria-hidden="true" class="icon icon-logout"></span> Logout</a>--></li>
+            </ul>
+          </li>        
+          <li>
+          
+          
+          
+          <a href="#" class="settings dropdown-toggle" data-toggle="dropdown"><span aria-hidden="true" class="icon icon-envelope"><span class="badge cart bg-success">0</span></span></a>
+          <div class="dropdown_content dropdown-menu notifications" id="noti">
+											<ul class="dropdown_items">
+												<li>
+													<h3><a href="#">Lorem ipsum dolor sit amet</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+													<i class="icon-exclamation-sign indicator"></i>
+												</li>
+												<li>
+													<h3><a href="#">Lorem ipsum dolor&hellip;</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aliquam assumenda&hellip;</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+												</li>
+												<li>
+													<h3><a href="#">Lorem ipsum dolor&hellip;</a></h3>
+													<p>Lorem ipsum dolor sit amet, consectetur&hellip;</p>
+													<p class="large_info">Sean Walter, 24.05.2014</p>
+													<i class="icon-exclamation-sign indicator"></i>
+												</li>
+											</ul>
+										</div>
+										<div class="dropdown_footer dropdown-menu notifications" id="noti">
+											<a href="#" class="btn btn-sm btn-default">Show all</a>
+											<div class="pull-right dropdown_actions">
+												<a href="#"><i class="icon-refresh"></i></a>
+												<a href="#"><i class="icon-cog"></i></a>
+											</div>
+										</div>
+          </li>
+          <li>
+          <?php
+		  echo $this->Html->link('<span aria-hidden="true" class="icon icon-calendar"><span class="badge cart bg-success">'.$count_events.'</span></span>', '/events', array('class' => 'settings','escape' => false));
+		  ?>
+          
+          <!--<a href="clientarea.php?action=emails" class="settings"><span aria-hidden="true" class="icon icon-envelope"><span class="badge cart bg-success">0</span></span></a>--></li>
+          <li><a href="#" class="settings dropdown-toggle" data-toggle="dropdown"><span aria-hidden="true" class="icon icon-bell"></span></a>
+          
+          
+            <!--<ul class="dropdown-menu notifications" id="noti">
+              <li>
+              <a href="clientarea.php?action=addfunds">
+                <span aria-hidden="true" class="icon noty-icon bg-success icon-wallet"></span>
+                <span class="description">You have a credit balance of $0.00 USD and this will be automatically applied to any new invoices</span>
+              </a>
+            </li>
+                                                         </ul>-->
+       </li>
+       <li>
+      <?php echo $this->Html->link('<span aria-hidden="true" class="icon icon-logout"></span>', '/users/logout',array('escape' => false,'class' => 'settings')); ?>
+       <!--<a href="logout.php" class="settings"><span aria-hidden="true" class="icon icon-logout"></span></a>--></li>
+     </ul>
+						
+					</div>
+				</div>
+			</header>

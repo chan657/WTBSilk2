@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('supplier_city_code',array('type' => 'select','label'=> false,'options'=>$DataArray,'empty'=>'--Select--')); ?>

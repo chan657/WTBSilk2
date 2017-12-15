@@ -1,0 +1,131 @@
+<?php $this->Html->addCrumb('Payments','javascript:void(0);', array('class' => 'breadcrumblast'));?>
+<div class="row">
+							<div class="col-sm-12">
+                            	<div class="table-heading">
+										<h4 class="table-heading-title"><span class="badge badge-circle badge-success"> <?php
+                echo $this->Paginator->counter(array('format' => '{:count}'));
+                ?></span>Payments</h4>
+                                        <span class="badge badge-circle add-client nomrgn"><i class="icon-plus"></i> <?php echo $this->Html->link('Payment','/payments/add')?></span>
+                                        <span class="search_panel_icon"><i class="icon-plus" id="toggle_search_panel"></i></span>
+									</div>
+								<div class="panel panel-default">
+									
+									<div class="panel_controls hideform">
+                                    
+                                    <?php            
+                    echo $this->Form->create('Payment', array('controller' => 'Payments','action' =>'index', 'class' => 'quick_search', 'id' => 'SearchForm','novalidate'=>true,'inputDefaults' => array(
+																	'label' => false,
+																	'div' => false,
+																	'class' => 'form-control',
+																)));
+                 
+                    ?> 
+										<div class="row" id="search_panel_controls">
+											
+											<div class="col-sm-3 col-xs-6">
+												<label for="un_member">User Name:</label>
+												<?php  echo $this->Form->input('search_value'); ?>
+											</div>
+                                       
+                                            
+                                            
+											<div class="col-sm-3 col-xs-6">
+												<label>&nbsp;</label>
+                                                <?php
+											   echo $this->Form->submit('Filter', array('div' => false, 'class' => 'btn btn-default btn-sm'));            
+											  // echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'btn btn-default btn-sm"'));
+					   
+					   							?>
+												
+											</div>
+										</div>
+                                         <?php echo $this->Form->end(); ?>
+									</div>
+                                    <?php            
+                    echo $this->Form->create('Payment', array('controller' => 'Payments','action' =>'add', 'class' => 'quick_search', 'id' => 'SearchForm','novalidate'=>true,'inputDefaults' => array(
+																	'label' => false,
+																	'div' => false,
+																	'class' => 'form-control',
+																)));
+                 echo $this->Form->hidden('submit',array('value' => 'submit'));
+                    ?> 
+									<table id="resp_table" class="table toggle-square" data-filter="#table_search" data-page-size="40">
+										<thead>
+											<tr>
+                                            	<th class="nolink" data-sort-ignore="true"><input type="checkbox" class="mbox_select_all" name="msg_sel_all"></th>
+												<th>Parent Id</th>
+												<th data-hide="phone">Action Id</th>
+                                                <th data-hide="phone">Level</th>
+                                                <th data-hide="phone">About</th>
+                                                <th data-hide="phone">Active?</th>
+                                                <th data-hide="phone">Last Action Date</th>
+                                                 <th data-hide="phone">Source</th>
+                                                 <th data-hide="phone">Last By</th>
+                                                 <th data-hide="phone">Current Status</th>
+                                                 <th data-hide="phone">Next By</th>
+												     
+											</tr>
+										</thead>
+										<tbody>
+                                        	<?php
+										 if (isset($actionitems) && count($actionitems) > 0):
+											 foreach ($actionitems as $actionitem):
+											   $id = $actionitem['ActionItem']['id'];
+										?>
+										<tr>
+                                        	<td class="nolink"><?php echo $this->Form->checkbox('msg_sel', array('name' => 'data[Payment][msg_sel][]','class' => 'mbox_msg_select','hiddenField' => false,'value' => $id.'_'.$actionitem['ActionItem']['event_id']));?></td>
+											<td class="tablebody" ><?php echo $actionitem['ActionItem']['parent_action_item_id'];?></td>
+                                            <td class="tablebody" ><?php echo $id;?></td>                    
+                                            <td class="tablebody" ><?php echo $actionitem['ActionItemLevel']['level']; ?></td>
+                                            <td class="tablebody" ><?php echo $actionitem['ActionItem']['event_id']; ?></td>
+                                            <td class="tablebody" ><?php echo $actionitem['ActionItem']['action_item_active']; ?></td>
+                                            <td class="tablebody" ><?php echo date('d/m/Y',strtotime($actionitem['ActionItem']['created'])); ?></td>
+                                            <td class="tablebody" ><?php echo $actionitem['Role']['role_name']; ?></td>
+                                            <td class="tablebody" ><?php echo $actionitem['LastActionBy']['fname'].' '.$actionitem['LastActionBy']['lname']; ?></td>
+                                           <td class="tablebody" ><?php echo $actionitem['ActionStatus']['value'];?></td>
+                                            <td class="tablebody" ><?php echo $actionitem['NextActionBy']['fname'].' '.$actionitem['NextActionBy']['lname'];?></td>
+                                           
+                                               
+											  </tr>
+                                        <?php
+                                        endforeach; ?>
+                                       
+                                         <?php echo $this->element('paginate'); ?>
+                                 <?php   endif; ?>
+                                        </tbody>
+									</table>
+                                    <span class="badge badge-circle add-client"><i class="icon-plus"></i> <?php echo $this->Form->submit('Payment',array('class' => 'btn btn-default btn-sm'))?></span>
+         <?php echo $this->Form->end(); ?>                            
+								</div>
+							</div>
+						</div>
+<script>
+	$('.mbox_msg_select').on('click',function() {
+					if($(this).is(':checked')) {
+						$(this).closest('tr').addClass('active')
+					} else {
+						$(this).closest('tr').removeClass('active')
+					}
+				});
+	$('.mbox_select_all').click(function () {
+					var $this = $(this);
+					
+					$('#resp_table').find('.mbox_msg_select').filter(':visible').each(function() {
+						if($this.is(':checked')) {
+							$(this).prop('checked',true).closest('tr').addClass('active')
+						} else {
+							$(this).prop('checked',false).closest('tr').removeClass('active')
+						}
+					})
+					
+				});	
+				/*
+	$(".mbox_select_all").click(function() {
+			var test = [];
+			$('input:checkbox:(:checked)').each( function() {
+				test.push($(this).val());
+			});
+			alert(test);
+});	
+*/				
+</script>

@@ -1,0 +1,12 @@
+id,name,city_id,city_name,country_id,country_name,continent_id,continent_name,description,active,top_neighborhood,status,wtb_status,is_update,province_id,province_name,approved_by,approved_date,created_by,created
+NULL,Baling,7652,Kedah,132,Malaysia,2,Asia,Baling,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Bandar Baharu,7652,Kedah,132,Malaysia,2,Asia,Bandar Baharu,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Kota Setar,7652,Kedah,132,Malaysia,2,Asia,Kota Setar,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Kuala Muda,7652,Kedah,132,Malaysia,2,Asia,Kuala Muda,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Kubang Pasu,7652,Kedah,132,Malaysia,2,Asia,Kubang Pasu,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Padang Terap,7652,Kedah,132,Malaysia,2,Asia,Padang Terap,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Pendang,7652,Kedah,132,Malaysia,2,Asia,Pendang,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Pokok Sena,7652,Kedah,132,Malaysia,2,Asia,Pokok Sena,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Sik,7652,Kedah,132,Malaysia,2,Asia,Sik,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Yan,7652,Kedah,132,Malaysia,2,Asia,Yan,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
+NULL,Greater Kedah,7652,Kedah,132,Malaysia,2,Asia,Greater Kedah,TRUE,FALSE,1,1,Y,97,Kedah-West Malaysia,0,0000-00-00 00:00:00,169,0000-00-00 00:00:00
